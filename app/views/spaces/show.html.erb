@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @space.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @space.description %>
+</p>
+
+<p>
+  <strong>Address1:</strong>
+  <%= @space.address1 %>
+</p>
+
+<p>
+  <strong>Address2:</strong>
+  <%= @space.address2 %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @space.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @space.state %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @space.zipcode %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @space.phone %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @space.website %>
+</p>
+
+<%= link_to 'Edit', edit_space_path(@space) %> |
+<%= link_to 'Back', spaces_path %>
