@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :reviews
-  resources :spaces
+  devise_for :users
+  resources :spaces do
+    resources :reviews, except: [:index]
+  end
 
   root 'static#home'
+
+  get '/about' => "static#about"
+  get '/contact' => "static#contact"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

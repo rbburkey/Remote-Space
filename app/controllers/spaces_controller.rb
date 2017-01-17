@@ -1,4 +1,5 @@
 class SpacesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :new]
   before_action :set_space, only: [:show, :edit, :update, :destroy]
 
   # GET /spaces
@@ -10,6 +11,13 @@ class SpacesController < ApplicationController
   # GET /spaces/1
   # GET /spaces/1.json
   def show
+    @space = Space.find(params[:id])
+    @reviews = Review.where(space_id: @space)
+    if @reviews.blank?
+      @avg_rating = 0
+    else
+      @avg_rating = @reviews.average(:rating).round(2)
+    end
   end
 
   # GET /spaces/new
@@ -69,6 +77,6 @@ class SpacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def space_params
-      params.require(:space).permit(:name, :description, :address1, :address2, :city, :state, :zipcode, :phone, :website)
+      params.require(:space).permit(:name, :category_id, :description, :address1, :address2, :city, :state, :zipcode, :phone, :website)
     end
 end

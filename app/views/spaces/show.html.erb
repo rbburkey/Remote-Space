@@ -45,5 +45,14 @@
   <%= @space.website %>
 </p>
 
+<%= link_to 'Write a Review', new_space_review_path(@space) %> |
 <%= link_to 'Edit', edit_space_path(@space) %> |
 <%= link_to 'Back', spaces_path %>
+
+<h1> Reviews </h1>
+<% @reviews.each do |review| %>
+<%= review.comment %>
+<br>
+<%end%>
+<div class="star-rating" data-score=<%= @avg_rating %> >
+</div>

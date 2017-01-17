@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_space
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   # GET /reviews
@@ -14,7 +16,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    @review = Review.new
+    @review = Review.new(space: @space)
   end
 
   # GET /reviews/1/edit
@@ -24,12 +26,12 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
-
+    @review = current_user.reviews.build(review_params)
+    @review.space = @space
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
+        format.html { redirect_to @space, notice: 'Review was successfully created.' }
+        format.json { render :show, status: :created, location: @space }
       else
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
@@ -65,6 +67,10 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    end
+
+    def set_space
+      @space = Space.find(params[:space_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

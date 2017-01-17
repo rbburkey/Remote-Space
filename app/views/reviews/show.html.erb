@@ -10,5 +10,9 @@
   <%= @review.rating %>
 </p>
 
+<p>
+<%= avg_rating %> <!--add a <div class="x" data-score=<%= avg_rating %>> once you add styling -->
+</p>
+
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>
