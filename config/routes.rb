@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  
+
   resources :spaces do
     resources :reviews, except: [:index]
+    collection do
+      get 'search'
+    end
   end
 
   root 'static#home'

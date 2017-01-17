@@ -1,0 +1,7 @@
+<%= @spaces.each do |space| %>
+<% if !space.exist? %>
+<p> There are no Spaces yet in this area! </p>
+<%else%>
+<%= space.name %>
+<%end%>
+<% end %>
