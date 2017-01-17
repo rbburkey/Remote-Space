@@ -49,7 +49,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Spaces</a>
+                      <%=link_to "Spaces", spaces_path %>
                     </li>
 
                     <li>
@@ -63,6 +63,10 @@
                     </li>
                     <li>
                       <%=link_to "Login", new_user_session_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
