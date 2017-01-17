@@ -50,9 +50,42 @@
 <%= link_to 'Back', spaces_path %>
 
 <h1> Reviews </h1>
-<% @reviews.each do |review| %>
-<%= review.comment %>
-<br>
+<% if @reviews.blank? %>
+<p> No Reviews Yet!</p>
+<%else%>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-mid-3"></th>
+      <th class="col-mid-3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review|%>
+    <tr>
+      <td>
+        <h5> <%= "#{review.user.email}" %> </h5>
+      </td>
+      <td>
+        <div class="clearfix star-rating" data-score=<%= review.rating %> ></div>
+        <%= review.comment %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 <%end%>
-<div class="star-rating" data-score=<%= @avg_rating %> >
-</div>
+<%end%>
+
+<p>Average Rating:
+<%= @avg_rating %></p>
+
+
+<script>
+$('.star-rating').raty({
+  path: '/assets/',
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>

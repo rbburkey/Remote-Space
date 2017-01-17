@@ -7,20 +7,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render "layouts/messages" %>
+<%= render 'layouts/messages' %>
 <%= yield %>
-
-<script src="jquery.raty.js"></script>
-<script>
-$('.star-rating').raty({
-  path: '/assets/',
-  readOnly: true,
-  score: function () {
-    return $(this).attr('data-score');
-  }
-});
-</script>
-
-
+<%= render 'layouts/footer' %>
 </body>
 </html>
