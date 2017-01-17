@@ -51,22 +51,24 @@
                     <li>
                       <%=link_to "Spaces", spaces_path %>
                     </li>
-
-                    <li>
-                        <a class="page-scroll" href="#about">Resources</a>
-                    </li>
                     <li>
                         <%=link_to "About", about_path %>
                     </li>
                     <li>
                         <%=link_to "Contact", contact_path %>
                     </li>
+                    <% if !user_signed_in? %>
                     <li>
                       <%=link_to "Login", new_user_session_path %>
                     </li>
+                    <%else%>
                     <li>
                       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
                     </li>
+                    <li>
+                      <%= link_to "Account Settings", edit_user_registration_path %>
+                    </li>
+                    <%end%>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
