@@ -7,6 +7,8 @@ class Space < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode
 
+  mount_uploader :image, ImageUploader
+
   def full_address
     [address1, address2, city, state, zipcode].join(', ')
   end
@@ -17,5 +19,6 @@ class Space < ActiveRecord::Base
     spaces = spaces.near(params[:location], 20) if params[:location].present?
     spaces
   end
+
 
 end
