@@ -73,6 +73,9 @@ class SpacesController < ApplicationController
     @spaces = Space.search(params)
   end
 
+  def search1
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_space

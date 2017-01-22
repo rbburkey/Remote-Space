@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
+  get '/search1' => "spaces#search1"
   get '/about' => "static#about"
   get '/contact' => "static#contact"
   # The priority is based upon order of creation: first created -> highest priority.
