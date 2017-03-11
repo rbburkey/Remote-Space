@@ -24,6 +24,23 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Review', new_review_path %>
+<section>
+  <h2>Reviews</h2>
+  <div class="review">
+    <div class="image">
+      <div class="bg-transfer"><img src="assets/img/person-02.jpg" alt=""></div>
+    </div>
+    <div class="description">
+      <figure>
+        <div class="rating-passive" data-rating="4">
+          <span class="stars"></span>
+          <span class="reviews">6</span>
+          <span class="reviews"><%=review.rating%></span>
+        </div>
+        <span class="date"><%=Time.now%></span>
+      </figure>
+      <p><%=review.comment%></p>
+    </div>
+  </div>
+</section>

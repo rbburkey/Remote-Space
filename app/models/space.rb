@@ -3,7 +3,6 @@ class Space < ActiveRecord::Base
   belongs_to :category
   validates_presence_of :name, :category, :description, :address1, :city, :state, :zipcode, :phone, :website
 
-
   geocoded_by :full_address
   after_validation :geocode
 

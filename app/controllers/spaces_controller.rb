@@ -6,6 +6,8 @@ class SpacesController < ApplicationController
   # GET /spaces.json
   def index
     @spaces = Space.all
+    @reviews = Review.where(space_id: @space)
+    @avg_rating = @reviews.average(:rating).round(2)
   end
 
   # GET /spaces/1
@@ -19,6 +21,7 @@ class SpacesController < ApplicationController
       @avg_rating = @reviews.average(:rating).round(2)
     end
   end
+
 
   # GET /spaces/new
   def new
@@ -73,8 +76,6 @@ class SpacesController < ApplicationController
     @spaces = Space.search(params)
   end
 
-  def search1
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

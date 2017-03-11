@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    @reviews = Review.where(review_id: @space)
   end
 
   # GET /reviews/new

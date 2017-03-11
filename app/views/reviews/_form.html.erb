@@ -1,25 +1,49 @@
-<%= form_for([@space, @space.reviews.build]) do |f| %>
-  <% if @review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+<section id="write-a-review">
+  <h2>Write a Review</h2>
+  <!-- <form class="clearfix form inputs-underline"> -->
+    <div class="box">
+      <div class="comment">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="comment-title">
+              <h4>Review your experience</h4>
+            </div>
+            <!--end title-->
+            <%= form_for([@space, @space.reviews.build]) do |f| %>
 
-      <ul>
-      <% @review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+              <div class="form-group">
+                <%= f.label :comment %><br>
+                <%= f.text_area :comment, class: "form-control", id: "message" %>
+              </div>
+              <div class="form-group">
+                <div id="star-rating"></div>
+              </div>
+              <div class="form-group pull-right">
+                <%= f.submit %>
+              </div>
+               <% end %>
+          </div>
+
+          <!-- <div class="col-md-4">
+            <dl class="visitor-rating">
+              <dd class="star-rating active"></dd>
+            </dl>
+          </div> -->
+
+        </div>
+        <!--end row-->
+      </div>
+      <!--end comment-->
     </div>
-  <% end %>
+    <!--end review-->
+  <!-- </form> -->
+  <!--end form-->
+</section>
+</div>
 
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating, value: 1, max: 5 %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<script>
+$('#star-rating').raty({
+  path: '/assets/',
+  scoreName: 'review[rating]'
+});
+</script>

@@ -1,91 +1,180 @@
-<p id="notice"><%= notice %></p>
+  <body class="subpage-detail">
+    <div id="page-content">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Spaces</a></li>
+          <li class="active"><%=@space.name%></li>
+        </ol>
+        <section class="page-title pull-left">
+          <h1><%=@space.name%></h1>
+          <h3><%=@space.city%>, <%=@space.state.upcase%></h3>
+          <div class="rating-passive" data-rating=<%=@avg_rating%>>
+            <div id="star"></div>
+            <span class="stars"></span>
+            <div class="star-rating" data-score=<%=@avg_rating%> ></div>
+            <span class="reviews"><%="Average Rating: " %><%=@avg_rating%></span>
+          </div>
+        </section>
+        <!--end page-title-->
+        <a href="#write-a-review" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-star"></i>Write a review</a>
+      </div>
+      <!--end container-->
+      <!-- <section>
+        <div class="gallery detail">
+          <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
+            <div class="image">
+              <div class="bg-transfer"><img src="assets/img/items/1.jpg" alt=""></div>
+            </div>
+            <div class="image">
+              <div class="bg-transfer"><img src="assets/img/items/30.jpg" alt=""></div>
+            </div>
+            <div class="image">
+              <div class="bg-transfer"><img src="assets/img/items/31.jpg" alt=""></div>
+            </div>
+            <div class="image">
+              <div class="bg-transfer"><img src="assets/img/items/21.jpg" alt=""></div>
+            </div>
+            <div class="image">
+              <div class="bg-transfer"><img src="assets/img/items/23.jpg" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </section> -->
 
-<p>
-  <strong>Name:</strong>
-  <%= @space.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @space.description %>
-</p>
-
-<p>
-  <strong>Address1:</strong>
-  <%= @space.address1 %>
-</p>
-
-<p>
-  <strong>Address2:</strong>
-  <%= @space.address2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @space.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @space.state %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @space.zipcode %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @space.phone %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @space.website %>
-</p>
-
-<%= link_to 'Write a Review', new_space_review_path(@space) %> |
-<%= link_to 'Edit', edit_space_path(@space) %> |
-<%= link_to 'Back', spaces_path %>
-
-<h1> Reviews </h1>
-<% if @reviews.blank? %>
-<p> No Reviews Yet!</p>
-<%else%>
-<table class="table">
-  <thead>
-    <tr>
-      <th class="col-mid-3"></th>
-      <th class="col-mid-3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @reviews.each do |review|%>
-    <tr>
-      <td>
-        <h5> <%= "#{review.user.first_name} #{review.user.last_name}" %> </h5>
-      </td>
-      <td>
-        <div class="clearfix star-rating" data-score=<%= review.rating %> ></div>
-        <%= review.comment %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<%end%>
-<%end%>
-
-<p>Average Rating:
-<%= @avg_rating %></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 col-sm-7">
+            <div id="gallery-nav"></div>
+            <section>
+              <h2>About this Space</h2>
+              <p>
+                <%= @space.description %>
+              </p>
+              <p>
+                In ut varius magna. Integer ullamcorper tincidunt molestie. Morbi consequat sem non nulla laoreet,
+                non commodo tellus elementum. Sed tincidunt, lorem vitae rhoncus pharetra, diam ex pharetra erat, eu
+                lacinia mi libero vitae lectus.
+              </p>
+            </section>
 
 
-<script>
-$('.star-rating').raty({
-  path: '/assets/',
-  readOnly: true,
-  score: function() {
-    return $(this).attr('data-score');
-  }
-});
+            <section>
+              <h2>Reviews (<%=@reviews.count%>)</h2>
+              <% if @reviews.blank? %>
+              <p> No Reviews Yet!</p>
+              <%else%>
+              <% @reviews.each do |review|%>
+              <div class="review">
+                <div class="image">
+                  <div class="bg-transfer"><img src="assets/img/person-02.jpg" alt=""></div>
+                </div>
+                <div class="description">
+                  <figure>
+                    <div class="rating-passive" data-rating="4">
+                      <span class="stars"></span>
+                      <div class="star-rating" data-score=<%=review.rating%> ><span class="reviews">  <%=review.rating%></span></div>
+                      <span class="reviews"></span>
+
+                    </div>
+                    <span class="date"><%=review.created_at.strftime("%b %d, %Y") + " at " + review.created_at.strftime("%H:%M")%></span>
+                  </figure>
+                  <p><%=review.comment%></p>
+                </div>
+              </div>
+                <%end%>
+                <%end%>
+            </section>
+
+            <section>
+              <h2>Features</h2>
+              <ul class="tags">
+                <li>Wi-Fi</li>
+                <li>Parking</li>
+                <li>TV</li>
+                <li>Alcohol</li>
+                <li>Vegetarian</li>
+                <li>Take-out</li>
+                <li>Balcony</li>
+              </ul>
+            </section>
+
+            <%= render 'reviews/form'%>
+
+            <!--end col-md-7-->
+            <div class="col-md-5 col-sm-5">
+              <div class="detail-sidebar">
+                <section class="shadow">
+                  <div class="map height-250px" id="map-detail"></div>
+                  <!--end map-->
+                  <div class="content">
+                    <div class="vertical-aligned-elements">
+                      <div class="element"><img src="assets/img/logo-2.png" alt=""></div>
+                      <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>
+                    </div>
+                    <hr>
+                    <address>
+                      <figure><i class="fa fa-map-marker"></i><%=@space.address1%><br><%=@space.city%>, <%=@space.state%> <%=@space.zipcode%></figure>
+                      <figure><i class="fa fa-phone"></i><%=@space.phone%></figure>
+                      <figure><i class="fa fa-globe"></i><a href="#"><%=@space.website%></a></figure>
+                    </address>
+                  </div>
+                </section>
+                <section>
+                  <h2>Opening Hours</h2>
+                  <dl>
+                    <dt>Monday</dt>
+                    <dd>08:00am - 11:00pm</dd>
+                    <dt>Tuesday</dt>
+                    <dd>08:00am - 11:00pm</dd>
+                    <dt>Wednesday</dt>
+                    <dd>12:00am - 11:00pm</dd>
+                    <dt>Thursday</dt>
+                    <dd>08:00am - 11:00pm</dd>
+                    <dt>Friday</dt>
+                    <dd>03:00pm - 02:00am</dd>
+                    <dt>Saturday</dt>
+                    <dd>03:00pm - 02:00am</dd>
+                    <dt>Sunday</dt>
+                    <dd>Closed</dd>
+                  </dl>
+                </section>
+                <section>
+                  <h2>Share This Space</h2>
+                  <div class="social-share"></div>
+                </section>
+              </div>
+              <!--end detail-sidebar-->
+            </div>
+            <!--end col-md-5-->
+          </div>
+          <!--end row-->
+        </div>
+        <!--end container-->
+      </div>
+      <!--end page-content-->
+
+
+    </div>
+    <!--end page-wrapper-->
+    <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+    <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+
+    <script>
+    $('.star-rating').raty({
+      path: '/assets',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
 </script>
+    <script>
+    rating(".visitor-rating");
+    var _latitude = 40.7344458;
+    var _longitude = -73.86704922;
+    var element = "map-detail";
+    simpleMap(_latitude,_longitude, element);
+    </script>
+
+  </body>

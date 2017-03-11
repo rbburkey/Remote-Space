@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<section>
+  <h2>Reviews</h2>
+  <div class="review">
+    <div class="image">
+      <div class="bg-transfer"><img src="assets/img/person-02.jpg" alt=""></div>
+    </div>
+    <div class="description">
+      <figure>
+        <div class="rating-passive">
+          <span class="stars"><p>stars</p></span>
+          <span class="reviews"><div class="clearfix star-rating" data-score=<%= @review.rating %> ></div> <div id="user_star"></div></span>
+          <span class="reviews"><%=avg_rating%></span>
+        </div>
+        <span class="date"><%=Time.now%></span>
+      </figure>
+      <p><%=@review.comment%></p>
+    </div>
+  </div>
+</section>
