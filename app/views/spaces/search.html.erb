@@ -42,7 +42,7 @@
           <div class="item" data-id="1">
             <a href="detail.html">
               <div class="description">
-                <figure>Rating</figure>
+                <figure><div class="star-rating" data-score=<%=@avg_rating%> ></div></figure>
                 <div class="label label-default"><%= "#{space.category.name}"%></div>
                 <h3><%= link_to "#{space.name}", space_path(space)  %></h3>
                 <h4><%=space.city%>, <%=space.state.upcase%></h4>
@@ -110,5 +110,14 @@
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
+<script>
+$('.star-rating').raty({
+  path: '/assets',
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>
 
 </body>

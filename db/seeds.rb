@@ -17,3 +17,18 @@ category_list = [
 category_list.each do |name|
   Category.create( name: name )
 end
+
+
+feature_list = [
+   "Wi-Fi",
+   "Parking",
+   "Alcohol",
+   "Balcony",
+   "Laptop-Friendly",
+   "Balcony"
+
+]
+
+feature_list.each do |name|
+  Feature.create( name: name )
+end

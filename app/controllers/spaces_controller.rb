@@ -20,6 +20,7 @@ class SpacesController < ApplicationController
     else
       @avg_rating = @reviews.average(:rating).round(2)
     end
+    @features = @space.feature.split(',')
   end
 
 
@@ -85,6 +86,6 @@ class SpacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def space_params
-      params.require(:space).permit(:name, :category_id, :description, :address1, :address2, :city, :state, :zipcode, :phone, :website, :image)
+      params.require(:space).permit(:name, :category_id, :description, :address1, :address2, :city, :state, :zipcode, :phone, :website, :image, feature:[])
     end
 end
