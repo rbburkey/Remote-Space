@@ -1,0 +1,10 @@
+
+
+<% if @spaces.count >= 6 && @page != 1 %>
+<li><%= link_to 'More Spaces', page: @page + 1 %></li>
+<li><%= link_to 'Previous Spaces', page: @page - 1 %></li>
+<%elsif @spaces.count >= 6 %>
+<li><%= link_to 'More Spaces', page: @page + 1 %></li>
+<%else%>
+<li><%= link_to 'Previous Spaces', page: @page - 1 %></li>
+<%end %>

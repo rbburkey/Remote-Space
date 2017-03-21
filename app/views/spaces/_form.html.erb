@@ -63,9 +63,6 @@
                 <%= label_tag 'feature_alcohol', 'Alcohol' %>
                 <%= check_box_tag 'space[feature][]', 'Alcohol', checked('Alcohol'), id: 'feature_alcohol' %>
 
-                <%= label_tag 'feature_balcony', 'Balcony' %>
-                <%= check_box_tag 'space[feature][]', 'Balcony', checked('Balcony'), id: 'feature_balcony' %>
-
                 <%= label_tag 'feature_laptop-friendly', 'Laptop-Friendly' %>
                 <%= check_box_tag 'space[feature][]', 'Laptop-Friendly', checked('Laptop-Friendly'), id: 'feature_laptop-friendly' %>
 
@@ -127,9 +124,10 @@
           </section>
           <section>
             <h3>Gallery</h3>
+
+            <%= f.file_field :image, as: :file %>
             <div class="file-upload-previews"></div>
             <div class="file-upload">
-              <%= f.file_field :image, name: "files[]", class: "file-upload-input with-preview", maxlenth: "5" %>
               <span>Click or drag images here</span>
             </div>
             <!--end form-group-->

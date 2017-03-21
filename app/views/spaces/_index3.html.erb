@@ -4,7 +4,7 @@
     <% @spaces.each do |space| %>
     <div class="col-md-4 col-sm-4">
       <div class="item" data-id="1">
-        <a href="<%=space_path(space)%>">
+        <a href="<%=space_path(space)%>"><%= image_tag space.image.url(:medium)%></a>
           <div class="description">
             <figure><%=space.phone%></figure>
             <div class="label label-default"><%=space.category.name%></div>
@@ -12,15 +12,16 @@
             <h4><%=space.city%>, <%=space.state.upcase%></h4>
           </div>
           <!--end description-->
+
           <div class="image bg-transfer">
-            <%= image_tag space.image%>
+            <%= image_tag space.image.url%>
           </div>
           <!--end image-->
         </a>
         <div class="additional-info">
           <div class="rating-passive" data-rating="4">
             <span class="stars"></span>
-            <span class="reviews">space.avg_rating</span>
+            <span class="reviews"><%=@avg_rating%></span>
           </div>
           <div class="controls-more">
             <ul>
@@ -45,21 +46,14 @@
   <div class="center">
     <nav aria-label="Page navigation">
       <ul class="pagination">
-        <li class="disabled previous">
-          <a href="#" aria-label="Previous">
-            <i class="arrow_left"></i>
-          </a>
-        </li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li class="next">
-          <a href="#" aria-label="Next">
-            <i class="arrow_right"></i>
-          </a>
-        </li>
+        <% if @spaces.count >= 6 && @page != 1 %>
+        <li><%= link_to 'More Spaces', page: @page + 1 %></li>
+        <li><%= link_to 'Previous Spaces', page: @page - 1 %></li>
+        <%elsif @spaces.count >= 6 %>
+        <li><%= link_to 'More Spaces', page: @page + 1 %></li>
+        <%else%>
+        <li><%= link_to 'Previous Spaces', page: @page - 1 %></li>
+        <%end %>
       </ul>
     </nav>
   </div>

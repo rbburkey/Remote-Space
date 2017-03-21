@@ -28,10 +28,7 @@
             <!--end image-->
           </a>
           <div class="additional-info">
-            <div class="rating-passive" data-rating="4">
-              <span class="stars"></span>
-              <span class="reviews">6</span>
-            </div>
+                <span class="star-rating" data-score=<%=@avg_rating%> ></span>
             <div class="controls-more">
               <ul>
                 <li><a href="#">Add to favorites</a></li>
@@ -230,3 +227,13 @@
   </div>
   <!--end container-->
 </section>
+
+<script>
+$('.star-rating').raty({
+  path: '/assets',
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>

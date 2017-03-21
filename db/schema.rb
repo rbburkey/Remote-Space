@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316024430) do
+ActiveRecord::Schema.define(version: 20170321014333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,13 +44,16 @@ ActiveRecord::Schema.define(version: 20170316024430) do
     t.string   "zipcode"
     t.string   "phone"
     t.string   "website"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "category_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "image"
     t.string   "feature"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "spaces", ["category_id"], name: "index_spaces_on_category_id", using: :btree

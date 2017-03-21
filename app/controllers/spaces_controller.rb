@@ -6,8 +6,21 @@ class SpacesController < ApplicationController
   # GET /spaces.json
   def index
     @spaces = Space.all
+    @page = (params[:page] || 1).to_i
+    offset = (@page -1) * 6
+    @spaces = Space.
+          order(created_at: :desc).
+          offset(offset).
+          limit(6).
+          all
+
+
     @reviews = Review.where(space_id: @space)
-    @avg_rating = @reviews.average(:rating).round(2)
+    if @reviews.blank?
+      @avg_rating = 0
+    else
+      @avg_rating = @reviews.average(:rating).round(2)
+    end
   end
 
   # GET /spaces/1
@@ -20,7 +33,9 @@ class SpacesController < ApplicationController
     else
       @avg_rating = @reviews.average(:rating).round(2)
     end
+
     @features = @space.feature.split(',')
+
   end
 
 

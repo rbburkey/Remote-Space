@@ -8,7 +8,9 @@ class Space < ActiveRecord::Base
   validates_presence_of :name, :category, :description, :address1, :city, :state, :zipcode, :phone, :website
   geocoded_by :full_address
   after_validation :geocode
-  mount_uploader :image, ImageUploader
+
+  has_attached_file :image, styles: { medium: "260x220>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 
   def full_address

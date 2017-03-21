@@ -89,8 +89,10 @@
             <section>
               <h2>Features</h2>
               <ul class="tags">
+                <% if @features != nil %>
                 <% @features.each do |f| %>
                 <li><%=f%></li>
+                <%end%>
                 <%end%>
               </ul>
             </section>
