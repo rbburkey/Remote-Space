@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-md-3 col-sm-3">
         <div class="item" data-id="1">
-          <a href="<%=space_path(@spaces[-1])%>">
+          <a href="<%=space_path(@spaces[-1])%>"><%= image_tag @spaces[-1].image.url(:medium)%>
             <div class="description">
               <figure></figure>
               <div class="label label-default"><%=@spaces[-1].category.name%></div>
@@ -28,7 +28,14 @@
             <!--end image-->
           </a>
           <div class="additional-info">
-                <span class="star-rating" data-score=<%=@avg_rating%> ></span>
+            <div class="rating-passive" data-rating="3">
+              <span class="stars"></span>
+              <% if @spaces[-1].reviews.average(:rating) == nil %>
+              <span class="reviews">No Reviews Yet!</span>
+              <%else%>
+              <span class="reviews">Average Rating: <%=@spaces[-1].reviews.average(:rating)%></span>
+              <%end%>
+            </div>
             <div class="controls-more">
               <ul>
                 <li><a href="#">Add to favorites</a></li>
@@ -61,7 +68,11 @@
           <div class="additional-info">
             <div class="rating-passive" data-rating="3">
               <span class="stars"></span>
-              <span class="reviews">13</span>
+              <% if @spaces[-2].reviews.average(:rating) == nil %>
+              <span class="reviews">No Reviews Yet!</span>
+              <%else%>
+              <span class="reviews">Average Rating: <%=@spaces[-2].reviews.average(:rating)%></span>
+              <%end%>
             </div>
             <div class="controls-more">
               <ul>
@@ -79,10 +90,10 @@
       <!--<end col-md-3-->
       <div class="col-md-6 col-sm-6">
         <div class="item" data-id="15">
-          <figure class="ribbon">Top</figure>
+          <!-- <figure class="ribbon">Top</figure> -->
           <a href="<%=space_path(@spaces[-3])%>">
             <div class="description">
-              <figure></figure>
+              <!-- <figure></figure> -->
               <div class="label label-default"><%=@spaces[-3].category.name%></div>
               <h3><%=@spaces[-3].name%></h3>
               <h4><%=@spaces[-3].address1%></h4>
@@ -94,10 +105,15 @@
             <!--end image-->
           </a>
           <div class="additional-info">
-            <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure>
+            <!-- <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure> -->
             <div class="rating-passive" data-rating="5">
               <span class="stars"></span>
-              <span class="reviews">56</span>
+              <% if @spaces[-3].reviews.average(:rating) == nil %>
+              <span class="reviews">No Reviews Yet!</span>
+              <%else%>
+              <span class="reviews">Average Rating: <%=@spaces[-3].reviews.average(:rating)%></span>
+              <%end%>
+            </div>
             </div>
             <div class="controls-more">
               <ul>
@@ -115,10 +131,10 @@
       <!--<end col-md-3-->
       <div class="col-md-4 col-sm-4">
         <div class="item" data-id="3">
-          <figure class="ribbon">Top</figure>
+          <!-- <figure class="ribbon">Top</figure> -->
           <a href="<%=space_path(@spaces[-4])%>">
             <div class="description">
-              <figure></figure>
+              <!-- <figure></figure> -->
               <div class="label label-default"><%=@spaces[-4].category.name%></div>
               <h3><%=@spaces[-4].name%></h3>
               <h4><%=@spaces[-4].address1%></h4>
@@ -130,11 +146,15 @@
             <!--end image-->
           </a>
           <div class="additional-info">
-            <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure>
+            <!-- <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure> -->
             <div class="rating-passive" data-rating="5">
               <span class="stars"></span>
-              <span class="reviews">12</span>
-            </div>
+              <% if @spaces[-3].reviews.average(:rating) == nil %>
+              <span class="reviews">No Reviews Yet!</span>
+              <%else%>
+              <span class="reviews">Average Rating: <%=@spaces[-3].reviews.average(:rating)%></span>
+              <%end%>
+             </div>
             <div class="controls-more">
               <ul>
                 <li><a href="#">Add to favorites</a></li>
@@ -166,8 +186,11 @@
           <div class="additional-info">
             <div class="rating-passive" data-rating="5">
               <span class="stars"></span>
-              <span class="reviews">43</span>
-            </div>
+              <% if @spaces[-3].reviews.average(:rating) == nil %>
+              <span class="reviews">No Reviews Yet!</span>
+              <%else%>
+              <span class="reviews">Average Rating: <%=@spaces[-3].reviews.average(:rating)%></span>
+              <%end%>            </div>
             <div class="controls-more">
               <ul>
                 <li><a href="#">Add to favorites</a></li>
@@ -200,8 +223,11 @@
           <div class="additional-info">
             <div class="rating-passive" data-rating="0">
               <span class="stars"></span>
-              <span class="reviews">0</span>
-            </div>
+              <% if @spaces[-3].reviews.average(:rating) == nil %>
+              <span class="reviews">No Reviews Yet!</span>
+              <%else%>
+              <span class="reviews">Average Rating: <%=@spaces[-3].reviews.average(:rating)%></span>
+              <%end%>            </div>
             <div class="controls-more">
               <ul>
                 <li><a href="#">Add to favorites</a></li>

@@ -55,13 +55,13 @@ ul.checkboxes.inline li {
   float: right;
 }
 
-a.link.arrow:after {
+/*a.link.arrow:after {
   content: "#";
   margin-right: 2px;
 }
 
 .btn.arrow {
-  padding-right: 10px;
+  padding-right: 30px;
   padding-left: 30px;
 }
 .btn.arrow:before {
@@ -76,7 +76,7 @@ a.link.arrow:after {
   border-color: transparent transparent transparent #4611a7;
   left: 0;
   right: inherit;
-}
+}*/
 
 body:not(.nav-btn-only) .primary-nav, body:not(.nav-btn-only) .secondary-nav {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
@@ -106,14 +106,10 @@ body:not(.nav-btn-only) .primary-nav ul.navigation li.has-child > a, body:not(.n
 body:not(.nav-btn-only) .primary-nav ul.navigation li.has-child > a:before, body:not(.nav-btn-only) .secondary-nav ul.navigation li.has-child > a:before {
   left: 0;
   padding-left: 7px;
-  right: inherit;
-  padding-right: inherit;
 }
 body:not(.nav-btn-only) .primary-nav ul.navigation li.has-child > a:after, body:not(.nav-btn-only) .secondary-nav ul.navigation li.has-child > a:after {
   left: 0;
   padding-left: 7px;
-  right: inherit;
-  padding-right: inherit;
 }
 body:not(.nav-btn-only) .primary-nav ul.navigation li.has-child > .wrapper, body:not(.nav-btn-only) .secondary-nav ul.navigation li.has-child > .wrapper {
   right: 0;

@@ -14,7 +14,6 @@ class SpacesController < ApplicationController
           limit(6).
           all
 
-
     @reviews = Review.where(space_id: @space)
     if @reviews.blank?
       @avg_rating = 0
@@ -34,7 +33,10 @@ class SpacesController < ApplicationController
       @avg_rating = @reviews.average(:rating).round(2)
     end
 
+    
+    if @features != nil
     @features = @space.feature.split(',')
+  end
 
   end
 
