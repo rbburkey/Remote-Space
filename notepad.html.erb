@@ -8,3 +8,44 @@
 <%else%>
 <li><%= link_to 'Previous Spaces', page: @page - 1 %></li>
 <%end %>
+
+
+
+
+<% if @spaces.count > 6 && @page != 1 %>
+
+<li class="next">
+  <a href="?page=<%=@page-1%>" aria-label="Next">
+    <i class="arrow_left"></i>
+  </a>
+</li>
+<li class="active"><a href="#"><%=@page%></a></li>
+<li class="previous">
+  <a href="?page=<%=@page+1%>" aria-label="Previous">
+    <i class="arrow_right"></i>
+  </a>
+</li>
+
+<%elsif @spaces.count <= 6 && @page != 1%>
+
+<li class="next">
+  <a href="?page=<%=@page-1%>" aria-label="Next">
+    <i class="arrow_left"></i>
+  </a>
+</li>
+<li class="active"><a href="#"><%=@page%></a></li>
+
+
+<%else %>
+
+<li class="active"><a href="#"><%=@page%></a></li>
+<li class="previous">
+  <a href="?page=<%=@page+1%>" aria-label="Previous">
+    <i class="arrow_right"></i>
+  </a>
+</li>
+
+
+
+
+<%end %>

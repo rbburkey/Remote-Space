@@ -1,0 +1,96 @@
+<div id="page-content">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">My Reviews</li>
+    </ol>
+    <!--end breadcrumb-->
+    <section class="page-title">
+      <h1>My Reviews</h1>
+    </section>
+    <!--end page-title-->
+    <section>
+      <div class="my-items table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Spaces</th>
+              <th>Remote<br>Friendly</th>
+              <th>Rating</th>
+              <th>Posted On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reviews.each do |review| %>
+            <tr class="my-item">
+              <td>
+                <div class="image-wrapper">
+                  <div class="circle" data-toggle="tooltip" data-placement="right" title="Top Listing"><i class="fa fa-thumbs-up"></i></div>
+                  <a href="edit-listing.html" class="image">
+                    <div class="bg-transfer">
+                      <img src="<%=review.space.image%>">
+                    </div>
+                  </a>
+                </div>
+                <div class="info">
+                  <a href="detail.html"><h2><%=review.space.name%></h2></a>
+                  <figure class="location"><%=review.comment%></figure>
+                  <div class="additional-info">
+                    <!-- <span><i class="fa fa-coffee"></i></span> -->
+                    <span class="price-info"> <span class="price"></span><span class="appendix"></span></span>
+                  </div>
+                  <!--end additional-info-->
+                </div>
+                <!--end info-->
+              </td>
+              <td><div class="featured yes"><i class="fa fa-check"></i><aside></aside></div></td>
+
+
+              <td class="rating">
+                <div class="rating-passive" data-rating="4">
+                  <div class="star-rating" data-score=<%=review.rating%>>
+                </div>
+              </td>
+              <td class="last-edited"><%=review.created_at.strftime("%b %d, %Y") + " at " + review.created_at.strftime("%H:%M")%>
+
+                <!--end edit-options-->
+              </td>
+            </tr>
+            <%end%>
+          </tbody>
+        </table>
+      </div>
+      <!--end my-items-->
+    </section>
+    <section>
+      <div class="center">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="disabled previous">
+              <a href="#" aria-label="Previous">
+                <i class="arrow_right"></i>
+              </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li class="next">
+              <a href="#" aria-label="Next">
+                <i class="arrow_right"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </div>
+  <!--end container-->
+</div>
+
+<script>
+$('.star-rating').raty({
+  path: '/assets',
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>

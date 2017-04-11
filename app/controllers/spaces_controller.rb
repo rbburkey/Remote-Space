@@ -9,16 +9,23 @@ class SpacesController < ApplicationController
     @page = (params[:page] || 1).to_i
     offset = (@page -1) * 6
     @spaces = Space.
-          order(created_at: :desc).
-          offset(offset).
-          limit(6).
-          all
+    order(created_at: :desc).
+    offset(offset).
+    limit(6).
+    all
 
     @reviews = Review.where(space_id: @space)
     if @reviews.blank?
       @avg_rating = 0
     else
       @avg_rating = @reviews.average(:rating).round(2)
+    end
+
+    @hash = Gmaps4rails.build_markers(@spaces) do |space, marker|
+      marker.lat space.latitude
+      marker.lng space.longitude
+      marker.json({:id => space.id })
+      marker.infowindow render_to_string(:partial => "/spaces/infowindow", :locals => { :object => space})
     end
   end
 
@@ -33,10 +40,13 @@ class SpacesController < ApplicationController
       @avg_rating = @reviews.average(:rating).round(2)
     end
 
-    
-    if @features != nil
     @features = @space.feature.split(',')
-  end
+
+
+    @hash = Gmaps4rails.build_markers(@space) do |space, marker|
+     marker.lat space.latitude
+     marker.lng space.longitude
+    end
 
   end
 
@@ -54,7 +64,7 @@ class SpacesController < ApplicationController
   # POST /spaces.json
   def create
     @space = Space.new(space_params)
-
+    @space.user_id = current_user.id
     respond_to do |format|
       if @space.save
         format.html { redirect_to @space, notice: 'Space was successfully created.' }
@@ -94,6 +104,16 @@ class SpacesController < ApplicationController
     @spaces = Space.search(params)
   end
 
+  def my_spaces
+    @spaces = Space.where(user_id: current_user.id)
+  end
+
+  def favorites
+    @spaces = Space.where(user_id: current_user.id)
+  end
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -103,6 +123,6 @@ class SpacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def space_params
-      params.require(:space).permit(:name, :category_id, :description, :address1, :address2, :city, :state, :zipcode, :phone, :website, :image, feature:[])
+      params.require(:space).permit(:name, :category_id, :description, :address1, :address2, :city, :state, :zipcode, :phone, :website, :facebook_url, :twitter_url, :instagram_url, :image, feature:[])
     end
 end

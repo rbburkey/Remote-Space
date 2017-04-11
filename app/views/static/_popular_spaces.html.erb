@@ -14,7 +14,7 @@
   <div class="gallery featured">
     <div class="owl-carousel" data-owl-items="6" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="1" data-owl-nav-container="#gallery-nav">
       <% popular_spaces = @spaces.sort {|a,b| a.reviews.average(:rating).to_i <=> b.reviews.average(:rating).to_i} %>
-      <% popular_spaces.reverse.each do |space| %>
+      <% popular_spaces.reverse[1..10].each do |space| %>
       <div class="item featured" data-id="1">
         <a href="<%=space_path(space)%>">
           <div class="description">

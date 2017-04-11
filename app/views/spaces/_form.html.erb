@@ -138,12 +138,12 @@
               <div class="col-md-6 col-sm-6">
                 <div class="form-group">
                   <label for="facebook">Facebook URL</label>
-                  <input type="text" class="form-control" name="facebook" id="facebook" placeholder="http://">
+                  <%= f.text_field :facebook_url, class: "form-control", placeholder: "www.facebook.com/" %>
                 </div>
                 <!--end form-group-->
                 <div class="form-group">
-                  <label for="youtube">Youtube URL</label>
-                  <input type="text" class="form-control" name="youtube" id="youtube" placeholder="http://">
+                  <label for="youtube">Instagram URL</label>
+                  <%= f.text_field :instagram_url, class: "form-control", placeholder: "www.instagram.com/" %>
                 </div>
                 <!--end form-group-->
               </div>
@@ -151,13 +151,9 @@
               <div class="col-md-6 col-sm-6">
                 <div class="form-group">
                   <label for="twitter">Twitter URL</label>
-                  <input type="text" class="form-control" name="twitter" id="twitter" placeholder="http://">
+                  <%= f.text_field :twitter_url, class: "form-control", placeholder: "www.twitter.com/" %>
                 </div>
                 <!--end form-group-->
-                <div class="form-group">
-                  <label for="pinterest">Pinterest URL</label>
-                  <input type="text" class="form-control" name="pinterest" id="pinterest" placeholder="http://">
-                </div>
                 <!--end form-group-->
               </div>
               <!--end col-md-6-->

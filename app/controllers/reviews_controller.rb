@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_space
+  before_action :set_space, :except => ["my_reviews"]
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   # GET /reviews
@@ -62,6 +62,10 @@ class ReviewsController < ApplicationController
       format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def my_reviews
+    @reviews = Review.where(user_id: current_user.id)
   end
 
   private

@@ -783,6 +783,12 @@ body.nav-btn-only #page-header .primary-nav ul li .nav-wrapper ul li:hover {
 
 .hero-section {
   position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: center;
+  background: url("hero_main3.jpeg") no-repeat center center fixed;
 }
 .hero-section.has-background h1 {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
@@ -4106,6 +4112,100 @@ section:not(.block) h2 {
   width: 100%;
   content: "";
 }
+
+
+/*Practice Image Code*/
+
+.item > span {
+  display: block;
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+.item > span:hover .image {
+  -moz-transform: scale(1.1, 1.1);
+  -ms-transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+.item > span:hover .description {
+  will-change: transform;
+  -moz-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+.item > span:hover .description h4 {
+  will-change: transform;
+}
+.item > span .description {
+  -moz-transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+}
+.item > span .description figure {
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  font-weight: bold;
+}
+.item > span .description figure i {
+  margin-right: 5px;
+}
+.item > span .description figure span {
+  margin-right: 10px;
+}
+.item > span .description h3 {
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  margin-top: 5px;
+}
+.item > span .description h4 {
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+.item > span .image {
+  -moz-transition: 0.6s ease;
+  -webkit-transition: 0.6s ease;
+  transition: 0.6s ease;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-transform: scale(1.01, 1.01);
+  -ms-transform: scale(1.01, 1.01);
+  -webkit-transform: scale(1.01, 1.01);
+  transform: scale(1.01, 1.01);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.item > span .image:after {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+  background: -moz-linear-gradient(top, transparent 0%, black 100%);
+  background: -webkit-linear-gradient(top, transparent 0%, black 100%);
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000',GradientType=0 );
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+}
+
+
+
+
 .item.featured .label {
   background-color: transparent;
   border: 1px solid #fff;
@@ -5213,7 +5313,7 @@ section:not(.block) h2 {
   position: relative;
   margin-bottom: 40px;
   display: table;
-  height: 100%;
+  /*height: 100%;*/
 }
 .review .image {
   position: absolute;

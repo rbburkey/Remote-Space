@@ -1,110 +1,96 @@
+<div class="page-wrapper">
+  <div id="page-content">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/spaces">Spaces</a></li>
+        <li class="active">Search</li>
+      </ol>
 
-<div id="page-content">
-  <div class="container">
-    <ol class="breadcrumb">
-      <li><a href="/">Home</a></li>
-      <li><a href="/spaces">Spaces</a></li>
-      <li class="active">Search</li>
-    </ol>
-
-    <section class="page-title">
-      <h1>Search Results</h1>
-    </section>
-    <!--end section-title-->
+      <section class="page-title">
+        <h1>Search Results</h1>
+      </section>
+      <!--end section-title-->
 
 
 
-    <section>
-      <div class="search-results-controls clearfix">
-        <div class="pull-left">
-          <a href="listing-grid-right-sidebar.html" class="circle-icon active"><i class="fa fa-th"></i></a>
-          <a href="listing-row-right-sidebar.html" class="circle-icon"><i class="fa fa-bars"></i></a>
-        </div>
-        <!--end left-->
-        <div class="pull-right">
-          <div class="input-group inputs-underline min-width-150px">
-            <select class="form-control selectpicker" name="sort">
-              <option value="">Sort by</option>
-              <option value="1">Price</option>
-              <option value="2">Distance</option>
-              <option value="3">Title</option>
-            </select>
+      <section>
+        <div class="search-results-controls clearfix">
+          <div class="pull-left">
+            <a href="listing-grid-right-sidebar.html" class="circle-icon active"><i class="fa fa-th"></i></a>
+            <a href="listing-row-right-sidebar.html" class="circle-icon"><i class="fa fa-bars"></i></a>
           </div>
-        </div>
-        <!--end right-->
-      </div>
-      <!--end search-results-controls-->
-    </section>
-    <section>
-      <div class="row">
-        <% @spaces.each do |space| %>
-        <div class="col-md-4 col-sm-4">
-          <div class="item" data-id="1">
-            <a href="detail.html">
-              <div class="description">
-                <figure><div class="star-rating" data-score=<%=@avg_rating%> ></div></figure>
-                <div class="label label-default"><%= "#{space.category.name}"%></div>
-                <h3><%= link_to "#{space.name}", space_path(space)  %></h3>
-                <h4><%=space.city%>, <%=space.state.upcase%></h4>
-              </div>
-              <!--end description-->
-              <div class="image bg-transfer">
-
-                <img src="assets/background-01.jpg" alt="">
-              </div>
-              <!--end image-->
-            </a>
-            <div class="additional-info">
-              <div class="rating-passive" data-rating="4">
-                <span class="stars"></span>
-                <span class="reviews"><%=@avg_rating%></span>
-              </div>
-              <div class="controls-more">
-                <ul>
-                  <li><a href="#">Add to favorites</a></li>
-                  <li><a href="#">Add to watchlist</a></li>
-                  <li><a href="#" class="quick-detail">Quick detail</a></li>
-                </ul>
-              </div>
-              <!--end controls-more-->
+          <!--end left-->
+          <div class="pull-right">
+            <div class="input-group inputs-underline min-width-150px">
+              <select class="form-control selectpicker" name="sort">
+                <option value="">Sort by</option>
+                <option value="1">Price</option>
+                <option value="2">Distance</option>
+                <option value="3">Title</option>
+              </select>
             </div>
-            <!--end additional-info-->
           </div>
-          <!--end item-->
-
+          <!--end right-->
         </div>
-        <%end%>
-        <!--<end col-md-3-->
-      </div>
-      <!--end row-->
-    </section>
+        <!--end search-results-controls-->
+      </section>
+      <section>
+        <div class="row">
+          <% @spaces.each do |space| %>
+          <div class="col-md-4 col-sm-4">
+            <div class="item" data-id="1">
+              <span>
+                <div class="description">
+                  <div class="label label-default"><%= "#{space.category.name}"%></div>
+                  <h3 style="margin-top: 5px; margin-bottom: 5px;"><%= link_to "#{space.name}", space_path(space)  %></h3>
+                  <h4 style="margin: 0;"><%=space.city%>, <%=space.state.upcase%></h4>
+                </div>
+                <!--end description-->
+                <div class="image bg-transfer">
+                  <img src="../assets/background-03.jpg" alt="">
+                </div>
+              </span>
+                <!--end image-->
+              <div class="additional-info">
+                <div class="rating-passive" data-rating="4">
+                  <div class="star-rating" data-score=<%=space.reviews.average(:rating)%> >
+                  <span class="reviews" style="margin-right: 5px;"><%=space.reviews.average(:rating)%></span></div>
+                </div>
 
-    <section>
-      <div class="center">
-        <nav aria-label="Page navigation">
-          <ul class="pagination">
-            <li class="disabled previous">
-              <a href="#" aria-label="Previous">
-                <i class="arrow_left"></i>
-              </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li class="active"><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li class="next">
-              <a href="#" aria-label="Next">
-                <i class="arrow_right"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </section>
+                
+                <div class="controls-more">
+                </div>
 
+                <!--end controls-more-->
+              </div>
+
+              <!--end additional-info-->
+            </div>
+            <!--end item-->
+
+          </div>
+          <%end%>
+          <!--<end col-md-3-->
+        </div>
+        <!--end row-->
+      </section>
+
+      <section>
+        <div class="center">
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+
+
+
+            </ul>
+          </nav>
+        </div>
+      </section>
+
+    </div>
+    <!--end container-->
   </div>
-  <!--end container-->
 </div>
 <!--end page-content-->
 <!--end page-wrapper-->
@@ -119,5 +105,3 @@ $('.star-rating').raty({
   }
 });
 </script>
-
-</body>

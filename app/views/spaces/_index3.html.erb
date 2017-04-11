@@ -6,7 +6,6 @@
       <div class="item" data-id="1">
         <a href="<%=space_path(space)%>"><%= image_tag space.image.url(:medium)%></a>
           <div class="description">
-            <figure><%=space.phone%></figure>
             <div class="label label-default"><%=space.category.name%></div>
             <h3><%=link_to "#{space.name}", space_path(space)%></h3>
             <h4><%=space.city%>, <%=space.state.upcase%></h4>

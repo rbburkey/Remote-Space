@@ -1,4 +1,3 @@
-<body class="nav-btn-only homepage">
   <div class="page-wrapper">
     <div id="page-content">
       <div class="hero-section has-background full-screen">
@@ -80,6 +79,8 @@
             <div class="center">
               <a href="/how_it_works"><h2>How It Works</h2></a>
             </div>
+            <div class="center">
+              <p>At Remote Space, we know that work is rapidly moving outside the workplace. Our mission is to provide a reliable way to find what we call "Remote Friendly" locations wherever you are on the map."</p>
           </div>
           <!--end section-title-->
           <div class="categories-list">
@@ -88,7 +89,7 @@
                 <div class="list-item">
                   <div class="title">
                     <div class="icon"><i class="fa fa-paint-brush"></i></div><br>
-                    <h3><a href="#">Cafes</a></h3>
+                    <h3><a href="#">Cafes</a> (<%=Space.all.where(category_id: 1).count%>)</h3>
                   </div>
                   <!--end title-->
                   <!-- <ul>
@@ -104,7 +105,7 @@
                 <div class="list-item">
                   <div class="title">
                     <div class="icon"><i class="fa fa-suitcase"></i></div><br>
-                    <h3><a href="#">Co-Working</a></h3>
+                    <h3><a href="">Co-Working</a> (<%=Space.all.where(category_id: 2).count%>)</h3>
                   </div>
                   <!--end title-->
                   <!-- <ul>
@@ -121,7 +122,7 @@
                 <div class="list-item">
                   <div class="title">
                     <div class="icon"><i class="fa fa-desktop"></i></div><br>
-                    <h3><a href="#">Libraries</a></h3>
+                    <h3><a href="#">Libraries</a> (<%=Space.all.where(category_id: 3).count%>)</h3>
                   </div>
                   <!--end title-->
                   <!-- <ul>
@@ -138,7 +139,7 @@
                 <div class="list-item">
                   <div class="title">
                     <div class="icon"><i class="fa fa-graduation-cap"></i></div><br>
-                    <h3><a href="#">Restaurants</a></h3>
+                    <h3><a href="#">Restaurants</a> (<%=Space.all.where(category_id: 4).count%>)</h3>
                   </div>
                   <!--end title-->
                   <!-- <ul>
@@ -153,6 +154,7 @@
             </div>
             <!--end row-->
           </div>
+
           <!--end categories-list-->
         </div>
         <!--end container-->
@@ -189,12 +191,11 @@
       <!--end block-->
     <%= render "popular_spaces" %>
 
-      <section class="block">
+      <!-- <section class="block">
         <div class="container">
           <div class="section-title">
             <h2>Spaces Near You</h2>
           </div>
-          <!--end section-title-->
           <div class="row">
             <div class="col-md-4 col-sm-4">
               <div class="text-element event">
@@ -207,9 +208,7 @@
                 <p>Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque.</p>
                 <a href="detail.html" class="link arrow">More</a>
               </div>
-              <!--end text-element-->
             </div>
-            <!--end col-md-4-->
             <div class="col-md-4 col-sm-4">
               <div class="text-element event">
                 <div class="date-icon">
@@ -221,9 +220,7 @@
                 <p>Nullam vitae ex ac neque viverra ullamcorper eu at nunc. Morbi imperdiet.</p>
                 <a href="detail.html" class="link arrow">More</a>
               </div>
-              <!--end text-element-->
             </div>
-            <!--end col-md-4-->
             <div class="col-md-4 col-sm-4">
               <div class="text-element event">
                 <div class="date-icon">
@@ -235,18 +232,13 @@
                 <p>Aenean sed purus ut massa scelerisque bibendum eget vel massa.</p>
                 <a href="detail.html" class="link arrow">More</a>
               </div>
-              <!--end text-element-->
             </div>
-            <!--end col-md-4-->
           </div>
-          <!--end row-->
           <div class="background-wrapper">
             <div class="background-color background-color-black opacity-5"></div>
           </div>
-          <!--end background-wrapper-->
         </div>
-        <!--end container-->
-      </section>
+      </section> -->
       <!--end block-->
 
 
@@ -305,7 +297,3 @@
   </div>
   <!--end page-wrapper-->
   <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
-
-
-
-</body>

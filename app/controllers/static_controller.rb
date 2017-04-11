@@ -3,6 +3,12 @@ class StaticController < ApplicationController
     @spaces = Space.all
   end
 
+  def home1
+  end
+
+  def map
+  end
+
   def how_it_works
   end
 
