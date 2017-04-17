@@ -108,6 +108,10 @@ class SpacesController < ApplicationController
     @spaces = Space.where(user_id: current_user.id)
   end
 
+  def favorites
+    @spaces = current_user.favorites
+  end
+
   def favorite
       type = params[:type]
       @space = Space.find(params[:id])

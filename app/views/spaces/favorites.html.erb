@@ -15,7 +15,7 @@
           <thead>
             <tr>
               <th>Listings</th>
-              <th>Featured</th>
+              <th>Remote Friendly</th>
               <th>Views</th>
               <th>Reviews</th>
               <th>Rating</th>
@@ -27,7 +27,6 @@
             <tr class="my-item">
               <td>
                 <div class="image-wrapper">
-                  <div class="circle" data-toggle="tooltip" data-placement="right" title="Top Listing"><i class="fa fa-thumbs-up"></i></div>
                   <a href="edit-listing.html" class="image">
                     <div class="bg-transfer">
                       <img src="assets/img/items/1.jpg">
@@ -35,7 +34,7 @@
                   </a>
                 </div>
                 <div class="info">
-                  <a href="detail.html"><h2><%=space.name%></h2></a>
+                  <h2><%= link_to space.name, space_path(space) %></h2>
                   <figure class="location"><%=space.city%>, <%=space.state%></figure>
                   <figure class="label label-info"><%=space.category.name%></figure>
                   <div class="additional-info">
@@ -46,7 +45,11 @@
                 </div>
                 <!--end info-->
               </td>
+              <% if space.reviews.average(:rating) != nil && space.reviews.average(:rating) > 3.8%>
               <td><div class="featured yes"><i class="fa fa-check"></i><aside></aside></div></td>
+              <%else%>
+              <td></td>
+              <% end %>
               <td class="views"></td>
               <td class="reviews"><%=space.reviews.count(:rating)%></td>
               <td class="rating">
