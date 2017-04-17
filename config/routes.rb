@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+
+
   resources :spaces do
+    put :favorite, on: :member
     resources :reviews, except: [:index]
     collection do
       get 'search'

@@ -116,6 +116,11 @@
                   <!--end map-->
                   <div class="content">
                     <div class="vertical-aligned-elements">
+                      <% if current_user.favorites.include? @space  %>
+                      <%= link_to "unfavorite", favorite_space_path(@space, type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
+                      <%elsif current_user%>
+                      <%= link_to "favorite",   favorite_space_path(@space, type: "favorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
+                      <% end %>
                       <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>
                     </div>
                     <hr>

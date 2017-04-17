@@ -47,7 +47,6 @@ class SpacesController < ApplicationController
      marker.lat space.latitude
      marker.lng space.longitude
     end
-
   end
 
 
@@ -55,6 +54,7 @@ class SpacesController < ApplicationController
   def new
     @space = Space.new
   end
+
 
   # GET /spaces/1/edit
   def edit
@@ -108,9 +108,25 @@ class SpacesController < ApplicationController
     @spaces = Space.where(user_id: current_user.id)
   end
 
-  def favorites
-    @spaces = Space.where(user_id: current_user.id)
-  end
+  def favorite
+      type = params[:type]
+      @space = Space.find(params[:id])
+      if type == "favorite"
+        current_user.favorites << @space
+        redirect_to :back, notice: 'Added to your Favorites!'
+
+      elsif type == "unfavorite"
+        current_user.favorites.delete(@space)
+        redirect_to :back, notice: 'Removed from your Favorites!'
+
+      else
+        # Type missing, nothing happens
+        redirect_to :back, notice: 'Nothing happened.'
+      end
+    end
+
+
+
 
 
 
