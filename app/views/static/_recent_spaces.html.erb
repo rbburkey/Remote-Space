@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-md-3 col-sm-3">
         <div class="item" data-id="1">
-          <a href="<%=space_path(@spaces[-1])%>"><%= image_tag @spaces[-1].image.url(:medium)%>
+          <a href="<%=space_path(@spaces[-1])%>"><%= image_tag @spaces[-1].image.url(:small)%>
             <div class="description">
               <figure></figure>
               <div class="label label-default"><%=@spaces[-1].category.name%></div>
@@ -28,21 +28,23 @@
             <!--end image-->
           </a>
           <div class="additional-info">
-            <div class="rating-passive" data-rating="3">
-              <span class="stars"></span>
+              <div class="rating-passive" data-rating=<%=@spaces[-1].reviews.average(:rating)%>>
+                <div id="star"></div>
               <% if @spaces[-1].reviews.average(:rating) == nil %>
               <span class="reviews">No Reviews Yet!</span>
               <%else%>
-              <span class="reviews">Average Rating: <%=@spaces[-1].reviews.average(:rating)%></span>
+              <span class="reviews"><%=@spaces[-1].reviews.average(:rating)%></span>
+              <span class="star-rating" data-score=<%=@spaces[-1].reviews.average(:rating)%> ></span>
               <%end%>
+              <div class="controls-more">
+                <ul>
+                  <li><a href="#">Add to favorites</a></li>
+                  <li><a href="#">Add to watchlist</a></li>
+                  <li><a href="#" class="quick-detail">Quick detail</a></li>
+                </ul>
+              </div>
             </div>
-            <div class="controls-more">
-              <ul>
-                <li><a href="#">Add to favorites</a></li>
-                <li><a href="#">Add to watchlist</a></li>
-                <li><a href="#" class="quick-detail">Quick detail</a></li>
-              </ul>
-            </div>
+
             <!--end controls-more-->
           </div>
           <!--end additional-info-->
@@ -53,7 +55,7 @@
       <!--<end col-md-3-->
       <div class="col-md-3 col-sm-3">
         <div class="item" data-id="2">
-          <a href="<%=space_path(@spaces[-2])%>">
+          <a href="<%=space_path(@spaces[-2])%>"><%= image_tag @spaces[-1].image.url(:small)%>
             <div class="description">
               <div class="label label-default"><%=@spaces[-2].category.name%></div>
               <h3><%=@spaces[-2].name%></h3>
@@ -66,21 +68,23 @@
             <!--end image-->
           </a>
           <div class="additional-info">
-            <div class="rating-passive" data-rating="3">
-              <span class="stars"></span>
+              <div class="rating-passive" data-rating=<%=@spaces[-2].reviews.average(:rating)%>>
+                <div id="star"></div>
               <% if @spaces[-2].reviews.average(:rating) == nil %>
               <span class="reviews">No Reviews Yet!</span>
               <%else%>
-              <span class="reviews">Average Rating: <%=@spaces[-2].reviews.average(:rating)%></span>
+              <span class="reviews"><%=@spaces[-2].reviews.average(:rating)%></span>
+              <span class="star-rating" data-score=<%=@spaces[-2].reviews.average(:rating)%> ></span>
               <%end%>
+              <div class="controls-more">
+                <ul>
+                  <li><a href="#">Add to favorites</a></li>
+                  <li><a href="#">Add to watchlist</a></li>
+                  <li><a href="#" class="quick-detail">Quick detail</a></li>
+                </ul>
+              </div>
             </div>
-            <div class="controls-more">
-              <ul>
-                <li><a href="#">Add to favorites</a></li>
-                <li><a href="#">Add to watchlist</a></li>
-                <li><a href="#" class="quick-detail">Quick detail</a></li>
-              </ul>
-            </div>
+
             <!--end controls-more-->
           </div>
           <!--end additional-info-->
@@ -91,7 +95,7 @@
       <div class="col-md-6 col-sm-6">
         <div class="item" data-id="15">
           <!-- <figure class="ribbon">Top</figure> -->
-          <a href="<%=space_path(@spaces[-3])%>">
+          <a href="<%=space_path(@spaces[-3])%>"><%= image_tag @spaces[-1].image.url(:large)%>
             <div class="description">
               <!-- <figure></figure> -->
               <div class="label label-default"><%=@spaces[-3].category.name%></div>
@@ -106,91 +110,57 @@
           </a>
           <div class="additional-info">
             <!-- <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure> -->
-            <div class="rating-passive" data-rating="5">
-              <span class="stars"></span>
-              <% if @spaces[-3].reviews.average(:rating) == nil %>
-              <span class="reviews">No Reviews Yet!</span>
-              <%else%>
-              <span class="reviews">Average Rating: <%=@spaces[-3].reviews.average(:rating)%></span>
-              <%end%>
+            <div class="rating-passive" data-rating=<%=@spaces[-3].reviews.average(:rating)%>>
+              <div id="star"></div>
+            <% if @spaces[-3].reviews.average(:rating) == nil %>
+            <span class="reviews">No Reviews Yet!</span>
+            <%else%>
+            <span class="reviews"><%=@spaces[-3].reviews.average(:rating)%></span>
+            <span class="star-rating" data-score=<%=@spaces[-3].reviews.average(:rating)%> ></span>
+            <%end%>
+              <div class="controls-more">
+                <ul>
+                  <li><a href="#">Add to favorites</a></li>
+                  <li><a href="#">Add to watchlist</a></li>
+                  <li><a href="#" class="quick-detail">Quick detail</a></li>
+                </ul>
+              </div>
             </div>
-            </div>
-            <div class="controls-more">
-              <ul>
-                <li><a href="#">Add to favorites</a></li>
-                <li><a href="#">Add to watchlist</a></li>
-                <li><a href="#" class="quick-detail">Quick detail</a></li>
-              </ul>
-            </div>
-            <!--end controls-more-->
           </div>
-          <!--end additional-info-->
+
+          <!--end controls-more-->
         </div>
-        <!--end item-->
+        <!--end additional-info-->
       </div>
-      <!--<end col-md-3-->
-      <div class="col-md-4 col-sm-4">
-        <div class="item" data-id="3">
-          <!-- <figure class="ribbon">Top</figure> -->
-          <a href="<%=space_path(@spaces[-4])%>">
-            <div class="description">
-              <!-- <figure></figure> -->
-              <div class="label label-default"><%=@spaces[-4].category.name%></div>
-              <h3><%=@spaces[-4].name%></h3>
-              <h4><%=@spaces[-4].address1%></h4>
-            </div>
-            <!--end description-->
-            <div class="image bg-transfer">
-              <img src="assets/items/4.jpg" alt="">
-            </div>
-            <!--end image-->
-          </a>
-          <div class="additional-info">
-            <!-- <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure> -->
-            <div class="rating-passive" data-rating="5">
-              <span class="stars"></span>
-              <% if @spaces[-3].reviews.average(:rating) == nil %>
-              <span class="reviews">No Reviews Yet!</span>
-              <%else%>
-              <span class="reviews">Average Rating: <%=@spaces[-3].reviews.average(:rating)%></span>
-              <%end%>
-             </div>
-            <div class="controls-more">
-              <ul>
-                <li><a href="#">Add to favorites</a></li>
-                <li><a href="#">Add to watchlist</a></li>
-                <li><a href="#" class="quick-detail">Quick detail</a></li>
-              </ul>
-            </div>
-            <!--end controls-more-->
+      <!--end item-->
+    </div>
+    <!--<end col-md-3-->
+    <div class="col-md-4 col-sm-4">
+      <div class="item" data-id="3">
+        <!-- <figure class="ribbon">Top</figure> -->
+        <a href="<%=space_path(@spaces[-4])%>"><%= image_tag @spaces[-1].image.url(:medium)%>
+          <div class="description">
+            <!-- <figure></figure> -->
+            <div class="label label-default"><%=@spaces[-4].category.name%></div>
+            <h3><%=@spaces[-4].name%></h3>
+            <h4><%=@spaces[-4].address1%></h4>
           </div>
-          <!--end additional-info-->
-        </div>
-        <!--end item-->
-      </div>
-      <!--<end col-md-4-->
-      <div class="col-md-3 col-sm-3">
-        <div class="item" data-id="4">
-          <a href="<%=space_path(@spaces[-5])%>">
-            <div class="description">
-              <div class="label label-default"><%=@spaces[-5].category.name%></div>
-              <h3><%=@spaces[-5].name%></h3>
-              <h4><%=@spaces[-5].address1%></h4>
-            </div>
-            <!--end description-->
-            <div class="image bg-transfer">
-              <img src="assets/items/5.jpg" alt="">
-            </div>
-            <!--end image-->
-          </a>
-          <div class="additional-info">
-            <div class="rating-passive" data-rating="5">
-              <span class="stars"></span>
-              <% if @spaces[-3].reviews.average(:rating) == nil %>
-              <span class="reviews">No Reviews Yet!</span>
-              <%else%>
-              <span class="reviews">Average Rating: <%=@spaces[-3].reviews.average(:rating)%></span>
-              <%end%>            </div>
+          <!--end description-->
+          <div class="image bg-transfer">
+            <img src="assets/items/4.jpg" alt="">
+          </div>
+          <!--end image-->
+        </a>
+        <div class="additional-info">
+          <!-- <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure> -->
+          <div class="rating-passive" data-rating=<%=@spaces[-4].reviews.average(:rating)%>>
+            <div id="star"></div>
+          <% if @spaces[-4].reviews.average(:rating) == nil %>
+          <span class="reviews">No Reviews Yet!</span>
+          <%else%>
+          <span class="reviews"><%=@spaces[-4].reviews.average(:rating)%></span>
+          <span class="star-rating" data-score=<%=@spaces[-4].reviews.average(:rating)%> ></span>
+          <%end%>
             <div class="controls-more">
               <ul>
                 <li><a href="#">Add to favorites</a></li>
@@ -198,6 +168,47 @@
                 <li><a href="#" class="quick-detail">Quick detail</a></li>
               </ul>
             </div>
+          </div>
+
+          <!--end controls-more-->
+        </div>
+        <!--end additional-info-->
+      </div>
+      <!--end item-->
+    </div>
+    <!--<end col-md-4-->
+    <div class="col-md-3 col-sm-3">
+      <div class="item" data-id="4">
+        <a href="<%=space_path(@spaces[-5])%>"><%= image_tag @spaces[-1].image.url(:small)%>
+          <div class="description">
+            <div class="label label-default"><%=@spaces[-5].category.name%></div>
+            <h3><%=@spaces[-5].name%></h3>
+            <h4><%=@spaces[-5].address1%></h4>
+          </div>
+          <!--end description-->
+          <div class="image bg-transfer">
+            <img src="assets/items/5.jpg" alt="">
+          </div>
+          <!--end image-->
+        </a>
+        <div class="additional-info">
+          <div class="rating-passive" data-rating=<%=@spaces[-5].reviews.average(:rating)%>>
+            <div id="star"></div>
+          <% if @spaces[-5].reviews.average(:rating) == nil %>
+          <span class="reviews">No Reviews Yet!</span>
+          <%else%>
+          <span class="reviews"><%=@spaces[-5].reviews.average(:rating)%></span>
+          <span class="star-rating" data-score=<%=@spaces[-5].reviews.average(:rating)%> ></span>
+          <%end%>
+            <div class="controls-more">
+              <ul>
+                <li><a href="#">Add to favorites</a></li>
+                <li><a href="#">Add to watchlist</a></li>
+                <li><a href="#" class="quick-detail">Quick detail</a></li>
+              </ul>
+            </div>
+          </div>
+
             <!--end controls-more-->
           </div>
           <!--end additional-info-->
@@ -207,7 +218,7 @@
       <!--<end col-md-3-->
       <div class="col-md-5 col-sm-5">
         <div class="item" data-id="6">
-          <a href="<%=space_path(@spaces[-6])%>">
+          <a href="<%=space_path(@spaces[-6])%>"><%= image_tag @spaces[-1].image.url(:medium)%>
             <div class="description">
               <figure></figure>
               <div class="label label-default"><%=@spaces[-6].category.name%></div>
@@ -221,45 +232,48 @@
             <!--end image-->
           </a>
           <div class="additional-info">
-            <div class="rating-passive" data-rating="0">
-              <span class="stars"></span>
-              <% if @spaces[-3].reviews.average(:rating) == nil %>
-              <span class="reviews">No Reviews Yet!</span>
-              <%else%>
-              <span class="reviews">Average Rating: <%=@spaces[-3].reviews.average(:rating)%></span>
-              <%end%>            </div>
-            <div class="controls-more">
-              <ul>
-                <li><a href="#">Add to favorites</a></li>
-                <li><a href="#">Add to watchlist</a></li>
-                <li><a href="#" class="quick-detail">Quick detail</a></li>
-              </ul>
+            <div class="rating-passive" data-rating=<%=@spaces[-6].reviews.average(:rating)%>>
+              <div id="star"></div>
+            <% if @spaces[-6].reviews.average(:rating) == nil %>
+            <span class="reviews">No Reviews Yet!</span>
+            <%else%>
+            <span class="reviews"><%=@spaces[-6].reviews.average(:rating)%></span>
+            <span class="star-rating" data-score=<%=@spaces[-6].reviews.average(:rating)%> ></span>
+            <%end%>
+              <div class="controls-more">
+                <ul>
+                  <li><a href="#">Add to favorites</a></li>
+                  <li><a href="#">Add to watchlist</a></li>
+                  <li><a href="#" class="quick-detail">Quick detail</a></li>
+                </ul>
+              </div>
             </div>
-            <!--end controls-more-->
+
+              <!--end controls-more-->
+            </div>
+            <!--end additional-info-->
           </div>
-          <!--end additional-info-->
+          <!--end item-->
+
         </div>
-        <!--end item-->
 
+        <!--<end col-md-3-->
       </div>
-
-      <!--<end col-md-3-->
+      <!--end row-->
+      <div class="center">
+        <a href="/spaces" class="btn btn-primary btn-light-frame btn-rounded btn-framed arrow">View all Spaces</a>
+      </div>
+      <!--end center-->
     </div>
-    <!--end row-->
-    <div class="center">
-      <a href="/spaces" class="btn btn-primary btn-light-frame btn-rounded btn-framed arrow">View all Spaces</a>
-    </div>
-    <!--end center-->
-  </div>
-  <!--end container-->
-</section>
+    <!--end container-->
+  </section>
 
-<script>
-$('.star-rating').raty({
-  path: '/assets',
-  readOnly: true,
-  score: function() {
-    return $(this).attr('data-score');
-  }
-});
-</script>
+  <script>
+  $('.star-rating').raty({
+    path: '/assets',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+  </script>

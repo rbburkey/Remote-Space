@@ -18,7 +18,7 @@
         <div class="search-results-controls clearfix">
           <div class="pull-left">
             <a href="listing-grid-right-sidebar.html" class="circle-icon active"><i class="fa fa-th"></i></a>
-            <a href="listing-row-right-sidebar.html" class="circle-icon"><i class="fa fa-bars"></i></a>
+            <a href="listing-row-right-sidebar.html" class="circle-icon"><i class="fa fa-map"></i></a>
           </div>
           <!--end left-->
           <div class="pull-right">
@@ -51,30 +51,32 @@
                   <img src="../assets/background-03.jpg" alt="">
                 </div>
               </span>
-                <!--end image-->
+              <!--end image-->
               <div class="additional-info">
-                <div class="rating-passive" data-rating="4">
-                  <div class="star-rating" data-score=<%=space.reviews.average(:rating)%> >
-                  <span class="reviews" style="margin-right: 5px;"><%=space.reviews.average(:rating)%></span></div>
+                <div class="rating-passive" data-rating=<%=space.reviews.average(:rating)%>>
+                  <div id="star"></div>
+                  <span class="reviews"><%=space.reviews.average(:rating)%></span>
+                  <span class="star-rating" data-score=<%=space.reviews.average(:rating)%> ></span>
+                  <div class="controls-more">
+                    <ul>
+                      <li><a href="#">Add to favorites</a></li>
+                      <li><a href="#">Add to watchlist</a></li>
+                      <li><a href="#" class="quick-detail">Quick detail</a></li>
+                    </ul>
+                  </div>
                 </div>
-
-                
-                <div class="controls-more">
-                </div>
-
-                <!--end controls-more-->
               </div>
+              <!--end item-->
 
-              <!--end additional-info-->
             </div>
-            <!--end item-->
-
           </div>
           <%end%>
           <!--<end col-md-3-->
         </div>
         <!--end row-->
+
       </section>
+
 
       <section>
         <div class="center">
@@ -82,15 +84,49 @@
             <ul class="pagination">
 
 
+              <%if (@spaces.count < 6 || @spaces.last == Space.all.first) && @page != 1%>
+              <li class="next">
+                <a href="/spaces?page=<%=@page - 1%>" aria-label="Previous">
+                  <i class="arrow_left"></i>
+                </a>
+              </li>
+              <li><%= link_to @page - 1, page: @page - 1 %></li>
+              <li class="active"><%= link_to @page, page: @page %></li>
 
+              <% elsif @spaces.count >= 6 && @page != 1  %>
+              <li class="next">
+                <a href="/spaces?page=<%=@page - 1%>" aria-label="Previous">
+                  <i class="arrow_left"></i>
+                </a>
+              </li>
+              <li><%= link_to @page - 1, page: @page - 1 %></li>
+              <li class="active"><%= link_to @page, page: @page %></li>
+              <li><%= link_to @page + 1, page: @page + 1 %></li>
+              <li class="next">
+                <a href="/spaces?page=<%=@page +1%>" aria-label="Next">
+                  <i class="arrow_right"></i>
+                </a>
+              </li>
+
+              <%elsif @spaces.count >= 6 && @page == 1 %>
+              <li class="active"><%= link_to @page, page: @page %></li>
+              <li class="next">
+                <a href="/spaces/search?utf8=✓&search=&category=1&location=&commit=Search?page=<%=@page +1%>" aria-label="Next">
+                  <i class="arrow_right"></i>
+                </a>
+              </li>
             </ul>
-          </nav>
-        </div>
-      </section>
 
-    </div>
-    <!--end container-->
+
+            <%end %>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
   </div>
+  <!--end container-->
+</div>
 </div>
 <!--end page-content-->
 <!--end page-wrapper-->

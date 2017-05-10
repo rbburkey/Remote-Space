@@ -1,12 +1,19 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:create, :new]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @page = (params[:page] || 1).to_i
+    offset = (@page -1) * 3
+    @posts = Post.
+    order(created_at: :desc).
+    offset(offset).
+    limit(3).
+    all
   end
+
 
   # GET /posts/1
   # GET /posts/1.json
@@ -61,6 +68,7 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

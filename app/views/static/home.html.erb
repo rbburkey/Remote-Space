@@ -79,16 +79,20 @@
             <div class="center">
               <a href="/how_it_works"><h2>How It Works</h2></a>
             </div>
-            <div class="center">
-              <p>At Remote Space, we know that work is rapidly moving outside the workplace. Our mission is to provide a reliable way to find what we call "Remote Friendly" locations wherever you are on the map."</p>
           </div>
+
+            <div class="container text-center">
+              <p>At Remote Space, we know that work is rapidly moving outside the workplace. Our mission is to provide <br>a reliable way to find what we call "Remote Friendly" locations wherever you are on the map.</p>
+            </div>
+            <br>
+            <br>
           <!--end section-title-->
           <div class="categories-list">
             <div class="row">
               <div class="col-md-3 col-sm-3">
                 <div class="list-item">
                   <div class="title">
-                    <div class="icon"><i class="fa fa-paint-brush"></i></div><br>
+                    <div class="icon"><i class="fa fa-paint-brush"></i></div><br><br>
                     <h3><a href="#">Cafes</a> (<%=Space.all.where(category_id: 1).count%>)</h3>
                   </div>
                   <!--end title-->
@@ -104,7 +108,7 @@
               <div class="col-md-3 col-sm-3">
                 <div class="list-item">
                   <div class="title">
-                    <div class="icon"><i class="fa fa-suitcase"></i></div><br>
+                    <div class="icon"><i class="fa fa-suitcase"></i></div><br><br>
                     <h3><a href="">Co-Working</a> (<%=Space.all.where(category_id: 2).count%>)</h3>
                   </div>
                   <!--end title-->
@@ -121,7 +125,7 @@
               <div class="col-md-3 col-sm-3">
                 <div class="list-item">
                   <div class="title">
-                    <div class="icon"><i class="fa fa-desktop"></i></div><br>
+                    <div class="icon"><i class="fa fa-desktop"></i></div><br><br>
                     <h3><a href="#">Libraries</a> (<%=Space.all.where(category_id: 3).count%>)</h3>
                   </div>
                   <!--end title-->
@@ -138,7 +142,7 @@
               <div class="col-md-3 col-sm-3">
                 <div class="list-item">
                   <div class="title">
-                    <div class="icon"><i class="fa fa-graduation-cap"></i></div><br>
+                    <div class="icon"><i class="fa fa-graduation-cap"></i></div><br><br>
                     <h3><a href="#">Restaurants</a> (<%=Space.all.where(category_id: 4).count%>)</h3>
                   </div>
                   <!--end title-->
@@ -191,109 +195,20 @@
       <!--end block-->
     <%= render "popular_spaces" %>
 
-      <!-- <section class="block">
-        <div class="container">
-          <div class="section-title">
-            <h2>Spaces Near You</h2>
-          </div>
-          <div class="row">
-            <div class="col-md-4 col-sm-4">
-              <div class="text-element event">
-                <div class="date-icon">
-                  <figure class="day">22</figure>
-                  <figure class="month">Jun</figure>
-                </div>
-                <h4><a href="detail.html">Lorem ipsum dolor sit amet</a></h4>
-                <figure class="date"><i class="icon_clock_alt"></i>08:00</figure>
-                <p>Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque.</p>
-                <a href="detail.html" class="link arrow">More</a>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-              <div class="text-element event">
-                <div class="date-icon">
-                  <figure class="day">04</figure>
-                  <figure class="month">Jul</figure>
-                </div>
-                <h4><a href="detail.html">Donec mattis mi vitae volutpat</a></h4>
-                <figure class="date"><i class="icon_clock_alt"></i>12:00</figure>
-                <p>Nullam vitae ex ac neque viverra ullamcorper eu at nunc. Morbi imperdiet.</p>
-                <a href="detail.html" class="link arrow">More</a>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-              <div class="text-element event">
-                <div class="date-icon">
-                  <figure class="day">12</figure>
-                  <figure class="month">Aug</figure>
-                </div>
-                <h4><a href="detail.html">Vivamus placerat</a></h4>
-                <figure class="date"><i class="icon_clock_alt"></i>12:00</figure>
-                <p>Aenean sed purus ut massa scelerisque bibendum eget vel massa.</p>
-                <a href="detail.html" class="link arrow">More</a>
-              </div>
-            </div>
-          </div>
-          <div class="background-wrapper">
-            <div class="background-color background-color-black opacity-5"></div>
-          </div>
-        </div>
-      </section> -->
-      <!--end block-->
+    <%= render "blog_section" %>
 
-
-        <div class="container">
-          <div class="section-title">
-            <h2>From the Blog</h2>
-          </div>
-          <!--end section-title-->
-          <div class="row">
-            <div class="col-md-4 col-sm-4">
-              <div class="text-element">
-                <h4><a href="blog-detail.html">Lorem ipsum dolor sit amet</a></h4>
-                <figure class="date">21.06.2015</figure>
-                <p>Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque gravida lacus vel, dignissim cursus</p>
-                <a href="blog-detail.html"><i class="arrow_right"></i></a>
-              </div>
-              <!--end text-element-->
-            </div>
-            <!--end col-md-4-->
-            <div class="col-md-4 col-sm-4">
-              <div class="text-element">
-                <h4><a href="blog-detail.html">Sed et justo ut nibh condimentum lacinia</a></h4>
-                <figure class="date">13.06.2015</figure>
-                <p>Donec arcu enim, scelerisque gravida lacus vel, dignissim cursus lectus. Aliquam laoreet purus in iaculis sodales. </p>
-                <a href="blog-detail.html"><i class="arrow_right"></i></a>
-              </div>
-              <!--end text-element-->
-            </div>
-            <!--end col-md-4-->
-            <div class="col-md-4 col-sm-4">
-              <div class="text-element">
-                <h4><a href="blog-detail.html">Suspendisse varius eros id enim </a></h4>
-                <figure class="date">03.04.2015</figure>
-                <p>Nullam nec turpis blandit, sodales risus vitae, tincidunt velit. Vestibulum ac ipsum tincidunt, vestibulum leo eget, </p>
-                <a href="blog-detail.html"><i class="arrow_right"></i></a>
-              </div>
-              <!--end text-element-->
-            </div>
-            <!--end col-md-4-->
-          </div>
-          <!--end row-->
-        </div>
-        <!--end container-->
-      </section>
-      <!--end block-->
-
-      <div class="container">
-        <hr>
-      </div>
-      <!--end container-->
-
-
-      <!--end block-->
     </div>
     <!--end page-content-->
   </div>
   <!--end page-wrapper-->
   <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+
+  <script>
+  $('.star-rating').raty({
+    path: '/assets',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+  </script>

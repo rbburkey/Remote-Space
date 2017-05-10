@@ -30,17 +30,21 @@
           <!--end image-->
         </a>
         <div class="additional-info">
-          <div class="rating-passive" data-rating="4">
-            <span class="stars"></span>
-            <span class="reviews">Average Rating: <%=space.reviews.average(:rating)%></span>
+          <div class="rating-passive" data-rating=<%=space.reviews.average(:rating)%>>
+            <% if space.reviews.average(:rating) == nil %>
+            <span class="reviews">No Reviews Yet!</span>
+            <%else%>
+            <span class="reviews"><%=space.reviews.average(:rating)%></span>
+            <%end%>
+            <div class="controls-more">
+              <ul>
+                <li><a href="#">Add to favorites</a></li>
+                <li><a href="#">Add to watchlist</a></li>
+                <li><a href="#" class="quick-detail">Quick detail</a></li>
+              </ul>
+            </div>
           </div>
-          <div class="controls-more">
-            <ul>
-              <li><a href="#">Add to favorites</a></li>
-              <li><a href="#">Add to watchlist</a></li>
-              <li><a href="#" class="quick-detail">Quick detail</a></li>
-            </ul>
-          </div>
+
           <!--end controls-more-->
         </div>
         <!--end additional-info-->

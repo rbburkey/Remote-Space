@@ -5,7 +5,6 @@ class SpacesController < ApplicationController
   # GET /spaces
   # GET /spaces.json
   def index
-    @spaces = Space.all
     @page = (params[:page] || 1).to_i
     offset = (@page -1) * 6
     @spaces = Space.
@@ -101,7 +100,14 @@ class SpacesController < ApplicationController
   end
 
   def search
-    @spaces = Space.search(params)
+    @page = (params[:page] || 1).to_i
+    offset = (@page -1) * 6
+    @spaces = Space.
+    search(params).
+    order(created_at: :desc).
+    offset(offset).
+    limit(6).
+    all
   end
 
   def my_spaces

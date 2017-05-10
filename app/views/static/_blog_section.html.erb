@@ -1,0 +1,24 @@
+<section class="block">
+  <div class="container">
+    <div class="section-title">
+      <h2>From the Blog</h2>
+    </div>
+    <!--end section-title-->
+    <div class="row">
+      <% @posts[0..2].each do |post| %>
+      <div class="col-md-4 col-sm-4">
+        <div class="text-element">
+          <h4><a href="<%=post_path(post)%>"><%=post.title%></a></h4>
+          <figure class="date"><%=post.created_at.strftime("%b %d, %Y") + " at " + post.created_at.strftime("%H:%M")%></figure>
+          <p><%=post.subtitle%></p>
+          <a href="<%=post_path(post)%>"><i class="arrow_right"></i></a>
+        </div>
+        <!--end text-element-->
+      </div>
+      <!--end col-md-4-->
+      <%end%>
+      <hr>
+      <!--end row-->
+    </div>
+    <!--end container-->
+  </section>

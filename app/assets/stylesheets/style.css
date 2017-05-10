@@ -3410,11 +3410,12 @@ section:not(.block) h2 {
   font-size: 18px;
   padding: 1px 5px;
   cursor: pointer;
-  position: absolute;
+  /*position: absolute;
   right: 15px;
   bottom: 0;
   top: 0;
-  margin: auto;
+  margin: auto;*/
+  float: right;
   height: 27px;
 }
 .controls-more.show ul {

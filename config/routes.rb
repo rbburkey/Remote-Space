@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :posts
   devise_for :users
 
-
-
   resources :spaces do
     put :favorite, on: :member
     resources :reviews, except: [:index]

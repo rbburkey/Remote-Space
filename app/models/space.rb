@@ -12,7 +12,7 @@ class Space < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode
 
-  has_attached_file :image, styles: { medium: "260x220>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { large: "555x220>",  medium: "351x221>", small: "260x220>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 
