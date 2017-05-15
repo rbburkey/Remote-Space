@@ -31,6 +31,7 @@ class SpacesController < ApplicationController
   # GET /spaces/1
   # GET /spaces/1.json
   def show
+  
     @space = Space.find(params[:id])
     @reviews = Review.where(space_id: @space)
     if @reviews.blank?
@@ -45,6 +46,8 @@ class SpacesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@space) do |space, marker|
      marker.lat space.latitude
      marker.lng space.longitude
+
+
     end
   end
 
@@ -100,14 +103,8 @@ class SpacesController < ApplicationController
   end
 
   def search
-    @page = (params[:page] || 1).to_i
-    offset = (@page -1) * 6
-    @spaces = Space.
-    search(params).
-    order(created_at: :desc).
-    offset(offset).
-    limit(6).
-    all
+    @spaces = Space.search(params).paginate(:page => params[:page], :per_page => 6)
+
   end
 
   def my_spaces

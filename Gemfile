@@ -16,6 +16,7 @@ gem 'carrierwave'
 gem "paperclip", "~> 5.0.0"
 gem 'gmaps4rails'
 gem 'rails_admin', '~> 1.1.1'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug'

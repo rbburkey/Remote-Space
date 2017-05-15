@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
  def send_new_user_mail
    NewUserEmail.sign_up_email(self).deliver
  end
+
+ has_attached_file :avatar, styles: { medium: "150x150", thumb: "75x75" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end

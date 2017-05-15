@@ -13,23 +13,23 @@
             <section>
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-                      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-                      <%= devise_error_messages! %>
+                      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, html: { multipart: true }) do |f| %>
                         <form class="form inputs-underline">
                             <section>
+
                                 <div class="user-details box">
                                     <div class="user-image">
                                         <div class="image">
-                                            <img style="
-                                             -moz-border-radius: 100%;
+                                            <%= image_tag @user.avatar.url(:medium), style:
+                                             "-moz-border-radius: 100%;
                                               -webkit-border-radius: 100%;
                                               border-radius: 100%;
                                               -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
                                               -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-                                              box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);" src="../assets/person-01.jpg" alt="">
+                                              box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);"  %>
                                             <!--end bg-transfer-->
                                             <div class="single-file-input">
-                                                <input type="file" id="user_image" name="user_image">
+                                                <%= f.file_field :avatar %>
                                                 <div>Upload a picture<i class="fa fa-upload"></i></div>
                                             </div>
                                         </div>
@@ -57,7 +57,7 @@
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                           <%= f.label :first_name %><br />
-                                          <%= f.email_field :first_name, class: "form-control", name: "first_name", id: "first_name", autofocus: true %>
+                                          <%= f.text_field :first_name, class: "form-control", name: "first_name", id: "first_name", autofocus: true %>
                                         </div>
                                         <!--end form-group-->
                                     </div>
@@ -65,7 +65,7 @@
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                           <%= f.label :last_name %><br />
-                                          <%= f.email_field :last_name, class: "form-control", name: "last_name", id: "last_name", autofocus: true %>
+                                          <%= f.text_field :last_name, class: "form-control", name: "last_name", id: "last_name", autofocus: true %>
                                         </div>
                                         <!--end form-group-->
                                     </div>
@@ -125,7 +125,7 @@
                                 <!--end form-group-->
                             </section>
                         </form>
-
+                        <%end%>
                         <!--end form-->
                         <hr>
                     </div>
@@ -133,10 +133,10 @@
                 </div>
                 <!--end row-->
             </section>
-            <section>
                 <section>
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
                             <h3 class="center">Change Your Password</h3>
                             <form class="form inputs-underline">
                                 <div class="form-group">
@@ -164,6 +164,6 @@
                         </div>
                     </div>
                 </section>
-            </section>
+
         </div>
         <!--end container-->

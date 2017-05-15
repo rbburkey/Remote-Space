@@ -30,7 +30,7 @@
         <div class="gallery detail">
           <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
             <div class="image">
-              <%= image_tag @space.image.url%>
+              <%= image_tag @space.image.url(:medium)%>
             </div>
             <div class="image">
               <img src="../assets/background-03.jpg" alt="">
@@ -75,7 +75,7 @@
                 <% @reviews.each do |review|%>
                 <div class="review">
                   <div class="image">
-                    <div class="bg-transfer"><img src="assets/img/person-02.jpg" alt=""></div>
+                    <%= image_tag User.where(id: review.user_id).first.avatar.url(:thumb)%>
                   </div>
                   <div class="description">
                     <figure>
