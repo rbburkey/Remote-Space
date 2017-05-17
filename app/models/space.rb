@@ -8,11 +8,12 @@ class Space < ActiveRecord::Base
   has_many :favorite_spaces
   has_many :favorited_by, through: :favorite_spaces, source: :user
   belongs_to :category
+  has_many :pictures
   validates_presence_of :name, :category, :description, :address1, :city, :state, :zipcode, :phone, :website, feature:[]
   geocoded_by :full_address
   after_validation :geocode
 
-  has_attached_file :image, styles: { large: "555x220>",  medium: "351x221>", small: "260x220>", thumb: "100x100>" }
+  has_attached_file :image, styles: { large: "650x350>",  medium: "351x221", small: "266x221^" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 

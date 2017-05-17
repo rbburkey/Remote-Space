@@ -41,15 +41,16 @@
           <div class="col-md-4 col-sm-4">
             <div class="item" data-id="1">
               <span>
+                <%=image_tag space.image.url(:large), class: "image" %>
                 <div class="description">
                   <div class="label label-default"><%= "#{space.category.name}"%></div>
-                  <h3 style="margin-top: 5px; margin-bottom: 5px;"><%= link_to "#{space.name}", space_path(space)  %></h3>
+                  <h3 style="margin-top: 5px; margin-bottom: 5px;"><%= link_to "#{space.name}", space_path(space), style: "color: white; text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);"  %></h3>
                   <h4 style="margin: 0;"><%=space.city%>, <%=space.state.upcase%></h4>
                 </div>
                 <!--end description-->
-                <div class="image bg-transfer">
-                  <img src="../assets/background-03.jpg" alt="">
-                </div>
+
+
+
               </span>
               <!--end image-->
               <div class="additional-info">

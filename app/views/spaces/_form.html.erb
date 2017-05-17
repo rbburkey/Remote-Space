@@ -123,12 +123,10 @@
             </div>
           </section>
           <section>
-            <h3>Gallery</h3>
-
-            <%= f.file_field :image %>
-            <div class="file-upload-previews"></div>
-            <div class="file-upload">
-              <span>Click or drag images here</span>
+            <h3>Picture</h3>
+            <div class="single-file-input">
+                <%= f.file_field :image %>
+                <div>Upload<i class="fa fa-upload"></i></div>
             </div>
             <!--end form-group-->
           </section>

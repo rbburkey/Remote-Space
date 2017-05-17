@@ -5,13 +5,7 @@ class SpacesController < ApplicationController
   # GET /spaces
   # GET /spaces.json
   def index
-    @page = (params[:page] || 1).to_i
-    offset = (@page -1) * 6
-    @spaces = Space.
-    order(created_at: :desc).
-    offset(offset).
-    limit(6).
-    all
+    @spaces = Space.all.paginate(:page => params[:page], :per_page => 6)
 
     @reviews = Review.where(space_id: @space)
     if @reviews.blank?
@@ -20,20 +14,14 @@ class SpacesController < ApplicationController
       @avg_rating = @reviews.average(:rating).round(2)
     end
 
-    @hash = Gmaps4rails.build_markers(@spaces) do |space, marker|
-      marker.lat space.latitude
-      marker.lng space.longitude
-      marker.json({:id => space.id })
-      marker.infowindow render_to_string(:partial => "/spaces/infowindow", :locals => { :object => space})
-    end
   end
 
-  # GET /spaces/1
-  # GET /spaces/1.json
+
   def show
-  
     @space = Space.find(params[:id])
     @reviews = Review.where(space_id: @space)
+    @picture = Picture.where(space_id: @space)
+
     if @reviews.blank?
       @avg_rating = 0
     else
@@ -42,21 +30,28 @@ class SpacesController < ApplicationController
 
     @features = @space.feature.split(',')
 
-
     @hash = Gmaps4rails.build_markers(@space) do |space, marker|
      marker.lat space.latitude
      marker.lng space.longitude
-
 
     end
   end
 
 
-  # GET /spaces/new
   def new
     @space = Space.new
   end
 
+
+  def map
+    @spaces = Space.all
+    @hash = Gmaps4rails.build_markers(@spaces) do |space, marker|
+      marker.lat space.latitude
+      marker.lng space.longitude
+      marker.json({:id => space.id })
+      marker.infowindow render_to_string(:partial => "/spaces/infowindow", :locals => { :object => space})
+    end
+  end
 
   # GET /spaces/1/edit
   def edit
@@ -104,15 +99,14 @@ class SpacesController < ApplicationController
 
   def search
     @spaces = Space.search(params).paginate(:page => params[:page], :per_page => 6)
-
   end
 
   def my_spaces
-    @spaces = Space.where(user_id: current_user.id)
+    @spaces = Space.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 5)
   end
 
   def favorites
-    @spaces = current_user.favorites
+    @spaces = current_user.favorites.paginate(:page => params[:page], :per_page => 5)
   end
 
   def favorite
@@ -131,10 +125,6 @@ class SpacesController < ApplicationController
         redirect_to :back, notice: 'Nothing happened.'
       end
     end
-
-
-
-
 
 
 

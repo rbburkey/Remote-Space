@@ -16,7 +16,7 @@
       <% popular_spaces = @spaces.sort {|a,b| a.reviews.average(:rating).to_i <=> b.reviews.average(:rating).to_i} %>
       <% popular_spaces.reverse[1..10].each do |space| %>
       <div class="item featured" data-id="1">
-        <a href="<%=space_path(space)%>">
+        <a href="<%=space_path(space)%>"><%=image_tag space.image.url(:large) %>
           <div class="description">
             <figure></figure>
             <div class="label label-default"><%=space.category.name%></div>
@@ -24,9 +24,7 @@
             <h4><%=space.city%>, <%=space.state%></h4>
           </div>
           <!--end description-->
-          <div class="image bg-transfer">
-            <img src="assets/img/items/1.jpg" alt="">
-          </div>
+
           <!--end image-->
         </a>
         <div class="additional-info">
@@ -50,9 +48,11 @@
         <!--end additional-info-->
       </div>
       <!--end item-->
+
       <%end%>
     </div>
   </div>
+
   <!--end gallery-->
   <div class="background-wrapper">
     <div class="background-color background-color-default"></div>

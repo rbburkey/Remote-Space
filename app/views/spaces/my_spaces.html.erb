@@ -29,10 +29,9 @@
                 <div class="image-wrapper">
                   <div class="circle" data-toggle="tooltip" data-placement="right" title="Top Listing"><i class="fa fa-thumbs-up"></i></div>
                   <a href="edit-listing.html" class="image">
-                    <div class="bg-transfer">
-                      <img src="assets/img/items/1.jpg">
+                    <div class="image">
+                      <%= image_tag space.image.url(:medium) %>
                     </div>
-                  </a>
                 </div>
                 <div class="info">
                   <a href="detail.html"><h2><%=space.name%></h2></a>
@@ -72,21 +71,9 @@
     </section>
     <section>
       <div class="center">
-        <nav aria-label="Page navigation">
-          <ul class="pagination">
-            <li class="disabled previous">
-              <a href="#" aria-label="Previous">
-                <i class="arrow_right"></i>
-              </a>
-            </li>
-            <li class="active"><a href="#">1</a></li>
-            <li class="next">
-              <a href="#" aria-label="Next">
-                <i class="arrow_right"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
+
+          <%= will_paginate @spaces %>
+
       </div>
     </section>
   </div>

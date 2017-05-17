@@ -7322,7 +7322,6 @@ form .status i {
   position: relative;
   margin-top: 6px;
   font-size: 12px;
-  text-align: center;
   padding: 3px 0;
 }
 .single-file-input input[type="file"] {

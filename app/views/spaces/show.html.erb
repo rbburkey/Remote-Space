@@ -24,26 +24,23 @@
         </section>
         <!--end page-title-->
         <a href="#write-a-review" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-star"></i>Write a review</a>
+
       </div>
       <!--end container-->
       <section>
         <div class="gallery detail">
           <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
+            <%if @space.pictures != nil %>
+            <% @space.pictures.each do |picture| %>
             <div class="image">
-              <%= image_tag @space.image.url(:medium)%>
+              <%= image_tag picture.image.url(:medium)%>
             </div>
-            <div class="image">
-              <img src="../assets/background-03.jpg" alt="">
-            </div>
-            <div class="image">
-              <img src="../assets/background-03.jpg" alt="">
-            </div>
-            <div class="image">
-              <img src="../assets/background-01.jpg" alt="">
-            </div>
+            <%end%>
+            <%else%>
             <div class="image">
               <img src="../assets/background-02.jpg" alt="">
             </div>
+            <%end%>
           </div>
         </div>
       </section>
@@ -122,7 +119,8 @@
                       <%= link_to "favorite",   favorite_space_path(@space, type: "favorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
                       <% end %>
 
-                      <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>
+                      <!-- <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div> -->
+                      <div class="element text-align-right"><%=render 'pictures/new' %></div>
                     </div>
                     <hr>
                     <address>
@@ -171,7 +169,8 @@
                         <a href="http://<%=@space.facebook_url%>" class="jssocials-share-link">
                         <i class="fa fa-facebook jssocials-share-logo"></i>
                         <span class="jssocials-share-label">Like</span>
-                        </a></div>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
