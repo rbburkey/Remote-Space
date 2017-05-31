@@ -3,4 +3,9 @@ class NewUserEmail < ApplicationMailer
     @user = user
     mail(to: @user.email, subject: "Welcome to RemoteSpace")
   end
+
+  def subscription_email(user)
+    @user = user
+    mail(to: @user.email, subject: "Thanks for signing up!")
+  end
 end

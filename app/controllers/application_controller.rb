@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :add_parameters_to_user, if: :devise_controller?
 
+protected
   def add_parameters_to_user
     devise_parameter_sanitizer.for(:sign_up) << :first_name
     devise_parameter_sanitizer.for(:sign_up) << :last_name

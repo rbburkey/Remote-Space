@@ -8,8 +8,8 @@
     <div id="page-content">
       <div class="container">
         <ol class="breadcrumb">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Spaces</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/spaces">Spaces</a></li>
           <li class="active"><%=@space.name%></li>
         </ol>
         <section class="page-title pull-left">
@@ -30,6 +30,9 @@
       <section>
         <div class="gallery detail">
           <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
+            <div class="image">
+              <%= image_tag @space.image.url(:small)%>
+            </div>
             <%if @space.pictures != nil %>
             <% @space.pictures.each do |picture| %>
             <div class="image">
@@ -185,7 +188,7 @@
         <!--end container-->
       </div>
       <!--end page-content-->
-
+      <%= render 'layouts/footer' %>
     </div>
     <!--end page-wrapper-->
     <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>

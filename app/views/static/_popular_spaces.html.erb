@@ -16,7 +16,7 @@
       <% popular_spaces = @spaces.sort {|a,b| a.reviews.average(:rating).to_i <=> b.reviews.average(:rating).to_i} %>
       <% popular_spaces.reverse[1..10].each do |space| %>
       <div class="item featured" data-id="1">
-        <a href="<%=space_path(space)%>"><%=image_tag space.image.url(:large) %>
+        <a href="<%=space_path(space)%>"><%=image_tag space.image.url(:small) %>
           <div class="description">
             <figure></figure>
             <div class="label label-default"><%=space.category.name%></div>
@@ -30,17 +30,19 @@
         <div class="additional-info">
           <div class="rating-passive" data-rating=<%=space.reviews.average(:rating)%>>
             <% if space.reviews.average(:rating) == nil %>
-            <span class="reviews">No Reviews Yet!</span>
+            <span class="reviews"><%= link_to "Be the first to Review!", space_path(space)%></span>
             <%else%>
             <span class="reviews"><%=space.reviews.average(:rating)%></span>
             <%end%>
-            <div class="controls-more">
-              <ul>
-                <li><a href="#">Add to favorites</a></li>
-                <li><a href="#">Add to watchlist</a></li>
-                <li><a href="#" class="quick-detail">Quick detail</a></li>
-              </ul>
+            <% if current_user.favorites.include? space  %>
+            <div class="fav_button" style="float: right;">
+              <%= link_to "Unfavorite", favorite_space_path(space_path(space), type: "unfavorite"), class: "label label-default", method: :put %>
             </div>
+            <%elsif current_user%>
+            <div class="fav_button" style="float: right;">
+              <%= link_to "Favorite", favorite_space_path(space_path(space), type: "favorite"), class: "label label-default", method: :put %>
+            </div>
+            <% end %>
           </div>
 
           <!--end controls-more-->

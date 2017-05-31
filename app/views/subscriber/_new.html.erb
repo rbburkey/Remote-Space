@@ -1,0 +1,11 @@
+<%= form_for(@subscriber, :html => { :id => "form-subscribe", :class => "form form-email inputs-underline" }) do |f| %>
+<div class="input-group">
+  <%= f.text_field :email, class: "form-control", name: "email", placeholder: "Your email" %>
+  <span class="input-group-btn">
+    <%= button_tag type: 'submit', class: "btn" do %>
+    <i class="arrow_right"></i>
+    <% end %>
+  </span>
+</div><!-- /input-group -->
+
+<% end %>

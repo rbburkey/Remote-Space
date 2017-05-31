@@ -2,6 +2,7 @@ class StaticController < ApplicationController
   def home
     @spaces = Space.all
     @posts = Post.all
+    @subscriber = Subscriber.new
   end
 
   def home1

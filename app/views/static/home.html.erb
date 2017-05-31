@@ -77,28 +77,20 @@
         <div class="container">
           <div class="section-title">
             <div class="center">
-              <a href="/how_it_works"><h2>How It Works</h2></a>
+              <h2>At Remote Space, we know that work is rapidly moving outside the workplace.</h2>
+              <h2>Our mission is to provide a reliable way to find what we call "Remote Friendly" locations wherever you </h2>
+                <h2>are on the map.</h2>
             </div>
           </div>
 
-            <div class="container text-center">
-              <p>At Remote Space, we know that work is rapidly moving outside the workplace. Our mission is to provide <br>a reliable way to find what we call "Remote Friendly" locations wherever you are on the map.</p>
-            </div>
           <!--end section-title-->
           <div class="categories-list">
             <div class="row">
               <div class="col-md-3 col-sm-3">
                 <div class="list-item">
                   <div class="title">
-                    <div class="icon"><i class="fa fa-paint-brush"></i></div>
-                    <h3><a href="#">Cafes</a> (<%=Space.all.where(category_id: 1).count%>)</h3>
+                    <h3><div class="icon"><i class="fa fa-coffee"></i></div><a href="#">Cafes</a> (<%=Space.all.where(category_id: 1).count%>)</h3>
                   </div>
-                  <!--end title-->
-                  <!-- <ul>
-                    <li><a href="">Photography</a><figure class="count">3</figure></li>
-                    <li><a href="">History</a><figure class="count">2</figure></li>
-                    <li><a href="">Literature</a><figure class="count">4</figure></li>
-                  </ul> -->
                 </div>
                 <!--end list-item-->
               </div>
@@ -106,16 +98,8 @@
               <div class="col-md-3 col-sm-3">
                 <div class="list-item">
                   <div class="title">
-                    <div class="icon"><i class="fa fa-suitcase"></i></div>
-                    <h3><a href="">Co-Working</a> (<%=Space.all.where(category_id: 2).count%>)</h3>
+                    <h3><div class="icon"><i class="fa fa-laptop"></i></div><a href="">Co-Working</a> (<%=Space.all.where(category_id: 2).count%>)</h3>
                   </div>
-                  <!--end title-->
-                  <!-- <ul>
-                    <li><a href="">Business to Business</a><figure class="count">6</figure></li>
-                    <li><a href="">Finance</a><figure class="count">4</figure></li>
-                    <li><a href="">Shopping</a><figure class="count">3</figure></li>
-                    <li><a href="">Jobs</a><figure class="count">5</figure></li>
-                  </ul> -->
                 </div>
                 <!--end list-item-->
               </div>
@@ -123,16 +107,8 @@
               <div class="col-md-3 col-sm-3">
                 <div class="list-item">
                   <div class="title">
-                    <div class="icon"><i class="fa fa-desktop"></i></div>
-                    <h3><a href="#">Libraries</a> (<%=Space.all.where(category_id: 3).count%>)</h3>
+                    <h3><div class="icon"><i class="fa fa-book"></i></div><a href="#">Libraries</a> (<%=Space.all.where(category_id: 3).count%>)</h3>
                   </div>
-                  <!--end title-->
-                  <!-- <ul>
-                    <li><a href="">Hardware</a><figure class="count">10</figure></li>
-                    <li><a href="">Software</a><figure class="count">4</figure></li>
-                    <li><a href="">Websites</a><figure class="count">6</figure></li>
-                    <li><a href="">Games</a><figure class="count">7</figure></li>
-                  </ul> -->
                 </div>
                 <!--end list-item-->
               </div>
@@ -140,15 +116,8 @@
               <div class="col-md-3 col-sm-3">
                 <div class="list-item">
                   <div class="title">
-                    <div class="icon"><i class="fa fa-graduation-cap"></i></div>
-                    <h3><a href="#">Restaurants</a> (<%=Space.all.where(category_id: 4).count%>)</h3>
+                    <h3><div class="icon"><i class="fa fa-cutlery"></i></div><a href="#">Restaurants</a> (<%=Space.all.where(category_id: 4).count%>)</h3>
                   </div>
-                  <!--end title-->
-                  <!-- <ul>
-                    <li><a href="">Colleges</a><figure class="count">8</figure></li>
-                    <li><a href="">K-12</a><figure class="count">7</figure></li>
-                    <li><a href="">Distance Learning </a><figure class="count">2</figure></li>
-                  </ul> -->
                 </div>
                 <!--end list-item-->
               </div>
@@ -156,7 +125,9 @@
             </div>
             <!--end row-->
           </div>
-
+          <div class="center">
+            <a href="/how_it_works" class="btn btn-primary btn-light-frame btn-rounded btn-framed arrow">How It Works</a>
+          </div>
           <!--end categories-list-->
         </div>
         <!--end container-->
@@ -170,14 +141,7 @@
             </div>
             <!--end element-->
             <div class="element width-50">
-              <form class="form form-email inputs-underline" id="form-subscribe">
-                <div class="input-group">
-                  <input type="text" class="form-control" name="email" placeholder="Your email" required="">
-                  <span class="input-group-btn">
-                    <button class="btn" type="submit"><i class="arrow_right"></i></button>
-                  </span>
-                </div><!-- /input-group -->
-              </form>
+              <%=render 'subscriber/new' %>
               <!--end form-->
             </div>
             <!--end element-->
@@ -197,6 +161,7 @@
 
     </div>
     <!--end page-content-->
+    <%= render 'layouts/footer' %>
   </div>
   <!--end page-wrapper-->
   <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>

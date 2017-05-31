@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :posts
   devise_for :users
-
+  resources :subscribers
   resources :spaces do
     put :favorite, on: :member
     resources :reviews, except: [:index]

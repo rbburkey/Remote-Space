@@ -3,29 +3,32 @@
 <div id="page-content">
   <div class="container">
     <ol class="breadcrumb">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Pages</a></li>
-      <li class="active">Contact</li>
+      <li><a href="/">Home</a></li>
+      <li class="active"><%= @post.title %></li>
     </ol>
     <div class="row">
-      <div class="col-md-9 col-sm-9">
-        <section class="page-title">
-          <h1></h1>
+      <div class="col-md-12 col-sm-12">
+        <section class="page-title text-center">
+          <h1><%=@post.title%></h1>
         </section>
         <!--end section-title-->
+        <div style="margin: auto;
+                    text-align: center;">
+        <a href="<%=post_path(@post)%>"><%= image_tag @post.image.url(:large)%></a>
+      </div>
         <article class="blog-post">
-          <a href="blog-detail.html"><img src="assets/img/items/20.jpg" alt=""></a>
-          <header><a href="blog-detail.html"><h2><%=@post.title%></h2></a></header>
+          <br>
+          <header style="text-align: center;"><h3><%=@post.subtitle%></h3></a></header>
           <figure class="meta">
-            <a href="#" class="link-icon"><i class="fa fa-user"></i>  <%=@post.author%></a>
-            <a href="#" class="link-icon"><i class="fa fa-calendar"></i>  <%=@post.created_at%></a>
-            <div class="tags">
+            <a href="#" class="link-icon"><i class="fa fa-user"></i>   <%=@post.author%></a>
+            <a style="float: right;"href="#" class="link-icon"><i class="fa fa-calendar"></i>   <%=@post.created_at.strftime("%b %d, %Y")%></a>
+            <!-- <div class="tags">
               <a href="#" class="tag article">Architecture</a>
               <a href="#" class="tag article">Design</a>
               <a href="#" class="tag article">Trend</a>
-            </div>
+            </div> -->
           </figure>
-          <h3><%=@post.subtitle%></h3>
+          <hr>
           <p>
             <%=@post.body%>
           </p>

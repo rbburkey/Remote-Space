@@ -5109,6 +5109,7 @@ section:not(.block) h2 {
 #page-footer .footer-wrapper {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   margin-top: 30px;
+
 }
 #page-footer p {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);

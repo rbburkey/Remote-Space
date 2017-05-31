@@ -1,6 +1,15 @@
-<h1>Editing Space</h1>
+<div id="page-content">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li><a href="<%=space_path(@space)%>"><%=@space.name%></a></li>
+      <li class="active">Edit</li>
+    </ol>
+    <!--end breadcrumb-->
+    <section class="page-title center">
+      <h1>Edit the Space</h1>
+    </section>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @space %> |
-<%= link_to 'Back', spaces_path %>
+<%= render 'layouts/footer' %>

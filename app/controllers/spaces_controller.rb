@@ -45,12 +45,6 @@ class SpacesController < ApplicationController
 
   def map
     @spaces = Space.all
-    @hash = Gmaps4rails.build_markers(@spaces) do |space, marker|
-      marker.lat space.latitude
-      marker.lng space.longitude
-      marker.json({:id => space.id })
-      marker.infowindow render_to_string(:partial => "/spaces/infowindow", :locals => { :object => space})
-    end
   end
 
   # GET /spaces/1/edit
@@ -99,6 +93,17 @@ class SpacesController < ApplicationController
 
   def search
     @spaces = Space.search(params).paginate(:page => params[:page], :per_page => 6)
+    @hash = Gmaps4rails.build_markers(@spaces) do |space, marker|
+      marker.lat space.latitude
+      marker.lng space.longitude
+      marker.json({:id => space.id })
+      marker.infowindow render_to_string(:partial => "/spaces/infowindow", :locals => { :object => space})
+    end
+  end
+
+  def search_map
+    @spaces = Space.search(params)
+
   end
 
   def my_spaces

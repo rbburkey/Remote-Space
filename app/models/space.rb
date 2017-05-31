@@ -13,7 +13,7 @@ class Space < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode
 
-  has_attached_file :image, styles: { large: "650x350>",  medium: "351x221", small: "266x221^" }
+  has_attached_file :image, styles: { small: "400x400#", thumb:"50x50" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 
@@ -23,6 +23,13 @@ class Space < ActiveRecord::Base
 
 
   def self.search(params)
+    spaces = Space.where(category_id: params[:category].to_i)
+    spaces = spaces.where("name like ? or description like ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
+    spaces = spaces.near(params[:location], 20) if params[:location].present?
+    spaces
+  end
+
+  def self.search_map(params)
     spaces = Space.where(category_id: params[:category].to_i)
     spaces = spaces.where("name like ? or description like ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
     spaces = spaces.near(params[:location], 20) if params[:location].present?

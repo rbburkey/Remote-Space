@@ -27,14 +27,15 @@
             <tr class="my-item">
               <td>
                 <div class="image-wrapper">
+                  <%if space.reviews.average(:rating) != nil && space.reviews.average(:rating) > 4 %>
                   <div class="circle" data-toggle="tooltip" data-placement="right" title="Top Listing"><i class="fa fa-thumbs-up"></i></div>
-                  <a href="edit-listing.html" class="image">
-                    <div class="image">
-                      <%= image_tag space.image.url(:medium) %>
+                  <%end%>
+                    <div class="image" style="overflow: hidden;">
+                      <%= image_tag space.image.url(:small) %>
                     </div>
                 </div>
                 <div class="info">
-                  <a href="detail.html"><h2><%=space.name%></h2></a>
+                  <a href="/<%=space_path(space)%>"><h2><%=space.name%></h2></a>
                   <figure class="location"><%=space.city%>, <%=space.state%></figure>
                   <figure class="label label-info"><%=space.category.name%></figure>
                   <div class="additional-info">
@@ -45,20 +46,28 @@
                 </div>
                 <!--end info-->
               </td>
+              <% if space.reviews.average(:rating) != nil && space.reviews.average(:rating) > 3.8 && space.features["Wifi"] != nil%>
               <td><div class="featured yes"><i class="fa fa-check"></i><aside></aside></div></td>
-              <td class="views"></td>
+              <%else%>
+              <td></td>
+              <% end %>
+              <td class="views"><%=space.favorite_spaces.count%></td>
               <td class="reviews"><%=space.reviews.count(:rating)%></td>
               <td class="rating">
                 <div class="rating-passive" data-rating="4">
                   <span class="stars"></span>
+                  <% if space.reviews.blank? %>
+                  <p>No Reviews Yet!</p>
+                  <%else%>
                   <span class="reviews"><%=space.reviews.average(:rating)%></span>
+                  <%end%>
                 </div>
               </td>
               <td class="last-edited"><%=space.updated_at.strftime("%b %d, %Y") + " at " + space.updated_at.strftime("%H:%M")%>
                 <span class="last-edit">Last edited: <%=space.updated_at.strftime("%H:%M")%></span>
                 <div class="edit-options">
                   <a href="<%=edit_space_path(space)%>" class="link icon"><i class="fa fa-edit"></i>Edit</a>
-                  <a href="#" class="link icon"><i class="fa fa-comment"></i>Reviews</a>
+                  <a href="<%=space_path(space)%>" class="link icon"><i class="fa fa-comment"></i>Reviews</a>
                 </div>
                 <!--end edit-options-->
               </td>
