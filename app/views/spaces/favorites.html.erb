@@ -14,9 +14,9 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Listings</th>
-              <th>Remote Friendly</th>
               <th>Favorites</th>
+              <th>Remote Friendly</th>
+              <th># of Favorites</th>
               <th>Reviews</th>
               <th>Rating</th>
               <th>Last Edited</th>
@@ -54,9 +54,14 @@
               <td class="views"><%=space.favorite_spaces.count%></td>
               <td class="reviews"><%=space.reviews.count(:rating)%></td>
               <td class="rating">
-                <div class="rating-passive" data-rating="4">
-                  <span class="stars"></span>
-                  <span class="reviews"><%=space.reviews.average(:rating)%></span>
+                <% if space.reviews.blank? %>
+                <p>No Reviews Yet!</p>
+                <%else%>
+                <div class="rating-passive" data-rating=<%=space.reviews.average(:rating)%>>
+                  <span class="stars"></span><br>
+                  <span class="reviews"><%="Average Rating: "%><%=space.reviews.average(:rating)%></span>
+                </div>
+                <%end%>
                 </div>
               </td>
               <td class="last-edited"><%=space.updated_at.strftime("%b %d, %Y") + " at " + space.updated_at.strftime("%H:%M")%>
@@ -82,3 +87,4 @@
   </div>
   <!--end container-->
 </div>
+<%= render "layouts/footer" %>

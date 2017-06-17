@@ -3,6 +3,15 @@ class Space < ActiveRecord::Base
     self.feature.gsub!(/[\[\]\"]/, "") if attribute_present?("feature")
   end
 
+after_create :send_new_space_mail, :send_new_space_mail_notification
+ def send_new_space_mail
+   Notifier.new_space_email(self).deliver
+ end
+
+ def send_new_space_mail_notification
+   Notifier.new_space_email_notification(self).deliver
+ end
+
   has_many :reviews
   belongs_to :user
   has_many :favorite_spaces

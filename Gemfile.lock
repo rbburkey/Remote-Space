@@ -207,9 +207,10 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise (~> 3)
   geocoder
-  gmaps4rails
+  gmaps4rails (~> 2.1, >= 2.1.2)
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   paperclip (~> 5.0.0)
   pg (~> 0.15)
   rails (= 4.2.5.1)

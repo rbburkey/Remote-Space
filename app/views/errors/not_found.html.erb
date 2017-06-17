@@ -1,0 +1,23 @@
+  <div id="page-content">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">404</li>
+      </ol>
+      <!--end breadcrumb-->
+      <section class="page-title center error">
+        <h1>404</h1>
+        <h2>Error</h2>
+        <p>Page cannot be found. But check out some more spaces below!</p>
+      </section>
+      <!--end page-title-->
+      <div class="row">
+        <div class="container text-center">
+          <%= link_to "Go Home", spaces_path, class: "btn btn-primary btn-rounded"%>
+        </div>
+      </div>
+    </div>
+    <!--end container-->
+  </div>
+  <!--end page-content-->
+  <%= render 'layouts/footer'%>

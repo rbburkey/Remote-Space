@@ -1,169 +1,204 @@
-    <div id="page-content">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li class="active">Edit</li>
-            </ol>
-            <!--end breadcrumb-->
-            <section class="page-title center">
-                <h1>Your Profile <%= resource_name.to_s.humanize %></h1>
-            </section>
-            <!--end page-title-->
+<div id="page-content">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li><a href="/profile">Profile</a></li>
+      <li class="active">Edit</li>
+    </ol>
+    <!--end breadcrumb-->
+    <section class="page-title center">
+      <h1>Your Profile <%= resource_name.to_s.humanize %></h1>
+    </section>
+    <!--end page-title-->
+    <section>
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, html: { multipart: true, class: "form inputs-underline"  }) do |f| %>
+          <form class="form inputs-underline">
             <section>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-                      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, html: { multipart: true, class: "form inputs-underline"  }) do |f| %>
-                        <form class="form inputs-underline">
-                            <section>
 
-                                <div class="user-details box">
-                                    <div class="user-image">
-                                        <div class="image">
-                                            <%= image_tag @user.avatar.url(:medium), style:
-                                             "-moz-border-radius: 100%;
-                                              -webkit-border-radius: 100%;
-                                              border-radius: 100%;
-                                              -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-                                              -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-                                              box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);"  %>
-                                            <!--end bg-transfer-->
-                                            <div class="single-file-input">
-                                                <%= f.file_field :avatar %>
-                                                <div>Upload a picture<i class="fa fa-upload"></i></div>
-                                            </div>
-                                        </div>
-                                        <!--end image-->
-
-                                    </div>
-                                    <!--end user-image-->
-                                    <div class="description clearfix">
-                                        <h3>Your current plan</h3>
-                                        <h2>Gold Package</h2>
-                                        <!-- <a href="#" class="btn btn-primary btn-rounded btn-xs">Change</a> -->
-                                        <hr>
-                                        <figure>
-                                            <div class="pull-left"><strong>Next payment:</strong></div>
-                                            <div class="pull-right">24/12/2015</div>
-                                        </figure>
-                                    </div>
-                                    <!--end description-->
-                                </div>
-                            </section>
-                            <!--end user-details-->
-                            <section>
-                                <h3>About You</h3>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                          <%= f.label :first_name %><br />
-                                          <%= f.text_field :first_name, class: "form-control", name: "first_name", id: "first_name", autofocus: true %>
-                                        </div>
-                                        <!--end form-group-->
-                                    </div>
-                                    <!--end col-md-6-->
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                          <%= f.label :last_name %><br />
-                                          <%= f.text_field :last_name, class: "form-control", name: "last_name", id: "last_name", autofocus: true %>
-                                        </div>
-                                        <!--end form-group-->
-                                    </div>
-                                    <!--end col-md-6-->
-                                    <div class="col-md-12 col-sm-6">
-                                      <div class="form-group">
-                                          <%= f.label :email %><br />
-                                          <%= f.text_field :email, class: "form-control", name: "email", id: "email", autofocus: true %>
-                                      </div>
-                                        <!--end form-group-->
-                                    </div>
-                                    <!--end col-md-6-->
-                                </div>
-                                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-                                    <% end %>
-                                <!--
-                                <div class="form-group">
-                                    <label for="message">About You</label>
-                                    <textarea class="form-control" id="message" rows="2" name="message" placeholder="Something about me"></textarea>
-                                </div>
-                            </section>
-                              <section>
-                                <h3>Your Social Networks</h3>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="facebook">Facebook</label>
-                                            <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Facebook">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="twitter">Twitter</label>
-                                            <input type="text" class="form-control" name="twitter" id="twitter" placeholder="Twitter">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="pinterest">Pinterest</label>
-                                            <input type="text" class="form-control" name="pinterest" id="pinterest" placeholder="Pinterest">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="youtube">Youtube</label>
-                                            <input type="text" class="form-control" name="youtube" id="youtube" placeholder="Youtube">
-                                        </div>
-                                    </div>
-                                </div>
-                            </section> -->
-                            <section class="center">
-                                <div class="form-group">
-                                    <%= f.submit "Save Changes", :class => "btn btn-primary btn-rounded" %>
-                                </div>
-
-                                <!--end form-group-->
-                            </section>
-                        </form>
-                        <%end%>
-                        <!--end form-->
-                        <hr>
+              <div class="user-details box">
+                <div class="user-image">
+                  <div class="image">
+                    <%= image_tag @user.avatar.url(:medium), style:
+                    "-moz-border-radius: 100%;
+                    -webkit-border-radius: 100%;
+                    border-radius: 100%;
+                    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+                    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);"  %>
+                    <!--end bg-transfer-->
+                    <div class="single-file-input">
+                      <%= f.file_field :avatar %>
+                      <div>Upload a picture<i class="fa fa-upload"></i></div>
                     </div>
-                    <!--end col-md-6-->
+                  </div>
+                  <!--end image-->
+
                 </div>
-                <!--end row-->
+                <!--end user-image-->
+                <div class="description clearfix">
+                  <h3>Your current location</h3>
+                  <h2><%=@user.location%></h2>
+                  <!-- <a href="#" class="btn btn-primary btn-rounded btn-xs">Change</a> -->
+                  <hr>
+                  <figure>
+                    <div class="pull-left"><strong>Current Job or Skillset:</strong></div>
+                    <div class="pull-right"><%=@user.occupation%></div>
+                  </figure>
+                </div>
+                <!--end description-->
+              </div>
             </section>
-                <section>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
-                          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form inputs-underline"  }) do |f| %>
-                            <h3 class="center">Change Your Password</h3>
-                            <form class="form inputs-underline">
-                                <div class="form-group">
-                                  <%= f.label :current_password %><br />
-                                  <%= f.password_field :current_password, autocomplete: "off", class: "form-control", name: "current_password", id: "current_password", placeholder: "Current Password"%>
-                                </div>
-                                <!--end form-group-->
-                                <div class="form-group">
-                                  <%= f.label :password %><br />
-                                  <%= f.password_field :password, autocomplete: "off", class: "form-control", name: "password", id: "password", placeholder: "New Password"%>                                </div>
-                                <!--end form-group-->
-                                <div class="form-group">
-                                  <%= f.label :password_confirmation %><br />
-                                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", name: "password_confirmation", id: "password_confirmation", placeholder: "Confirm Password"%>
-                                </div>
-                                <!--end form-group-->
-                                <div class="form-group center">
-                                    <%= f.submit "Change Password", :class => "btn btn-primary btn-framed btn-rounded btn-light-frame" %>
-                                </div>
-                                <p class="text-center">Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %><br />
-                                <%= link_to "Back", :back %></p>
-                                <!--end form-group-->
-                            </form>
-                            <%end%>
-                        </div>
-                    </div>
-                </section>
+            <!--end user-details-->
+            <section>
+              <h3>About You</h3>
+              <div class="row">
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <%= f.label :first_name %><br />
+                    <%= f.text_field :first_name, class: "form-control", name: "first_name", id: "first_name", autofocus: true %>
+                  </div>
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-6-->
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <%= f.label :last_name %><br />
+                    <%= f.text_field :last_name, class: "form-control", name: "last_name", id: "last_name", autofocus: true %>
+                  </div>
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-6-->
+                <div class="col-md-12 col-sm-6">
+                  <div class="form-group">
+                    <%= f.label :email %><br />
+                    <%= f.text_field :email, class: "form-control", name: "email", id: "email", autofocus: true %>
+                  </div>
+                  <!--end form-group-->
+                </div>
 
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <%= f.label :current_location %><br />
+                    <%= f.text_field :location, class: "form-control", name: "location", id: "location", autofocus: true %>
+                  </div>
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-6-->
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <%= f.label :current_job_or_skillset %><br />
+                    <%= f.text_field :occupation, class: "form-control", name: "occupation", id: "occupation", autofocus: true %>
+                  </div>
+                  <!--end form-group-->
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <%= f.label :instagram %><br />
+                    <%= f.text_field :instagram, class: "form-control", name: "instagram", id: "instagram", autofocus: true %>
+                  </div>
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-6-->
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <%= f.label :facebook %><br />
+                    <%= f.text_field :facebook, class: "form-control", name: "facebook", id: "facebook", autofocus: true %>
+                  </div>
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-6-->
+              </div>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+              <!--
+              <div class="form-group">
+              <label for="message">About You</label>
+              <textarea class="form-control" id="message" rows="2" name="message" placeholder="Something about me"></textarea>
+            </div>
+          </section>
+          <section>
+          <h3>Your Social Networks</h3>
+          <div class="row">
+          <div class="col-md-6 col-sm-6">
+          <div class="form-group">
+          <label for="facebook">Facebook</label>
+          <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Facebook">
         </div>
-        <!--end container-->
+      </div>
+      <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+      <label for="twitter">Twitter</label>
+      <input type="text" class="form-control" name="twitter" id="twitter" placeholder="Twitter">
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-6">
+  <div class="form-group">
+  <label for="pinterest">Pinterest</label>
+  <input type="text" class="form-control" name="pinterest" id="pinterest" placeholder="Pinterest">
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="form-group">
+<label for="youtube">Youtube</label>
+<input type="text" class="form-control" name="youtube" id="youtube" placeholder="Youtube">
+</div>
+</div>
+</div>
+</section> -->
+<section class="center">
+  <div class="form-group">
+    <%= f.submit "Save Changes", :class => "btn btn-primary btn-rounded" %>
+  </div>
+
+  <!--end form-group-->
+</section>
+</form>
+<%end%>
+<!--end form-->
+<hr>
+</div>
+<!--end col-md-6-->
+</div>
+<!--end row-->
+</section>
+<section>
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form inputs-underline"  }) do |f| %>
+      <h3 class="center">Change Your Password</h3>
+      <form class="form inputs-underline">
+        <div class="form-group">
+          <%= f.label :current_password %><br />
+          <%= f.password_field :current_password, autocomplete: "off", class: "form-control", name: "current_password", id: "current_password", placeholder: "Current Password"%>
+        </div>
+        <!--end form-group-->
+        <div class="form-group">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off", class: "form-control", name: "password", id: "password", placeholder: "New Password"%>                                </div>
+          <!--end form-group-->
+          <div class="form-group">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", name: "password_confirmation", id: "password_confirmation", placeholder: "Confirm Password"%>
+          </div>
+          <!--end form-group-->
+          <div class="form-group center">
+            <%= f.submit "Change Password", :class => "btn btn-primary btn-framed btn-rounded btn-light-frame" %>
+          </div>
+          <p class="text-center">Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %><br />
+            <%= link_to "Back", :back %></p>
+            <!--end form-group-->
+          </form>
+          <%end%>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<%= render "layouts/footer" %>
+
+
+  <!--end container-->

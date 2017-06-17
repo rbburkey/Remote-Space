@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <div id="page-content">
   <div class="container">
     <ol class="breadcrumb">
@@ -64,210 +63,33 @@
           </div>
         </section> -->
 
-        <section id="comments">
+        <section id="comments" style="overflow: auto;">
+          <% if @post.comments.exists? %>
           <header><h2 class="no-border">Comments</h2></header>
+          <% end %>
+          <% @post.comments.each do |comment| %>
           <ul class="comments">
             <li class="comment">
               <figure>
-                <div class="image">
-                  <img alt="" src="assets/img/person-02.jpg">
-                </div>
+                  <%= image_tag comment.user.avatar(:thumb) %>
               </figure>
               <div class="comment-wrapper">
-                <div class="name pull-left">Catherine Brown</div>
-                <span class="date pull-right"><span class="fa fa-calendar"></span>12.05.2014</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, sem ut sollicitudin consectetur,
-                  augue diam ornare massa, ac vehicula leo turpis eget purus. Nunc pellentesque vestibulum mauris, eget suscipit
-                  mauris imperdiet vel. Nulla et massa metus. Nam porttitor quam eget ante elementum consectetur. Aenean ac nisl
-                  et nulla placerat suscipit eu a mauris. Curabitur quis augue condimentum, varius mi in, ultricies velit.
-                  Suspendisse potenti.
+                <div class="name pull-left"><%=comment.user.email%></div>
+                <span class="link-icon"><span class="fa fa-calendar"></span>  <%=comment.created_at.strftime("%b %d, %Y")%></span>
+                <p>
+                  <%=comment.body%>
                 </p>
-                <a href="#" class="reply"><span class="fa fa-reply"></span>Reply</a>
-                <hr>
               </div>
             </li>
-            <li>
-              <ul class="comments-child">
-                <li class="comment">
-                  <figure>
-                    <div class="image">
-                      <img alt="" src="assets/img/person-03.jpg">
-                    </div>
-                  </figure>
-                  <div class="comment-wrapper">
-                    <div class="name">John Doe</div>
-                    <span class="date"><span class="fa fa-calendar"></span>24.06.2014</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, sem ut sollicitudin consectetur,
-                      augue diam ornare massa, ac vehicula leo turpis eget purus. Nunc pellentesque vestibulum mauris, eget suscipit
-                      mauris.
-                    </p>
-                    <a href="#" class="reply"><span class="fa fa-reply"></span>Reply</a>
-                    <hr>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li class="comment">
-              <figure>
-                <div class="image">
-                  <img alt="" src="assets/img/person-04.jpg">
-                </div>
-              </figure>
-              <div class="comment-wrapper">
-                <div class="name">John Doe</div>
-                <span class="date"><span class="fa fa-calendar"></span>08.05.2014</span>
-                <p>Quisque iaculis neque at dui cursus posuere. Sed tristique pharetra orci, eu malesuada ante tempus nec.
-                  Phasellus enim odio, facilisis et ante vel, tempor congue sapien. Praesent eget ligula
-                  eu libero cursus facilisis vel non arcu. Sed vitae quam enim.
-                </p>
-                <a href="#" class="reply"><span class="fa fa-reply"></span>Reply</a>
-                <hr>
-              </div>
-            </li>
+            <hr>
           </ul>
-        </section><!-- /#comments -->
-        <section id="leave-reply">
-          <header><h2 class="no-border">Leave a Reply</h2></header>
-          <form role="form" id="form-blog-reply" method="post"  class="clearfix">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="form-blog-reply-name">Your Name<em>*</em></label>
-                  <input type="text" class="form-control" id="form-blog-reply-name" name="form-blog-reply-name" required>
-                </div><!-- /.form-group -->
-              </div><!-- /.col-md-6 -->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="form-blog-reply-email">Your Email<em>*</em></label>
-                  <input type="email" class="form-control" id="form-blog-reply-email" name="form-blog-reply-email" required>
-                </div><!-- /.form-group -->
-              </div><!-- /.col-md-6 -->
-            </div><!-- /.row -->
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="form-blog-reply-message">Your Message<em>*</em></label>
-                  <textarea class="form-control" id="form-blog-reply-message" rows="5" name="form-blog-reply-message" required></textarea>
-                </div><!-- /.form-group -->
-              </div><!-- /.col-md-12 -->
-            </div><!-- /.row -->
-            <div class="form-group clearfix">
-              <button type="submit" class="btn pull-right btn-primary btn-rounded" id="form-blog-reply-submit">Leave a Reply</button>
-            </div><!-- /.form-group -->
-            <div id="form-rating-status"></div>
-          </form><!-- /#form-contact -->
+          <% end %>
         </section>
+        <%= render "comments/form" %>
 
       </div>
       <!--end col-md-9-->
 
-      <div class="col-md-3 col-sm-3">
-        <!-- <aside class="sidebar">
-          <section>
-            <h2>Search Filter</h2>
-            <form class="form inputs-underline">
-              <div class="form-group">
-                <input type="text" class="form-control" name="keyword" placeholder="Enter keyword">
-              </div>
-              <div class="form-group">
-                <select class="form-control selectpicker" name="location">
-                  <option value="">Location</option>
-                  <option value="1">New York</option>
-                  <option value="2">Washington</option>
-                  <option value="3">London</option>
-                  <option value="4">Paris</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <select class="form-control selectpicker" name="category">
-                  <option value="">Category</option>
-                  <option value="1">Restaurant</option>
-                  <option value="2">Event</option>
-                  <option value="3">Adrenaline</option>
-                  <option value="4">Sport</option>
-                  <option value="5">Wellness</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <div class="ui-slider" id="price-slider" data-value-min="10" data-value-max="400" data-value-type="price" data-currency="$" data-currency-placement="before">
-                  <div class="values clearfix">
-                    <input class="value-min" name="value-min[]" readonly>
-                    <input class="value-max" name="value-max[]" readonly>
-                  </div>
-                  <div class="element"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary pull-right">Search Now<i class="fa fa-search"></i></button>
-              </div>
-            </form>
-          </section>
-          <section>
-            <h2>Recent Items</h2>
-            <div class="item" data-id="1">
-              <a href="detail.html">
-                <div class="description">
-                  <figure>Average Price: $8 - $30</figure>
-                  <div class="label label-default">Restaurant</div>
-                  <h3>Marky’s Restaurant</h3>
-                  <h4>63 Birch Street</h4>
-                </div>
-                <div class="image bg-transfer">
-                  <img src="assets/img/items/1.jpg" alt="">
-                </div>
-              </a>
-              <div class="controls-more">
-                <ul>
-                  <li><a href="#">Add to favorites</a></li>
-                  <li><a href="#">Add to watchlist</a></li>
-                  <li><a href="#" class="quick-detail">Quick detail</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="item" data-id="2">
-              <a href="detail.html">
-                <div class="description">
-                  <div class="label label-default">Restaurant</div>
-                  <h3>Ironapple</h3>
-                  <h4>4209 Glenview Drive</h4>
-                </div>
-                <div class="image bg-transfer">
-                  <img src="assets/img/items/2.jpg" alt="">
-                </div>
-              </a>
-              <div class="controls-more">
-                <ul>
-                  <li><a href="#">Add to favorites</a></li>
-                  <li><a href="#">Add to watchlist</a></li>
-                  <li><a href="#" class="quick-detail">Quick detail</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="item" data-id="15">
-              <figure class="ribbon">Top</figure>
-              <a href="detail.html">
-                <div class="description">
-                  <figure>Happy hour: 18:00 - 19:00</figure>
-                  <div class="label label-default">Bar & Grill</div>
-                  <h3>Bambi Planet Houseboat Bar& Grill </h3>
-                  <h4>3857 Losh Lane</h4>
-                </div>
-                <div class="image bg-transfer">
-                  <img src="assets/img/items/3.jpg" alt="">
-                </div>
-              </a>
-              <div class="controls-more">
-                <ul>
-                  <li><a href="#">Add to favorites</a></li>
-                  <li><a href="#">Add to watchlist</a></li>
-                  <li><a href="#" class="quick-detail">Quick detail</a></li>
-                </ul>
-              </div>
-            </div>
-          </section>
-        </aside> -->
-        <!--end sidebar-->
-      </div>
       <!--end col-md-4-->
     </div>
     <!--end row-->
@@ -275,3 +97,4 @@
   <!--end container-->
 </div>
 <!--end page-content-->
+<%= render 'layouts/footer' %>

@@ -14,9 +14,10 @@ gem 'devise', '~> 3'
 gem 'geocoder'
 gem 'carrierwave'
 gem "paperclip", "~> 5.0.0"
-gem 'gmaps4rails'
+gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 gem 'rails_admin', '~> 1.1.1'
 gem 'will_paginate'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'

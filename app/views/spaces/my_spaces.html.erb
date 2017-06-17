@@ -14,7 +14,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Listings</th>
+              <th>Spaces</th>
               <th>Featured</th>
               <th>Views</th>
               <th>Reviews</th>
@@ -30,9 +30,9 @@
                   <%if space.reviews.average(:rating) != nil && space.reviews.average(:rating) > 4 %>
                   <div class="circle" data-toggle="tooltip" data-placement="right" title="Top Listing"><i class="fa fa-thumbs-up"></i></div>
                   <%end%>
-                    <div class="image" style="overflow: hidden;">
-                      <%= image_tag space.image.url(:small) %>
-                    </div>
+                  <div class="image" style="overflow: hidden;">
+                    <%= image_tag space.image.url(:small) %>
+                  </div>
                 </div>
                 <div class="info">
                   <a href="/<%=space_path(space)%>"><h2><%=space.name%></h2></a>
@@ -54,37 +54,38 @@
               <td class="views"><%=space.favorite_spaces.count%></td>
               <td class="reviews"><%=space.reviews.count(:rating)%></td>
               <td class="rating">
-                <div class="rating-passive" data-rating="4">
-                  <span class="stars"></span>
-                  <% if space.reviews.blank? %>
-                  <p>No Reviews Yet!</p>
-                  <%else%>
-                  <span class="reviews"><%=space.reviews.average(:rating)%></span>
-                  <%end%>
+                <% if space.reviews.blank? %>
+                <p>No Reviews Yet!</p>
+                <%else%>
+                <div class="rating-passive" data-rating=<%=space.reviews.average(:rating)%>>
+                  <span class="stars"></span><br>
+                  <span class="reviews"><%="Average Rating: "%><%=space.reviews.average(:rating)%></span>
                 </div>
-              </td>
-              <td class="last-edited"><%=space.updated_at.strftime("%b %d, %Y") + " at " + space.updated_at.strftime("%H:%M")%>
-                <span class="last-edit">Last edited: <%=space.updated_at.strftime("%H:%M")%></span>
-                <div class="edit-options">
-                  <a href="<%=edit_space_path(space)%>" class="link icon"><i class="fa fa-edit"></i>Edit</a>
-                  <a href="<%=space_path(space)%>" class="link icon"><i class="fa fa-comment"></i>Reviews</a>
-                </div>
-                <!--end edit-options-->
-              </td>
-            </tr>
-            <%end%>
-          </tbody>
-        </table>
-      </div>
-      <!--end my-items-->
-    </section>
-    <section>
-      <div class="center">
+                <%end%>
+              </div>
+            </td>
+            <td class="last-edited"><%=space.updated_at.strftime("%b %d, %Y") + " at " + space.updated_at.strftime("%H:%M")%>
+              <span class="last-edit">Last edited: <%=space.updated_at.strftime("%H:%M")%></span>
+              <div class="edit-options">
+                <a href="<%=edit_space_path(space)%>" class="link icon"><i class="fa fa-edit"></i>Edit</a>
+                <a href="<%=space_path(space)%>" class="link icon"><i class="fa fa-comment"></i>Reviews</a>
+              </div>
+              <!--end edit-options-->
+            </td>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+    <!--end my-items-->
+  </section>
+  <section>
+    <div class="center">
 
-          <%= will_paginate @spaces %>
+      <%= will_paginate @spaces %>
 
-      </div>
-    </section>
-  </div>
-  <!--end container-->
+    </div>
+  </section>
 </div>
+</div>
+<!--end container-->

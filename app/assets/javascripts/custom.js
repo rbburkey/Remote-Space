@@ -100,27 +100,27 @@ $(document).ready(function($) {
 
 //  Modal after click --------------------------------------------------------------------------------------------------
 
-    $("[data-modal-external-file], .quick-detail").live("click", function(e){
-        e.preventDefault();
-        var modalTarget, modalFile;
-        if( $(this).closest(".item").attr("data-id") ){
-            modalTarget = $(this).closest(".item").attr("data-id");
-            modalFile = "modal_item.php";
-        }
-        else {
-            modalTarget = $(this).attr("data-target");
-            modalFile = $(this).attr("data-modal-external-file");
-        }
-        if( $(this).attr("data-close-modal") == "true" ){
-            lastModal.modal("hide");
-            setTimeout(function() {
-                openModal(modalTarget, modalFile);
-            }, 400);
-        }
-        else {
-            openModal(modalTarget, modalFile);
-        }
-    });
+    // $("[data-modal-external-file], .quick-detail").live("click", function(e){
+    //     e.preventDefault();
+    //     var modalTarget, modalFile;
+    //     if( $(this).closest(".item").attr("data-id") ){
+    //         modalTarget = $(this).closest(".item").attr("data-id");
+    //         modalFile = "modal_item.php";
+    //     }
+    //     else {
+    //         modalTarget = $(this).attr("data-target");
+    //         modalFile = $(this).attr("data-modal-external-file");
+    //     }
+    //     if( $(this).attr("data-close-modal") == "true" ){
+    //         lastModal.modal("hide");
+    //         setTimeout(function() {
+    //             openModal(modalTarget, modalFile);
+    //         }, 400);
+    //     }
+    //     else {
+    //         openModal(modalTarget, modalFile);
+    //     }
+    // });
 
 //  Multiple modal hack ------------------------------------------------------------------------------------------------
 
@@ -173,12 +173,12 @@ $(document).ready(function($) {
 
 //  Duplicate desired element ------------------------------------------------------------------------------------------
 
-    $(".duplicate").live("click", function(e){
-        e.preventDefault();
-        var duplicateElement = $(this).attr("href");
-        var parentElement = $(duplicateElement)[0].parentElement;
-        $(parentElement).append( $(duplicateElement)[0].outerHTML );
-    });
+    // $(".duplicate").live("click", function(e){
+    //     e.preventDefault();
+    //     var duplicateElement = $(this).attr("href");
+    //     var parentElement = $(duplicateElement)[0].parentElement;
+    //     $(parentElement).append( $(duplicateElement)[0].outerHTML );
+    // });
 
 //  Enable image previews in multi file input --------------------------------------------------------------------------
 

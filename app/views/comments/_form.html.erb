@@ -1,0 +1,16 @@
+<section id="leave-reply">
+  <header><h2 class="no-border">Share Your Thoughts</h2></header>
+  <%= form_for([@post, @post.comments.build],:html => { :multipart => true, class: "clearfix", id: "form-blog-reply" }) do |f| %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+            <%= f.text_area :body, class: "form-control", id: "form-blog-reply-message", rows: 5 %>
+        </div><!-- /.form-group -->
+      </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+    <div class="form-group clearfix">
+      <%= f.submit "Submit", class: "btn pull-right btn-primary btn-rounded", id: "form-blog-reply-submit" %>
+    </div><!-- /.form-group -->
+    <div id="form-rating-status"></div>
+  <%end%>
+</section>

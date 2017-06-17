@@ -34,7 +34,11 @@
             <%else%>
             <span class="reviews"><%=space.reviews.average(:rating)%></span>
             <%end%>
-            <% if current_user.favorites.include? space  %>
+            <%if current_user == nil %>
+            <div class="fav_button" style="float: right;">
+              <%= link_to "Favorite", new_user_registration_path, class: "btn btn-primary btn-rounded btn-xs"%>
+            </div>
+            <% elsif current_user.favorites.include? space  %>
             <div class="fav_button" style="float: right;">
               <%= link_to "Unfavorite", favorite_space_path(space_path(space), type: "unfavorite"), class: "label label-default", method: :put %>
             </div>

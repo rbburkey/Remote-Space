@@ -11,163 +11,172 @@
 </div>
 <% end %>
 
-    <!--end page-title-->
-    <section>
-      <div class="row">
-        <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-          <form class="form inputs-underline" enctype="multipart/form-data">
-            <section>
-              <h3>About</h3>
-              <div class="row">
-                <div class="col-md-9 col-sm-9">
-                  <div class="form-group">
-                    <%= f.label :name %><br>
-                    <%= f.text_field :name, class: "form-control", placeholder: "Title" %>
-                  </div>
-                  <!--end form-group-->
-                </div>
-                <!--end col-md-9-->
-                <div class="col-md-3 col-sm-3">
-                  <div class="form-group">
-                    <label for="category">Category</label>
-                    <%= f.select :category_id, Category.all.map { |f| [f.name, f.id] }, class: "form-control" %>
-                  </div>
-                  <!--end form-group-->
-                </div>
-                <!--col-md-3-->
-              </div>
-              <!--end row-->
+<!--end page-title-->
+<section>
+  <div class="row">
+    <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+      <form class="form inputs-underline" enctype="multipart/form-data">
+        <section>
+          <h3>About</h3>
+          <div class="row">
+            <div class="col-md-9 col-sm-9">
               <div class="form-group">
-                <%= f.label :description %><br>
-                <%= f.text_area :description, class: "form-control", rows: 4, placeholder: "Describe the Space"%>
+                <%= f.label :name %><br>
+                <%= f.text_field :name, class: "form-control", placeholder: "Title" %>
               </div>
-              <!--end form-group-->
-              <div class="form-group">
-                <h3>Features</h3><br>
-                <%= label_tag 'feature_wifi', 'Wifi' %>
-                <%= check_box_tag 'space[feature][]', 'Wifi', checked('Wifi'), id: 'feature_wifi' %>
-
-                <%= label_tag 'feature_parking', 'Parking' %>
-                <%= check_box_tag 'space[feature][]', 'Parking', checked('Parking'), id: 'feature_parking' %>
-
-                <%= label_tag 'feature_alcohol', 'Alcohol' %>
-                <%= check_box_tag 'space[feature][]', 'Alcohol', checked('Alcohol'), id: 'feature_alcohol' %>
-
-                <%= label_tag 'feature_laptop-friendly', 'Laptop-Friendly' %>
-                <%= check_box_tag 'space[feature][]', 'Laptop-Friendly', checked('Laptop-Friendly'), id: 'feature_laptop-friendly' %>
-
-                <%= label_tag 'feature_balcony', 'Balcony' %>
-                <%= check_box_tag 'space[feature][]', 'Balcony', checked('Balcony'), id: 'feature_balcony' %>
-              </div>
-              <!--end form-group-->
-            </section>
-            <section>
-              <h3>Contact</h3>
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <div class="form-group">
-
-                    <div class="field">
-                      <%= f.label :address %><br>
-                      <%= f.text_field :address1, class: "form-control", placeholder: "Address" %>
-                    </div>
-                    <div class="field">
-                      <%= f.label :city %><br>
-                      <%= f.text_field :city, class: "form-control", placeholder: "City" %>
-                    </div>
-                    <div class="field">
-                      <%= f.label :state %><br>
-                      <%= f.text_field :state, class: "form-control", placeholder: "State" %>
-                    </div>
-                    <div class="field">
-                      <%= f.label :zipcode %>
-                      <%= f.text_field :zipcode, class: "form-control", placeholder: "Zipcode" %>
-                    </div>
-                  </div>
-                  <!--end form-group-->
-                  <!-- <div class="map height-200px shadow" id="map-submit"></div> -->
-                  <!--end map-->
-                  <!-- <div class="form-group hidden">
-                  <input type="text" class="form-control" id="latitude" name="latitude" hidden="">
-                  <input type="text" class="form-control" id="longitude" name="longitude" hidden="">
-                </div>
-                <p class="note">Enter the exact address or drag the map marker to position</p>
-              </div> -->
-              <!--end col-md-6-->
               <!--end form-group-->
             </div>
+            <!--end col-md-9-->
+            <div class="col-md-3 col-sm-3">
+              <div class="form-group">
+                <label for="category">Category</label>
+                <%= f.select :category_id, Category.all.map { |f| [f.name, f.id] }, class: "form-control" %>
+              </div>
+              <!--end form-group-->
+            </div>
+            <!--col-md-3-->
+          </div>
+          <!--end row-->
+          <div class="form-group">
+            <%= f.label :description %><br>
+            <%= f.text_area :description, class: "form-control", rows: 4, placeholder: "Describe the Space"%>
+          </div>
+          <!--end form-group-->
+          <div class="form-group">
+            <h3>Features</h3><br>
+            <%= label_tag 'feature_wifi', 'Wifi' %>
+            <%= check_box_tag 'space[feature][]', 'Wifi', checked('Wifi'), id: 'feature_wifi' %>
+
+            <%= label_tag 'feature_parking', 'Parking' %>
+            <%= check_box_tag 'space[feature][]', 'Parking', checked('Parking'), id: 'feature_parking' %>
+
+            <%= label_tag 'feature_alcohol', 'Alcohol' %>
+            <%= check_box_tag 'space[feature][]', 'Alcohol', checked('Alcohol'), id: 'feature_alcohol' %>
+
+            <%= label_tag 'feature_laptop-friendly', 'Laptop-Friendly' %>
+            <%= check_box_tag 'space[feature][]', 'Laptop-Friendly', checked('Laptop-Friendly'), id: 'feature_laptop-friendly' %>
+
+            <%= label_tag 'feature_balcony', 'Balcony' %>
+            <%= check_box_tag 'space[feature][]', 'Balcony', checked('Balcony'), id: 'feature_balcony' %>
+
+            <%= label_tag 'feature_good_coffee', 'Good Coffee' %>
+            <%= check_box_tag 'space[feature][]', 'Good Coffee', checked('Good Coffee'), id: 'feature_good_coffee' %>
+
+            <%= label_tag 'feature_access_to_outlets', 'Access To Outlets' %>
+            <%= check_box_tag 'space[feature][]', 'Access To Outlets', checked('Access To Outlets'), id: 'feature_access_to_outlets' %>
+          </div>
+          <!--end form-group-->
+        </section>
+        <section>
+          <h3>Contact</h3>
+          <div class="row">
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
-                <div class="form-group">
-                  <%= f.label :phone %><br>
-                  <%= f.text_field :phone, class: "form-control", placeholder: "Phone number" %>
+
+                <div class="field">
+                  <%= f.label :address %><br>
+                  <%= f.text_field :address1, class: "form-control", placeholder: "Address" %>
                 </div>
-                <!--end form-group-->
-                <div class="form-group">
-                  <%= f.label :website %><br>
-                  <%= f.text_field :website, class: "form-control", placeholder: "Website" %>
+                <div class="field">
+                  <%= f.label :city %><br>
+                  <%= f.text_field :city, class: "form-control", placeholder: "City" %>
                 </div>
-                <!--end form-group-->
+                <div class="field">
+                  <%= f.label :state %><br>
+                  <%= f.text_field :state, class: "form-control", placeholder: "State" %>
+                </div>
+                <div class="field">
+                  <%= f.label :zipcode %>
+                  <%= f.text_field :zipcode, class: "form-control", placeholder: "Zipcode" %>
+                </div>
               </div>
-              <!--end col-md-6-->
+              <!--end form-group-->
+              <!-- <div class="map height-200px shadow" id="map-submit"></div> -->
+              <!--end map-->
+              <!-- <div class="form-group hidden">
+              <input type="text" class="form-control" id="latitude" name="latitude" hidden="">
+              <input type="text" class="form-control" id="longitude" name="longitude" hidden="">
             </div>
-          </section>
-          <section>
-            <h3>Picture</h3>
-            <div class="single-file-input">
-              <%= f.file_field :image %>
-              <div>Upload<i class="fa fa-upload"></i></div>
-            </div>
-            <!--end form-group-->
-          </section>
-          <section>
-            <h3>Social</h3>
-            <div class="row">
-              <div class="col-md-6 col-sm-6">
-                <div class="form-group">
-                  <label for="facebook">Facebook URL</label>
-                  <%= f.text_field :facebook_url, class: "form-control", placeholder: "www.facebook.com/" %>
-                </div>
-                <!--end form-group-->
-                <div class="form-group">
-                  <label for="youtube">Instagram URL</label>
-                  <%= f.text_field :instagram_url, class: "form-control", placeholder: "www.instagram.com/" %>
-                </div>
-                <!--end form-group-->
-              </div>
-              <!--end col-md-6-->
-              <div class="col-md-6 col-sm-6">
-                <div class="form-group">
-                  <label for="twitter">Twitter URL</label>
-                  <%= f.text_field :twitter_url, class: "form-control", placeholder: "www.twitter.com/" %>
-                </div>
-                <!--end form-group-->
-                <!--end form-group-->
-              </div>
-              <!--end col-md-6-->
-            </div>
-            <!--end row-->
-          </section>
-          <hr>
-          <section class="center">
+            <p class="note">Enter the exact address or drag the map marker to position</p>
+          </div> -->
+          <!--end col-md-6-->
+          <!--end form-group-->
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="form-group">
             <div class="form-group">
-              <%= f.submit "Submit Space", :class => "btn btn-primary btn-rounded" %>
+              <%= f.label :phone %><br>
+              <%= f.text_field :phone, class: "form-control", placeholder: "Phone number" %>
             </div>
             <!--end form-group-->
-            <%= link_to 'View Details', @space %> |
-            <%= link_to 'Back', spaces_path %>
-          </section>
+            <div class="form-group">
+              <%= f.label :website %><br>
+              <%= f.text_field :website, class: "form-control", placeholder: "Website" %>
+            </div>
+            <!--end form-group-->
+          </div>
+          <!--end col-md-6-->
+        </div>
+      </section>
+      <section>
+        <h3>Picture</h3>
+        <div class="single-file-input">
+          <%= f.file_field :image %>
+          <div>Upload<i class="fa fa-upload"></i></div>
+        </div>
+        <!--end form-group-->
+      </section>
+      <section>
+        <h3>Social</h3>
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="facebook">Facebook URL</label>
+              <%= f.text_field :facebook_url, class: "form-control", placeholder: "www.facebook.com/" %>
+            </div>
+            <!--end form-group-->
+            <div class="form-group">
+              <label for="youtube">Instagram URL</label>
+              <%= f.text_field :instagram_url, class: "form-control", placeholder: "www.instagram.com/" %>
+            </div>
+            <!--end form-group-->
+          </div>
+          <!--end col-md-6-->
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label for="twitter">Twitter URL</label>
+              <%= f.text_field :twitter_url, class: "form-control", placeholder: "www.twitter.com/" %>
+            </div>
+            <!--end form-group-->
+            <!--end form-group-->
+          </div>
+          <!--end col-md-6-->
+        </div>
+        <!--end row-->
+      </section>
+      <hr>
+      <section class="center">
+        <div class="form-group">
+          <%= f.submit "Submit Space", :class => "btn btn-primary btn-rounded" %>
+        </div>
+        <!--end form-group-->
+        <%= link_to 'View Details', @space %> |
+        <%= link_to 'Back', spaces_path %>
+      </section>
 
-        </form>
-        <!--end form-->
+    </form>
+    <!--end form-->
 
-      </div>
-      <!--end col-md-6-->
-    </div>
-    <!--end row-->
-
-  </section>
+  </div>
+  <!--end col-md-6-->
 </div>
+<!--end row-->
+
+</section>
+
+</div>
+</div>
+
 <!--end container-->
 
 

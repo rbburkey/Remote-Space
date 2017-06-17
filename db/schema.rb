@@ -11,13 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526190154) do
+ActiveRecord::Schema.define(version: 20170613014338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "email"
+    t.string   "name"
+    t.string   "subject"
+    t.string   "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,8 +98,8 @@ ActiveRecord::Schema.define(version: 20170526190154) do
     t.string   "zipcode"
     t.string   "phone"
     t.string   "website"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "category_id"
     t.float    "latitude"
     t.float    "longitude"
@@ -92,6 +112,7 @@ ActiveRecord::Schema.define(version: 20170526190154) do
     t.string   "twitter_url"
     t.string   "instagram_url"
     t.integer  "user_id"
+    t.boolean  "approved",           default: false
   end
 
   add_index "spaces", ["category_id"], name: "index_spaces_on_category_id", using: :btree
@@ -124,11 +145,17 @@ ActiveRecord::Schema.define(version: 20170526190154) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "instagram"
+    t.string   "facebook"
+    t.string   "location"
+    t.string   "occupation"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "pictures", "spaces"
   add_foreign_key "pictures", "users"
   add_foreign_key "spaces", "users"

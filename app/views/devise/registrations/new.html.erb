@@ -2,6 +2,7 @@
   <section>
     <div class="row">
       <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+        <div style="margin-left: auto; margin-right: auto; width 16em; margin-top: 15%;">
 
         <h2>Sign up</h2>
 
@@ -29,6 +30,27 @@
         </div>
 
         <div class="form-group">
+          <%= f.label :current_location %><br />
+          <%= f.text_field :location, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :current_job_or_skill %><br />
+          <%= f.text_field :occupation, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :facebook %><br />
+          <%= f.text_field :facebook, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :instagram %><br />
+          <%= f.text_field :instagram, autofocus: true, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group">
           <%= f.label :password %>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -51,3 +73,4 @@
     </div>
   </section>
 </div>
+<%= render "layouts/footer" %>

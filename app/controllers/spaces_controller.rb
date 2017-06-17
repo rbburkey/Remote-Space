@@ -1,12 +1,11 @@
 class SpacesController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new, :index, :show, :my_spaces, :favorites]
   before_action :set_space, only: [:show, :edit, :update, :destroy]
 
   # GET /spaces
   # GET /spaces.json
   def index
     @spaces = Space.all.paginate(:page => params[:page], :per_page => 6)
-
     @reviews = Review.where(space_id: @space)
     if @reviews.blank?
       @avg_rating = 0
@@ -14,11 +13,18 @@ class SpacesController < ApplicationController
       @avg_rating = @reviews.average(:rating).round(2)
     end
 
+    @hash = Gmaps4rails.build_markers(@spaces) do |space, marker|
+     marker.lat space.latitude
+     marker.lng space.longitude
+   end
   end
 
 
   def show
     @space = Space.find(params[:id])
+    if @space.approved? == false
+      redirect_to notapproved_path
+    end
     @reviews = Review.where(space_id: @space)
     @picture = Picture.where(space_id: @space)
 
@@ -101,11 +107,6 @@ class SpacesController < ApplicationController
     end
   end
 
-  def search_map
-    @spaces = Space.search(params)
-
-  end
-
   def my_spaces
     @spaces = Space.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 5)
   end
@@ -141,6 +142,6 @@ class SpacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def space_params
-      params.require(:space).permit(:name, :category_id, :description, :address1, :address2, :city, :state, :zipcode, :phone, :website, :facebook_url, :twitter_url, :instagram_url, :image, feature:[])
+      params.require(:space).permit(:name, :category_id, :user_id, :description, :address1, :address2, :city, :state, :zipcode, :phone, :website, :facebook_url, :twitter_url, :instagram_url, :image, feature:[])
     end
 end

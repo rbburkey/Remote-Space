@@ -1,0 +1,77 @@
+<header id="page-header">
+  <nav>
+    <div class="left">
+      <a href="/" class="brand"><img src="/assets/logo.png" alt=""></a>
+    </div>
+    <!--end left-->
+    <div class="right">
+      <div class="primary-nav has-mega-menu">
+        <ul class="navigation">
+          <li><a href="/">Home</a>
+          </li>
+          <li class="has-child"><a href="#nav-homepages">My Account</a>
+            <div class="wrapper">
+              <div id="nav-homepages" class="nav-wrapper">
+                <ul>
+                  <li><a href="/spaces/new">Add A Space</a>
+                    <% if user_signed_in?%>
+                  <li><a href="/users/<%=current_user.id%>">Profile</a></li>
+                  <%end%>
+                  </li>
+                  <li class="has-child"><a href="#nav-row-listing">Account Settings</a>
+                    <div id="nav-row-listing" class="nav-wrapper">
+                      <ul>
+                        <li><a href="/users/edit">Edit My Account</a></li>
+                        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="has-child"><a href="#nav-listing">Spaces</a>
+            <div class="wrapper">
+              <div id="nav-listing" class="nav-wrapper">
+                <ul>
+                  <li><a href="/my_spaces">My Spaces</a></li>
+                  <li><a href="/favorites">Favorites</a></li>
+                  <li><a href="/how_it_works">How it works</a></li>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <% if user_signed_in? %>
+          <li><a href="/spaces">Write A Review</a>
+          <% else %>
+          <li><a href="/users/new">Write A Review</a>
+            <%end%>
+          </li>
+          <li><a href="/posts">Blog</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <!--end navigation-->
+      </div>
+      <!--end primary-nav-->
+      <div class="secondary-nav">
+        <%if !user_signed_in?%>
+        <%= link_to "Login", new_user_session_path, :class => 'btn btn-small' %>
+        <%= link_to "Register", new_user_registration_path, :class => 'btn btn-small'%>
+        <% else %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <%end%>
+      </div>
+      <!--end secondary-nav-->
+      <a href="/spaces/new" class="btn btn-primary btn-small btn-rounded icon shadow add-listing"><i class="fa fa-plus"></i><span>Add A Space</span></a>
+      <div class="nav-btn">
+          <i></i>
+          <i></i>
+          <i></i>
+      </div>
+    </div>
+    <!--end right-->
+  </nav>
+  <!--end nav-->
+</header>
+<!--end page-header-->

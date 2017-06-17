@@ -7,10 +7,11 @@ class User < ActiveRecord::Base
   has_many :spaces
   has_many :favorite_spaces
   has_many :favorites, through: :favorite_spaces, source: :space
+  has_many :comments
 
   after_create :send_new_user_mail
  def send_new_user_mail
-   NewUserEmail.sign_up_email(self).deliver
+   Notifier.sign_up_email(self).deliver
  end
 
  has_attached_file :avatar, styles: { medium: "150x150", thumb: "75x75" }

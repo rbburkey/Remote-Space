@@ -22,6 +22,7 @@ class StaticController < ApplicationController
   end
 
   def contact
+    @contact = Contact.new
   end
 
   def blog
@@ -35,6 +36,12 @@ class StaticController < ApplicationController
     @spaces = Space.all
   end
 
+  def user_profile
+    @users = User.all
+  end
+
+  def not_approved
+  end
 
 
 end

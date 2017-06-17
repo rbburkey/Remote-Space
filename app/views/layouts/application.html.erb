@@ -6,26 +6,24 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/font-awesome.css" type="text/css">
-  <link rel="stylesheet" href="assets/elegant-fonts.css" type="text/css">
+  <link rel="stylesheet" href="/assets/font-awesome.css" type="text/css">
+  <link rel="stylesheet" href="/assets/elegant-fonts.css" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
-  <link rel="stylesheet" href="assets/css/zabuto_calendar.min.css" type="text/css">
-  <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
-  <script src="jquery.raty.js"></script>
-  <link rel="stylesheet" href="assets/css/rtl.css" type="text/css">
-  <link rel="stylesheet" href="assets/css/trackpad-scroll-emulator.css" type="text/css">
-  <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-  <link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css">
-  <link rel="stylesheet" href="assets/css/jssocials.css" type="text/css">
+  <link rel="stylesheet" href="/assets/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="/assets/owl.carousel.css" type="text/css">
+  <link rel="stylesheet" href="/assets/trackpad-scroll-emulator.css" type="text/css">
+  <link rel="stylesheet" href="/assets/style.css" type="text/css">
+  <link rel="stylesheet" href="/assets/jquery.nouislider.min.css" type="text/css">
+  <link rel="stylesheet" href="/assets/jssocials.css" type="text/css">
+  <link rel="stylesheet" href="/assets/bootstrap-select.min.css" type="text/css">
+
+
 
 
 
 </head>
-
-
-
-<body>
+<body class="homepage">
+  <div class="page-wrapper">
   <header id="page-header">
     <nav>
       <div class="left">
@@ -36,38 +34,16 @@
         <div class="primary-nav has-mega-menu">
           <ul class="navigation">
             <li><a href="/">Home</a>
-              <!-- <div class="wrapper">
+            </li>
+            <li class="has-child"><a href="#nav-homepages">My Account</a>
+              <div class="wrapper">
                 <div id="nav-homepages" class="nav-wrapper">
                   <ul>
-                    <li><a href="index-map-version-1.html">Map Full Screen Sidebar Results</a></li>
-                    <li><a href="index-map-version-2.html">Map Horizontal Form</a></li>
-                    <li><a href="index-map-version-3.html">Map Full Screen Form in Sidebar</a></li>
-                    <li><a href="index-map-version-4.html">Map Form Under</a></li>
-                    <li><a href="index-hero-version-1.html">Hero One Input Form</a></li>
-                    <li><a href="index-hero-version-2.html">Hero Multiple Inputs</a></li>
-                    <li><a href="index-hero-version-3.html">Hero Form Under</a></li>
-                    <li><a href="index-hero-version-4.html">Hero Full Screen Slider</a></li>
-                  </ul>
-                </div>
-              </div> -->
-            </li>
-            <li class="has-child"><a href="#nav-listing">My Account</a>
-              <div class="wrapper">
-                <div id="nav-listing" class="nav-wrapper">
-                  <ul>
                     <li><a href="/spaces/new">Add A Space</a>
-                      <!-- <div id="nav-grid-listing" class="nav-wrapper">
-                        <ul>
-                          <li><a href="listing-grid-right-sidebar.html">With Right Sidebar</a></li>
-                          <li><a href="listing-grid-left-sidebar.html">With Left Sidebar</a></li>
-                          <li><a href="listing-grid-full-width.html">Full Width</a></li>
-                          <li><a href="listing-grid-different-widths.html">Different Widths</a></li>
-                          <li><a href="listing-grid-3-items.html">3 Items in Row</a></li>
-                          <li><a href="listing-grid-4-items.html">4 Items in Row</a></li>
-                        </ul>
-                      </div> -->
+                      <% if user_signed_in?%>
+                    <li><a href="/users/<%=current_user.id%>">Profile</a></li>
+                    <%end%>
                     </li>
-                    <li><a href="/reviews">My Reviews</a>
                     <li class="has-child"><a href="#nav-row-listing">Account Settings</a>
                       <div id="nav-row-listing" class="nav-wrapper">
                         <ul>
@@ -80,25 +56,13 @@
                 </div>
               </div>
             </li>
-
-
             <li class="has-child"><a href="#nav-listing">Spaces</a>
               <div class="wrapper">
                 <div id="nav-listing" class="nav-wrapper">
                   <ul>
                     <li><a href="/my_spaces">My Spaces</a></li>
-                      <!-- <div id="nav-grid-listing" class="nav-wrapper">
-                        <ul>
-                          <li><a href="listing-grid-right-sidebar.html">With Right Sidebar</a></li>
-                          <li><a href="listing-grid-left-sidebar.html">With Left Sidebar</a></li>
-                          <li><a href="listing-grid-full-width.html">Full Width</a></li>
-                          <li><a href="listing-grid-different-widths.html">Different Widths</a></li>
-                          <li><a href="listing-grid-3-items.html">3 Items in Row</a></li>
-                          <li><a href="listing-grid-4-items.html">4 Items in Row</a></li>
-                        </ul>
-                      </div> -->
                     <li><a href="/favorites">Favorites</a></li>
-                    <li><a href="#">Claim</a></li>
+                    <li><a href="/how_it_works">How it works</a></li>
                     </li>
                   </ul>
                 </div>
@@ -109,48 +73,6 @@
             <% else %>
             <li><a href="/users/new">Write A Review</a>
               <%end%>
-              <!-- <div class="wrapper">
-                <div id="nav-locations" class="nav-wrapper">
-                  <ul>
-                    <li class="has-child"><a href="#nav-locations-new-york">New York</a>
-                      <div class="nav-wrapper" id="nav-locations-new-york">
-                        <ul>
-                          <li class="has-child"><a href="#nav-4">Manhattan</a>
-                            <div class="nav-wrapper" id="nav-4">
-                              <ul>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                              </ul>
-                            </div>
-                          </li>
-                          <li><a href="#">Brooklyn</a></li>
-                          <li><a href="#">Staten Island</a></li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="has-child"><a href="#nav-5">London</a>
-                      <div class="nav-wrapper" id="nav-5">
-                        <ul>
-                          <li><a href="#">Abbey Wood</a></li>
-                          <li><a href="#">Bayswater</a></li>
-                          <li><a href="#">Forestdale</a></li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="has-child"><a href="#nav-6">Paris</a>
-                      <div class="nav-wrapper" id="nav-6">
-                        <ul>
-                          <li><a href="#">Louvre</a></li>
-                          <li><a href="#">Bourse</a></li>
-                          <li><a href="#">Marais</a></li>
-                        </ul>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div> -->
             </li>
             <li><a href="/posts">Blog</a></li>
             <li><a href="/contact">Contact</a></li>
@@ -167,13 +89,12 @@
           <%end%>
         </div>
         <!--end secondary-nav-->
-        <a href="/spaces/new" class="btn btn-primary btn-small btn-rounded icon shadow add-listing" data-modal-external-file="modal_submit.php" data-target="modal-submit"><i class="fa fa-plus"></i><span>Add A Space</span></a>
-        <!-- <div class="nav-btn">
-           <i></i>
-          <i></i>
-          <i></i>
-        </div> -->
-        <!--end nav-btn-->
+        <a href="/spaces/new" class="btn btn-primary btn-small btn-rounded icon shadow add-listing"><i class="fa fa-plus"></i><span>Add A Space</span></a>
+        <div class="nav-btn">
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
       </div>
       <!--end right-->
     </nav>
@@ -189,33 +110,28 @@
 
   <%= render 'layouts/messages' %>
   <%= yield %>
-  
 
 
 
 
 
 
-  <script type="text/javascript" src="assets/js/jquery-2.2.1.min.js"></script>
-  <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap-select.min.js"></script>
-  <script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-  <script type="text/javascript" src="assets/js/markerclusterer_packed.js"></script>
-  <script type="text/javascript" src="assets/js/infobox.js"></script>
-  <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
-  <script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
-  <script type="text/javascript" src="assets/js/icheck.min.js"></script>
-  <script type="text/javascript" src="assets/js/owl.carousel.js"></script>
-  <script type="text/javascript" src="assets/js/jquery.trackpad-scroll-emulator.min.js"></script>
-  <script type="text/javascript" src="assets/js/jssocials.min.js"></script>
+  <script type="text/javascript" src="/assets/jquery-2.2.1.min.js"></script>
+  <script type="text/javascript" src="/assets/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="/assets/bootstrap.js"></script>
+  <script type="text/javascript" src="/assets/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="/assets/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="/assets/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="/assets/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="/assets/icheck.min.js"></script>
+  <script type="text/javascript" src="/assets/owl.carousel.js"></script>
+  <script type="text/javascript" src="/assets/jquery.trackpad-scroll-emulator.min.js"></script>
+  <script type="text/javascript" src="/assets/jssocials.min.js"></script>
+  <script type="text/javascript" src="/assets/jquery.raty.js"></script>
+  <script type="text/javascript" src="/assets/custom.js"></script>
+  <script type="text/javascript" src="/assets/maps.js"></script>
 
-  <script type="text/javascript" src="assets/js/custom.js"></script>
-  <script type="text/javascript" src="assets/js/maps.js"></script>
 
-  <script>
-  autoComplete();
-  </script>
+
 </body>
 </html>

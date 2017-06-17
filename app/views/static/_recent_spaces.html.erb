@@ -34,7 +34,12 @@
               <span class="reviews"><%=@spaces[-1].reviews.average(:rating)%></span>
               <span class="star-rating" data-score=<%=@spaces[-1].reviews.average(:rating)%> ></span>
               <%end%>
-              <% if current_user.favorites.include? @spaces[-1]  %>
+
+              <% if current_user == nil%>
+              <div class="fav_button" style="float: right;">
+                <%= link_to "Favorite", new_user_registration_path, class: "btn btn-primary btn-rounded btn-xs"%>
+              </div>
+              <% elsif current_user.favorites.include? @spaces[-1]  %>
               <div class="fav_button" style="float: right;">
                 <%= link_to "Unfavorite", favorite_space_path(@spaces[-1], type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
               </div>
@@ -74,7 +79,11 @@
               <span class="star-rating" data-score=<%=@spaces[-2].reviews.average(:rating)%> ></span>
               <%end%>
 
-              <% if current_user.favorites.include? @spaces[-2]  %>
+              <% if current_user == nil%>
+              <div class="fav_button" style="float: right;">
+                <%= link_to "Favorite", new_user_registration_path, class: "btn btn-primary btn-rounded btn-xs"%>
+              </div>
+              <% elsif current_user.favorites.include? @spaces[-2]  %>
               <div class="fav_button" style="float: right;">
                 <%= link_to "Unfavorite", favorite_space_path(@spaces[-2], type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
               </div>
@@ -115,7 +124,12 @@
               <span class="reviews"><%=@spaces[-3].reviews.average(:rating)%></span>
               <span class="star-rating" data-score=<%=@spaces[-3].reviews.average(:rating)%> ></span>
               <%end%>
-              <% if current_user.favorites.include? @spaces[-3]  %>
+
+              <% if current_user == nil%>
+              <div class="fav_button" style="float: right;">
+                <%= link_to "Favorite", new_user_registration_path, class: "btn btn-primary btn-rounded btn-xs"%>
+              </div>
+              <% elsif current_user.favorites.include? @spaces[-3]  %>
               <div class="fav_button" style="float: right;">
                 <%= link_to "Unfavorite", favorite_space_path(@spaces[-3], type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
               </div>
@@ -157,7 +171,12 @@
               <span class="reviews"><%=@spaces[-4].reviews.average(:rating)%></span>
               <span class="star-rating" data-score=<%=@spaces[-4].reviews.average(:rating)%> ></span>
               <%end%>
-              <% if current_user.favorites.include? @spaces[-4]  %>
+
+              <% if current_user == nil%>
+              <div class="fav_button" style="float: right;">
+                <%= link_to "Favorite", new_user_registration_path, class: "btn btn-primary btn-rounded btn-xs"%>
+              </div>
+              <% elsif current_user.favorites.include? @spaces[-4]  %>
               <div class="fav_button" style="float: right;">
                 <%= link_to "Unfavorite", favorite_space_path(@spaces[-4], type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
               </div>
@@ -195,7 +214,12 @@
               <span class="reviews"><%=@spaces[-5].reviews.average(:rating)%></span>
               <span class="star-rating" data-score=<%=@spaces[-5].reviews.average(:rating)%> ></span>
               <%end%>
-              <% if current_user.favorites.include? @spaces[-5]  %>
+
+              <% if current_user == nil%>
+              <div class="fav_button" style="float: right;">
+                <%= link_to "Favorite", new_user_registration_path, class: "btn btn-primary btn-rounded btn-xs"%>
+              </div>
+              <% elsif current_user.favorites.include? @spaces[-5]  %>
               <div class="fav_button" style="float: right;">
                 <%= link_to "Unfavorite", favorite_space_path(@spaces[-5], type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
               </div>
@@ -234,7 +258,12 @@
               <span class="reviews"><%=@spaces[-6].reviews.average(:rating)%></span>
               <span class="star-rating" data-score=<%=@spaces[-6].reviews.average(:rating)%> ></span>
               <%end%>
-              <% if current_user.favorites.include? @spaces[-6]  %>
+
+              <% if current_user == nil%>
+              <div class="fav_button" style="float: right;">
+                <%= link_to "Favorite", new_user_registration_path, class: "btn btn-primary btn-rounded btn-xs"%>
+              </div>
+              <% elsif current_user.favorites.include? @spaces[-6]  %>
               <div class="fav_button" style="float: right;">
                 <%= link_to "Unfavorite", favorite_space_path(@spaces[-6], type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
               </div>
@@ -263,13 +292,3 @@
   </div>
   <!--end container-->
 </section>
-
-<script>
-$('.star-rating').raty({
-  path: '/assets',
-  readOnly: true,
-  score: function() {
-    return $(this).attr('data-score');
-  }
-});
-</script>

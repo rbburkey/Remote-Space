@@ -1,0 +1,89 @@
+<div class="page-wrapper">
+  <div id="page-content">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Contact</li>
+      </ol>
+      <section class="page-title">
+        <h1 class="pull-left">Contact</h1>
+      </section>
+      <!--end section-title-->
+    </div>
+    <!--end container-->
+
+    <section class="block">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-3">
+            <h3>Contact Information</h3>
+            <div class="box">
+              <address>
+                <strong>Location</strong>
+                <figure>San Francisco, CA</figure>
+                <br>
+                <strong>Phone Number</strong>
+                <figure>+1 (954)292-5480</figure>
+                <br>
+                <strong>Email</strong>
+                <figure><a href="#">info@remotespace.co</a></figure>
+              </address>
+            </div>
+          </div>
+          <!--end col-md-3-->
+          <div class="col-md-9 col-sm-9">
+            <h3>Form</h3>
+
+            <%= form_for(contact_path, :html => { :multipart => true, :class => "form inputs-underline" }) do |f| %>
+            <div class="row">
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <%= f.label :name %>
+                  <%= f.text_field :name, class:"form-control", name: "name", id: "name" %>
+                </div>
+                <!--end form-group-->
+              </div>
+              <!--end col-md-4-->
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <%= f.label :email %>
+                  <%= f.text_field :email, class:"form-control", name: "email", id: "email" %>
+                </div>
+                <!--end form-group-->
+              </div>
+              <!--end col-md-4-->
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <%= f.label :subject %>
+                  <%= f.text_field :subject, class: "form-control" , name: "subject", id: "subject"%>
+                </div>
+                <!--end form-group-->
+              </div>
+              <!--end col-md-4-->
+            </div>
+            <!--end row-->
+            <div class="col-sm-12 form-group">
+              <%= f.label :message %><br><br>
+              <%= f.text_area :message, class: "form-contol", id: "form-blog-reply-message", rows: "5", name: "message", style: "min-width: 100%;" %>
+            </div>
+
+            <!--end form-group-->
+            <div class="form-group">
+              <%= f.submit "Submit", class: "btn btn-primary"%>
+            </div>
+            <!--end form-group-->
+            <%end%>
+
+          </div>
+          <!--end col-md-9-->
+        </div>
+        <!--end row-->
+      </div>
+      <!--end container-->
+    </section>
+
+  </div>
+  <!--end page-content-->
+
+  <%= render 'layouts/footer' %>
+</div>
