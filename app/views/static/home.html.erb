@@ -1,175 +1,178 @@
-    <div id="page-content">
-      <div class="hero-section has-background full-screen">
-        <div class="wrapper">
-          <div class="inner">
-            <div class="center">
-              <div class="page-title">
-                <h1>The World is Our Office</h1>
-                <h2>Find Your Space</h2>
-              </div>
-            </div>
-            <%= form_tag search_spaces_path, method: :get do |f| %>
-            <div class="form search-form horizontal no-background">
-              <div class="container">
-                <form>
-                  <div class="row">
-                    <div class="col-md-4 col-sm-4">
-                      <div class="form-group">
-                        <%= text_field_tag :search, nil, placeholder: "Philz Coffee" %>
-                      </div>
-                      <!--end form-group-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-4 col-sm-4">
-                      <div class="form-group">
-                        <%= select_tag :category, options_for_select(Category.all.map{ |c| [c.name, c.id]}) %>
-                      </div>
-                      <!--end form-group-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-3 col-sm-4">
-                      <div class="form-group">
-                        <%= text_field_tag :location, nil, placeholder: "Palo Alto" %>
-                      </div>
-                      <!--end form-group-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-1 col-sm-4">
-                      <div class="form-group">
-                        <div id="success"></div>
-                        <%= submit_tag 'Search', class: "btn btn-primary pull-right" %> <!--<i class="fa fa-search"></i> -->
-                      </div>
-                      <!--end form-group-->
-                    </div>
-                    <!--end col-md-4-->
+<div id="page-content">
+  <div class="hero-section has-background full-screen">
+    <div class="wrapper">
+      <div class="inner">
+        <div class="center">
+          <div class="page-title">
+            <h1>The World is Our Office</h1>
+            <h2>Find Your Space</h2>
+          </div>
+        </div>
+        <%= form_tag search_spaces_path, method: :get do |f| %>
+        <div class="form search-form horizontal no-background">
+          <div class="container">
+            <form>
+              <div class="row">
+                <div class="col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <%= text_field_tag :search, nil, placeholder: "Philz Coffee" %>
                   </div>
-                  <!--end row-->
-                </form>
-                <!--end form-hero-->
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-4-->
+                <div class="col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <%= select_tag :category, options_for_select(Category.all.map{ |c| [c.name, c.id]}) %>
+                  </div>
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-4-->
+                <div class="col-md-3 col-sm-4">
+                  <div class="form-group">
+                    <%= text_field_tag :location, nil, placeholder: "Palo Alto" %>
+                  </div>
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-4-->
+                <div class="col-md-1 col-sm-4">
+                  <div class="form-group">
+                    <div id="success"></div>
+                    <%= submit_tag 'Search', class: "btn btn-primary pull-right" %> <!--<i class="fa fa-search"></i> -->
+                  </div>
+                  <!--end form-group-->
+                </div>
+                <!--end col-md-4-->
               </div>
-              <!--end container-->
-            </div>
-            <%end%>
-            <!--end search-form-->
+              <!--end row-->
+            </form>
+            <!--end form-hero-->
           </div>
-          <!--end element-->
+          <!--end container-->
         </div>
-        <!--end vertical-aligned-elements-->
-
-        <div class="slider">
-          <!--end owl-carousel-->
-          <div class="background-wrapper">
-            <div class="background-color background-color-black"></div>
-          </div>
-          <!--end background-wrapper-->
-        </div>
-        <!--end slider-->
+        <%end%>
+        <!--end search-form-->
       </div>
-      <!--end hero-section-->
-
-
-      <%= render "recent_spaces" %>
-
-      <!--end block-->
-      <div class="container"><hr></div>
-      <section class="block">
-        <div class="container">
-          <div class="section-title">
-            <div class="center">
-              <h2>At Remote Space, we know that work is rapidly moving outside the workplace.</h2>
-              <h2>Our mission is to provide a reliable way to find what we call "Remote Friendly" locations wherever you are on the map.</h2>
-            </div>
-          </div>
-
-          <!--end section-title-->
-          <div class="categories-list">
-            <div class="row">
-              <div class="col-md-3 col-sm-3">
-                <div class="list-item">
-                  <div class="title">
-                    <h3><div class="icon"><i class="fa fa-coffee"></i></div><a href="#">Cafes</a> (<%=Space.all.where(category_id: 1).count%>)</h3>
-                  </div>
-                </div>
-                <!--end list-item-->
-              </div>
-              <!--end col-md-3-->
-              <div class="col-md-3 col-sm-3">
-                <div class="list-item">
-                  <div class="title">
-                    <h3><div class="icon"><i class="fa fa-laptop"></i></div><a href="">Co-Working</a> (<%=Space.all.where(category_id: 2).count%>)</h3>
-                  </div>
-                </div>
-                <!--end list-item-->
-              </div>
-              <!--end col-md-3-->
-              <div class="col-md-3 col-sm-3">
-                <div class="list-item">
-                  <div class="title">
-                    <h3><div class="icon"><i class="fa fa-book"></i></div><a href="#">Libraries</a> (<%=Space.all.where(category_id: 3).count%>)</h3>
-                  </div>
-                </div>
-                <!--end list-item-->
-              </div>
-              <!--end col-md-3-->
-              <div class="col-md-3 col-sm-3">
-                <div class="list-item">
-                  <div class="title">
-                    <h3><div class="icon"><i class="fa fa-cutlery"></i></div><a href="#">Restaurants</a> (<%=Space.all.where(category_id: 4).count%>)</h3>
-                  </div>
-                </div>
-                <!--end list-item-->
-              </div>
-              <!--end col-md-3-->
-            </div>
-            <!--end row-->
-          </div>
-          <div class="center">
-            <a href="/how_it_works" class="btn btn-primary btn-light-frame btn-rounded btn-framed arrow">How It Works</a>
-          </div>
-          <!--end categories-list-->
-        </div>
-        <!--end container-->
-      </section>
-      <!--end block-->
-      <section class="block big-padding">
-        <div class="container">
-          <div class="vertical-aligned-elements">
-            <div class="element width-50">
-              <h3>Subscribe and be notified about new locations in your area</h3>
-            </div>
-            <!--end element-->
-            <div class="element width-50">
-              <%=render 'subscriber/new' %>
-              <!--end form-->
-            </div>
-            <!--end element-->
-          </div>
-          <!--end vertical-aligned-elements-->
-        </div>
-        <!--end container-->
-        <div class="background-wrapper">
-          <div class="background-color background-color-black opacity-5"></div>
-        </div>
-        <!--end background-wrapper-->
-      </section>
-      <!--end block-->
-    <%= render "popular_spaces" %>
-
-    <%= render "blog_section" %>
-
+      <!--end element-->
     </div>
-    <!--end page-content-->
-    <%= render 'layouts/footer' %>
-  </div>
-  <!--end page-wrapper-->
-  <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+    <!--end vertical-aligned-elements-->
 
-  <script type="text/javascript">
-  $('.star-rating').raty({
-    path: '/assets',
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    }
-  });
-  </script>
+    <div class="slider">
+      <!--end owl-carousel-->
+      <div class="background-wrapper">
+        <div class="background-color background-color-black"></div>
+      </div>
+      <!--end background-wrapper-->
+    </div>
+    <!--end slider-->
+  </div>
+  <!--end hero-section-->
+
+  <% if Space.all.count > 6 %>
+  <%= render "recent_spaces" %>
+  <%end%>
+
+  <!--end block-->
+  <div class="container"><hr></div>
+  <section class="block">
+    <div class="container">
+      <div class="section-title">
+        <div class="center">
+          <h2>At Remote Space, we know that work is rapidly moving outside the workplace.</h2>
+          <h2>Our mission is to provide a reliable way to find what we call "Remote Friendly" locations wherever you are on the map.</h2>
+        </div>
+      </div>
+
+      <!--end section-title-->
+      <div class="categories-list">
+        <div class="row">
+          <div class="col-md-3 col-sm-3">
+            <div class="list-item">
+              <div class="title">
+                <h3><div class="icon"><i class="fa fa-coffee"></i></div><a href="#">Cafes</a> (<%=Space.all.where(category_id: 1).count%>)</h3>
+              </div>
+            </div>
+            <!--end list-item-->
+          </div>
+          <!--end col-md-3-->
+          <div class="col-md-3 col-sm-3">
+            <div class="list-item">
+              <div class="title">
+                <h3><div class="icon"><i class="fa fa-laptop"></i></div><a href="">Co-Working</a> (<%=Space.all.where(category_id: 2).count%>)</h3>
+              </div>
+            </div>
+            <!--end list-item-->
+          </div>
+          <!--end col-md-3-->
+          <div class="col-md-3 col-sm-3">
+            <div class="list-item">
+              <div class="title">
+                <h3><div class="icon"><i class="fa fa-book"></i></div><a href="#">Libraries</a> (<%=Space.all.where(category_id: 3).count%>)</h3>
+              </div>
+            </div>
+            <!--end list-item-->
+          </div>
+          <!--end col-md-3-->
+          <div class="col-md-3 col-sm-3">
+            <div class="list-item">
+              <div class="title">
+                <h3><div class="icon"><i class="fa fa-cutlery"></i></div><a href="#">Restaurants</a> (<%=Space.all.where(category_id: 4).count%>)</h3>
+              </div>
+            </div>
+            <!--end list-item-->
+          </div>
+          <!--end col-md-3-->
+        </div>
+        <!--end row-->
+      </div>
+      <div class="center">
+        <a href="/how_it_works" class="btn btn-primary btn-light-frame btn-rounded btn-framed arrow">How It Works</a>
+      </div>
+      <!--end categories-list-->
+    </div>
+    <!--end container-->
+  </section>
+  <!--end block-->
+  <section class="block big-padding">
+    <div class="container">
+      <div class="vertical-aligned-elements">
+        <div class="element width-50">
+          <h3>Subscribe and be notified about new locations in your area</h3>
+        </div>
+        <!--end element-->
+        <div class="element width-50">
+          <%=render 'subscriber/new' %>
+          <!--end form-->
+        </div>
+        <!--end element-->
+      </div>
+      <!--end vertical-aligned-elements-->
+    </div>
+    <!--end container-->
+    <div class="background-wrapper">
+      <div class="background-color background-color-black opacity-5"></div>
+    </div>
+    <!--end background-wrapper-->
+  </section>
+  <!--end block-->
+  <% if Space.all.count > 10 %>
+  <%= render "popular_spaces" %>
+  <%end%>
+  <% if Post.all.count => 3 %>
+  <%= render "blog_section" %>
+  <%end%>
+</div>
+<!--end page-content-->
+<%= render 'layouts/footer' %>
+</div>
+<!--end page-wrapper-->
+<a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+
+<script type="text/javascript">
+$('.star-rating').raty({
+  path: '/assets',
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>
