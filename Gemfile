@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3'
 gem 'geocoder'
 gem 'carrierwave'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem "paperclip", "~> 5.0.0"
 gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 gem 'rails_admin', '~> 1.1.1'
