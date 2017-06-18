@@ -157,7 +157,7 @@
   <% if Space.all.count > 10 %>
   <%= render "popular_spaces" %>
   <%end%>
-  <% if Post.all.count => 3 %>
+  <% if Post.all.count >= 3 %>
   <%= render "blog_section" %>
   <%end%>
 </div>
