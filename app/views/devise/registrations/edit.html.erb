@@ -7,14 +7,13 @@
     </ol>
     <!--end breadcrumb-->
     <section class="page-title center">
-      <h1>Your Profile <%= resource_name.to_s.humanize %></h1>
+      <h1>Your Profile</h1>
     </section>
     <!--end page-title-->
     <section>
       <div class="row">
         <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, html: { multipart: true, class: "form inputs-underline"  }) do |f| %>
-          <form class="form inputs-underline">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put, class: "form inputs-underline"  })  do |f| %>
             <section>
 
               <div class="user-details box">
@@ -57,7 +56,7 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <%= f.label :first_name %><br />
-                    <%= f.text_field :first_name, class: "form-control", name: "first_name", id: "first_name", autofocus: true %>
+                    <%= f.text_field :first_name, class: "form-control", autofocus: true %>
                   </div>
                   <!--end form-group-->
                 </div>
@@ -65,7 +64,7 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <%= f.label :last_name %><br />
-                    <%= f.text_field :last_name, class: "form-control", name: "last_name", id: "last_name", autofocus: true %>
+                    <%= f.text_field :last_name, class: "form-control", autofocus: true %>
                   </div>
                   <!--end form-group-->
                 </div>
@@ -73,7 +72,7 @@
                 <div class="col-md-12 col-sm-6">
                   <div class="form-group">
                     <%= f.label :email %><br />
-                    <%= f.text_field :email, class: "form-control", name: "email", id: "email", autofocus: true %>
+                    <%= f.text_field :email, class: "form-control", autofocus: true %>
                   </div>
                   <!--end form-group-->
                 </div>
@@ -81,7 +80,7 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <%= f.label :current_location %><br />
-                    <%= f.text_field :location, class: "form-control", name: "location", id: "location", autofocus: true %>
+                    <%= f.text_field :location, class: "form-control", autofocus: true %>
                   </div>
                   <!--end form-group-->
                 </div>
@@ -89,7 +88,7 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <%= f.label :current_job_or_skillset %><br />
-                    <%= f.text_field :occupation, class: "form-control", name: "occupation", id: "occupation", autofocus: true %>
+                    <%= f.text_field :occupation, class: "form-control", autofocus: true %>
                   </div>
                   <!--end form-group-->
                 </div>
@@ -97,7 +96,7 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <%= f.label :instagram %><br />
-                    <%= f.text_field :instagram, class: "form-control", name: "instagram", id: "instagram", autofocus: true %>
+                    <%= f.text_field :instagram, class: "form-control", autofocus: true %>
                   </div>
                   <!--end form-group-->
                 </div>
@@ -105,7 +104,7 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <%= f.label :facebook %><br />
-                    <%= f.text_field :facebook, class: "form-control", name: "facebook", id: "facebook", autofocus: true %>
+                    <%= f.text_field :facebook, class: "form-control", autofocus: true %>
                   </div>
                   <!--end form-group-->
                 </div>
@@ -156,7 +155,7 @@
 
   <!--end form-group-->
 </section>
-</form>
+
 <%end%>
 <!--end form-->
 <hr>
