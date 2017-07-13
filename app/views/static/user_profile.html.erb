@@ -1,0 +1,119 @@
+<div id="page-content">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">Profile</li>
+    </ol>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <section class="page-title">
+          <h1><%=@user.first_name%></h1>
+        </section>
+        <!--end section-title-->
+        <section>
+          <div class="subject-detail">
+            <div class="image">
+              <div class="bg-transfer">
+                <%= image_tag @user.avatar.url(:medium) %>
+              </div>
+            </div>
+            <div class="description">
+              <section class="name">
+                <h3><%=@user.first_name%> <%=@user.last_name%></h3>
+                <p><%=@user.bio%></p>
+              </section>
+              <!--end description-->
+              <section class="contacts">
+                <figure><i class="fa fa-globe"></i><b>Currently Working from:</b> <%=@user.location%></figure>
+                <figure><a href="#"><i class="fa fa-briefcase"></i><b>Works as:</b> <%=@user.occupation%></a></figure>
+              </section>
+              <!--end contacts-->
+              <% if @user.instagram != nil && @user.facebook != nil %>
+              <section class="social">
+                <a href="<%=@user.instagram%>"><i class="social_instagram"></i></a>
+                <a href="https://www.instagram.com/<%=@user.facebook%>"><i class="social_facebook"></i></a>
+              </section>
+              <%elsif @user.instagram == nil && @user.facebook != nil%>
+              <section class="social">
+              <a href="<%=@user.facebook%>"><i class="social_facebook"></i></a>
+            </section>
+            <%elsif @user.instagram != nil && @user.facebook == nil%>
+            <section class="social">
+              <a href="<%=@user.instagram%>"><i class="social_instagram"></i></a>
+          </section>
+          <%else%>
+
+              <%end%>
+              <!--end social-->
+            </div>
+            <!--end description-->
+          </div>
+          <!--end subject-detail-->
+        </section>
+        <% if @spaces == nil %>
+        <section>
+        <h2><%=@user.first_name%> doesn't have a favorite space yet!</h2>
+      </section>
+        <%else%>
+        <section>
+            <h2><%=@user.first_name%>'s Favorite Spaces</h2>
+            <section>
+              <% @spaces.each do |space| %>
+                <div class="row">
+                  <div class="col-md-4 col-sm-4">
+                    <div class="item" data-id="1">
+                      <a href="<%=space_path%>"><%= image_tag space.image.url(:small)%>
+                        <div class="description">
+                          <figure></figure>
+                          <div class="label label-default"><%=space.category.name%></div>
+                          <h3><%=space.name%></h3>
+                          <h4><%=space.city%>, <%=space.state%></h4>
+                        </div>
+                        <!--end description-->
+
+                        <!--end image-->
+                      </a>
+                      <div class="additional-info">
+                        <div class="rating-passive" data-rating=<%=@spaces[-1].reviews.average(:rating)%>>
+                          <div id="star"></div>
+                          <% if space.reviews.average(:rating) == nil %>
+                          <span class="reviews"><%= link_to "Be the first to Review!", space%></span>
+                          <%else%>
+                          <span class="reviews"><%=space.reviews.average(:rating)%></span>
+                          <span class="star-rating" data-score=<%=@spaces[-1].reviews.average(:rating)%> ></span>
+                          <%end%>
+
+                          <% if current_user == nil%>
+                          <div class="fav_button" style="float: right;">
+                            <%= link_to "Favorite", new_user_registration_path, class: "btn btn-primary btn-rounded btn-xs"%>
+                          </div>
+                          <% elsif current_user.favorites.include? space  %>
+                          <div class="fav_button" style="float: right;">
+                            <%= link_to "Unfavorite", favorite_space_path(space, type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
+                          </div>
+                          <%elsif current_user%>
+                          <div class="fav_button" style="float: right;">
+                            <%= link_to "Favorite", favorite_space_path(space, type: "favorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
+                          </div>
+                          <% end %>
+                        </div>
+
+                        <!--end controls-more-->
+                      </div>
+                      <!--end additional-info-->
+                    </div>
+                    <!--end item-->
+                  </div>
+                </div>
+                <%end%>
+            </section>
+            <%end%>
+      </div>
+      <!--end col-md-4-->
+    </div>
+    <!--end row-->
+  </div>
+  <!--end container-->
+</div>
+<!--end page-content-->
+<%= render "layouts/footer" %>

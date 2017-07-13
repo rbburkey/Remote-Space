@@ -1,4 +1,6 @@
 class StaticController < ApplicationController
+  before_action :set_user, only: [:user_profile]
+
   def home
     @spaces = Space.all
     @posts = Post.all
@@ -16,6 +18,11 @@ class StaticController < ApplicationController
       marker.json({:id => space.id })
       marker.infowindow render_to_string(:partial => "/spaces/infowindow", :locals => { :object => space})
     end
+  end
+
+  def user_profile
+
+    @spaces = @user.favorites
   end
 
   def how_it_works
@@ -41,6 +48,12 @@ class StaticController < ApplicationController
   end
 
   def not_approved
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 
