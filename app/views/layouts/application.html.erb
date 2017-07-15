@@ -16,13 +16,12 @@
   <link rel="stylesheet" href="/assets/jquery.nouislider.min.css" type="text/css">
   <link rel="stylesheet" href="/assets/jssocials.css" type="text/css">
   <link rel="stylesheet" href="/assets/bootstrap-select.min.css" type="text/css">
-
-
-
-
-
+  <link rel="stylesheet" href="/assets/fakeLoader.css">
 </head>
+
+
 <body class="homepage">
+  <div class="fakeloader"></div>
   <div class="page-wrapper">
   <header id="page-header">
     <nav>
@@ -103,16 +102,9 @@
   <!--end page-header-->
 
 
-
-
-
-
-
   <%= render 'layouts/messages' %>
+
   <%= yield %>
-
-
-
 
 
 
@@ -130,8 +122,17 @@
   <script type="text/javascript" src="/assets/jquery.raty.js"></script>
   <script type="text/javascript" src="/assets/custom.js"></script>
   <script type="text/javascript" src="/assets/maps.js"></script>
+  <script type="text/javascript" src="/assets/fakeLoader.js"></script>
 
 
+  <script type="text/javascript">
+$(".fakeloader").fakeLoader({
+  spinner:"spinner1",
+  timeToHide:1200,
+  bgColor:"#4611a7"
+
+});
+</script>
 
 </body>
 </html>
