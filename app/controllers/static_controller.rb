@@ -21,7 +21,7 @@ class StaticController < ApplicationController
   end
 
   def user_profile
-
+  
     @spaces = @user.favorites
   end
 

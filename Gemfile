@@ -20,6 +20,7 @@ gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
 gem 'rails_admin', '~> 1.1.1'
 gem 'will_paginate'
 gem 'kaminari'
+gem 'rails_real_favicon'
 
 group :development, :test do
   gem 'byebug'

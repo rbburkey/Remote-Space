@@ -5,8 +5,14 @@ var resizeId;
 var lastModal;
 var customizerEnabled = 1;
 var defaultColor;
+var originalNavigationCode;
+var navigationIsTouchingBrand;
+var responsiveNavigationTriggered = false;
+
 $(document).ready(function($) {
     "use strict";
+
+    originalNavigationCode = $(".primary-nav").html();
 
     if( $("body").hasClass("navigation-fixed") ){
         fixedNavigation(true);
@@ -25,17 +31,25 @@ $(document).ready(function($) {
         $(".tse-scrollable").TrackpadScrollEmulator();
     }
 
-    if( viewport.is('xs') ){
-        $(".map-wrapper").height( $(window).height() - $("#page-header").height() );
-        $(".has-background").css( "min-height", $(window).height() - $("#page-header").height() + "px" );
+    if( $(".date-picker").length ){
+        $(".date-picker").datepicker();
     }
-    else {
-        if( $("body").hasClass("navigation-fixed") ){
-            $(".hero-section.full-screen").height( $(window).height() - $("#page-header nav").height() );
+
+    heroSectionHeight();
+
+// Render hero search form ---------------------------------------------------------------------------------------------
+
+    $("select").on("rendered.bs.select", function () {
+        $('head').append( $('<link rel="stylesheet" type="text/css">').attr('href', 'assets/css/bootstrap-select.min.css') );
+        if( !viewport.is('xs') ){
+            $(".search-form.vertical").css( "top", ($(".hero-section").height()/2) - ($(".search-form .wrapper").height()/2) );
         }
-        else {
-            $(".hero-section.full-screen").height( $(window).height() - $("#page-header").height() );
-        }
+        trackpadScroll("initialize");
+    });
+
+    if( !viewport.is('xs') ){
+        $(".search-form.vertical").css( "top", ($(".hero-section").height()/2) - ($(".search-form .wrapper").height()/2) );
+        trackpadScroll("initialize");
     }
 
 //  Social Share -------------------------------------------------------------------------------------------------------
@@ -60,21 +74,6 @@ $(document).ready(function($) {
         $(".count-down").countdown( {until: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 2 ), padZeroes: true, format: 'HMS'} );
     }
 
-// Render hero search form ---------------------------------------------------------------------------------------------
-
-    $("select").on("rendered.bs.select", function () {
-        $('head').append( $('<link rel="stylesheet" type="text/css">').attr('href', 'assets/css/bootstrap-select.min.css') );
-        if( !viewport.is('xs') ){
-            $(".search-form.vertical").css( "top", ($(".hero-section").height()/2) - ($(".search-form .wrapper").height()/2) );
-        }
-        trackpadScroll("initialize");
-    });
-
-    if( !viewport.is('xs') ){
-        $(".search-form.vertical").css( "top", ($(".hero-section").height()/2) - ($(".search-form .wrapper").height()/2) );
-        trackpadScroll("initialize");
-    }
-
 //  iCheck -------------------------------------------------------------------------------------------------------------
 
     if ($("input[type=checkbox]").length > 0) {
@@ -89,38 +88,45 @@ $(document).ready(function($) {
 
     $('.main-nav a[href^="#"], a[href^="#"].scroll').on('click',function (e) {
         e.preventDefault();
-        var target = this.hash,
-            $target = $(target);
-        $('html, body').stop().animate({
-            'scrollTop': $target.offset().top
-        }, 2000, 'swing', function () {
-            window.location.hash = target;
-        });
+        if( $(this).hasClass("to-top") ){
+            $('html, body').stop().animate({
+                'scrollTop': 0
+            }, 2000, 'swing');
+        }
+        else {
+            var target = this.hash,
+                $target = $(target);
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top
+            }, 2000, 'swing', function () {
+                window.location.hash = target;
+            });
+        }
     });
 
 //  Modal after click --------------------------------------------------------------------------------------------------
 
-    // $("[data-modal-external-file], .quick-detail").live("click", function(e){
-    //     e.preventDefault();
-    //     var modalTarget, modalFile;
-    //     if( $(this).closest(".item").attr("data-id") ){
-    //         modalTarget = $(this).closest(".item").attr("data-id");
-    //         modalFile = "modal_item.php";
-    //     }
-    //     else {
-    //         modalTarget = $(this).attr("data-target");
-    //         modalFile = $(this).attr("data-modal-external-file");
-    //     }
-    //     if( $(this).attr("data-close-modal") == "true" ){
-    //         lastModal.modal("hide");
-    //         setTimeout(function() {
-    //             openModal(modalTarget, modalFile);
-    //         }, 400);
-    //     }
-    //     else {
-    //         openModal(modalTarget, modalFile);
-    //     }
-    // });
+    $("[data-modal-external-file], .quick-detail").live("click", function(e){
+        e.preventDefault();
+        var modalTarget, modalFile;
+        if( $(this).closest(".item").attr("data-id") ){
+            modalTarget = $(this).closest(".item").attr("data-id");
+            modalFile = "modal_item.php";
+        }
+        else {
+            modalTarget = $(this).attr("data-target");
+            modalFile = $(this).attr("data-modal-external-file");
+        }
+        if( $(this).attr("data-close-modal") == "true" ){
+            lastModal.modal("hide");
+            setTimeout(function() {
+                openModal(modalTarget, modalFile);
+            }, 400);
+        }
+        else {
+            openModal(modalTarget, modalFile);
+        }
+    });
 
 //  Multiple modal hack ------------------------------------------------------------------------------------------------
 
@@ -173,12 +179,12 @@ $(document).ready(function($) {
 
 //  Duplicate desired element ------------------------------------------------------------------------------------------
 
-    // $(".duplicate").live("click", function(e){
-    //     e.preventDefault();
-    //     var duplicateElement = $(this).attr("href");
-    //     var parentElement = $(duplicateElement)[0].parentElement;
-    //     $(parentElement).append( $(duplicateElement)[0].outerHTML );
-    // });
+    $(".duplicate").live("click", function(e){
+        e.preventDefault();
+        var duplicateElement = $(this).attr("href");
+        var parentElement = $(duplicateElement)[0].parentElement;
+        $(parentElement).append( $(duplicateElement)[0].outerHTML );
+    });
 
 //  Enable image previews in multi file input --------------------------------------------------------------------------
 
@@ -235,40 +241,40 @@ $(document).ready(function($) {
 
 //  Calendar
 
-    // if( $(".calendar").length ){
-    //     var date = new Date();
-    //     var month = date.getMonth();
-    //     for( var i = 1 ; i<=12 ; i++ ){
-    //         $('.calendar-wrapper').append('<div id="month_'+i+'" class="month"></div>');
-    //         $("#month_"+i).zabuto_calendar({
-    //             ajax: {
-    //                 url: "assets/php/calendar.php",
-    //                 modal: true
-    //             },
-    //             action: function () {
-    //                 var date = $("#" + this.id).data("date");
-    //                 $("#modal-date").val(date);
-    //                 return checkDate(this.id);
-    //             },
-    //             language: "en",
-    //             month: i,
-    //             show_previous: false,
-    //             show_next: false,
-    //             today: true,
-    //             nav_icon: {
-    //                 prev: '<i class="arrow_left"></i>',
-    //                 next: '<i class="arrow_right"></i>'
-    //             }
-    //         });
-    //     }
-    //     $(".calendar-wrapper").owlCarousel({
-    //         items: 2,
-    //         nav: true,
-    //         autoHeight: true,
-    //         navText: [],
-    //         startPosition: month
-    //     });
-    // }
+    if( $(".calendar").length ){
+        var date = new Date();
+        var month = date.getMonth();
+        for( var i = 1 ; i<=12 ; i++ ){
+            $('.calendar-wrapper').append('<div id="month_'+i+'" class="month"></div>');
+            $("#month_"+i).zabuto_calendar({
+                ajax: {
+                    url: "assets/php/calendar.php",
+                    modal: true
+                },
+                action: function () {
+                    var date = $("#" + this.id).data("date");
+                    $("#modal-date").val(date);
+                    return checkDate(this.id);
+                },
+                language: "en",
+                month: i,
+                show_previous: false,
+                show_next: false,
+                today: true,
+                nav_icon: {
+                    prev: '<i class="arrow_left"></i>',
+                    next: '<i class="arrow_right"></i>'
+                }
+            });
+        }
+        $(".calendar-wrapper").owlCarousel({
+            items: 2,
+            nav: true,
+            autoHeight: true,
+            navText: [],
+            startPosition: month
+        });
+    }
 
 //  Form Validation
 
@@ -306,12 +312,41 @@ $(window).load(function(){
 $(window).resize(function(){
     clearTimeout(resizeId);
     resizeId = setTimeout(doneResizing, 250);
-    responsiveNavigation();
+
+
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Functions
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function heroSectionHeight(){
+
+    if( $(".hero-section").length > 0 ){
+        if( viewport.is('xs') ){
+            $(".map-wrapper").height( $(window).height() - 25 );
+            $(".hero-section").height( $(".hero-section .map-wrapper").height() +  $(".hero-section .search-form").height() + $(".hero-section .results").height() + 40 );
+            $(".has-background").css( "min-height", $(window).height() - $("#page-header").height() + "px" );
+        }
+        else {
+            if( $("body").hasClass("navigation-fixed") ){
+                $(".hero-section.full-screen").height( $(window).height() - $("#page-header nav").height() );
+                $(".hero-section .map-wrapper").css( "height", "100%" );
+            }
+            else {
+                $(".hero-section.full-screen").height( $(window).height() - $("#page-header").height() );
+                $(".hero-section .map-wrapper").css( "height", "100%" );
+                if( $(".map-wrapper").length > 0 ){
+                    reloadMap();
+                }
+            }
+        }
+        if( !viewport.is('xs') ){
+            $(".search-form.vertical").css( "top", ($(".hero-section").height()/2) - ($(".search-form .wrapper").height()/2) );
+        }
+    }
+
+}
 
 function openModal(target, modalPath){
 
@@ -321,7 +356,7 @@ function openModal(target, modalPath){
         var _this = $(this);
         lastModal = _this;
         $.ajax({
-            url: "assets/views/layouts/" + modalPath,
+            url: "assets/external/" + modalPath,
             method: "POST",
             //dataType: "html",
             data: { id: target },
@@ -329,6 +364,15 @@ function openModal(target, modalPath){
                 _this.append(results);
                 $('head').append( $('<link rel="stylesheet" type="text/css">').attr('href', 'assets/css/bootstrap-select.min.css') );
                 $(".selectpicker").selectpicker();
+
+                if( $("input[type=file]").length ){
+                    $.getScript( "assets/js/jQuery.MultiFile.min.js", function( data, textStatus, jqxhr ) {
+                        $("input.file-upload-input").MultiFile({
+                            list: ".file-upload-previews"
+                        });
+                    });
+                }
+
                 _this.find(".gallery").addClass("owl-carousel");
                 ratingPassive(".modal");
                 var img = _this.find(".gallery img:first")[0];
@@ -475,6 +519,11 @@ function initializeOwl(){
                 rtl: rtl,
                 navText: []
             });
+
+            if( $(this).find(".owl-item").length == 1 ){
+                $(this).find(".owl-nav").css( { "opacity": 0,"pointer-events": "none"} );
+            }
+
         });
     }
 }
@@ -482,7 +531,9 @@ function initializeOwl(){
 function trackpadScroll(method){
     if( method == "initialize" ){
         if( $(".results-wrapper").find("form").length ) {
-            $(".results-wrapper .results").height( $(".results-wrapper").height() - $(".results-wrapper .form")[0].clientHeight );
+            if( !viewport.is('xs') ){
+                $(".results-wrapper .results").height( $(".results-wrapper").height() - $(".results-wrapper .form")[0].clientHeight );
+            }
         }
     }
     else if ( method == "recalculate" ){
@@ -501,28 +552,40 @@ function doneResizing(){
     for( var i=0; i<$equalHeight.length; i++ ){
         equalHeight( $equalHeight );
     }
-    responsiveNavigation()
+    responsiveNavigation();
+    heroSectionHeight();
 }
 
 // Responsive Navigation
 
 function responsiveNavigation(){
+
     if( viewport.is('xs') ){
+
         $("body").addClass("nav-btn-only");
+
+        if( $("body").hasClass("nav-btn-only") && responsiveNavigationTriggered == false ){
+            responsiveNavigationTriggered = true;
+            $(".primary-nav .has-child").children("a").attr("data-toggle", "collapse");
+            $(".primary-nav .has-child").find(".nav-wrapper").addClass("collapse");
+            $(".mega-menu .heading").each(function(e) {
+                $(this).wrap("<a href='" + "#mega-menu-collapse-" + e + "'></a>");
+                $(this).parent().attr("data-toggle", "collapse");
+                $(this).parent().addClass("has-child");
+                $(this).parent().attr("aria-controls", "mega-menu-collapse-"+e);
+            });
+            $(".mega-menu ul").each(function(e) {
+                $(this).attr("id", "mega-menu-collapse-"+e);
+                $(this).addClass("collapse");
+            });
+        }
     }
-    if( $("body").hasClass("nav-btn-only") ){
-        $(".primary-nav .has-child").children("a").attr("data-toggle", "collapse");
-        $(".primary-nav .has-child").find(".nav-wrapper").addClass("collapse");
-        $(".mega-menu .heading").each(function(e) {
-            $(this).wrap("<a href='" + "#mega-menu-collapse-"+e + "'></a>");
-            $(this).parent().attr("data-toggle", "collapse");
-            $(this).parent().addClass("has-child");
-            $(this).parent().attr("aria-controls", "mega-menu-collapse-"+e);
-        });
-        $(".mega-menu ul").each(function(e) {
-            $(this).attr("id", "mega-menu-collapse-"+e);
-            $(this).addClass("collapse");
-        });
+    else {
+        navigationIsTouchingBrand = false;
+        responsiveNavigationTriggered = false;
+        $("body").removeClass("nav-btn-only");
+        $(".primary-nav").html("");
+        $(".primary-nav").html(originalNavigationCode);
     }
 }
 
