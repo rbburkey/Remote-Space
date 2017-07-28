@@ -1,0 +1,13 @@
+{
+    "name": "",
+    "icons": [
+        {
+            "src": "/assets/favicon/android-chrome-72x72-5b8841d0e43bcd2dbe2045c5d7f6f567aa5d18fa51b14ff42dfa94dcfbad9677.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}
