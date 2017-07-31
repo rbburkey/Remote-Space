@@ -3,219 +3,210 @@
 <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
 
-  <body class="subpage-detail">
-    <div id="page-content">
-      <div class="container">
-        <ol class="breadcrumb">
-          <li><a href="/">Home</a></li>
-          <li><a href="/spaces">Spaces</a></li>
-          <li class="active"><%=@space.name%></li>
-        </ol>
-        <section class="page-title pull-left">
-          <h1><%=@space.name%></h1>
-          <h3><%=@space.city%>, <%=@space.state.upcase%></h3>
-          <div class="rating-passive" data-rating=<%=@avg_rating%>>
-            <span class="star-rating" data-score=<%=@avg_rating%> ></span>
-            <span class="reviews"><%="Average Rating: "%><%=@avg_rating%></span>
+<div id="page-content">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li><a href="/spaces">Spaces</a></li>
+      <li class="active"><%=@space.name%></li>
+    </ol>
+    <section class="page-title pull-left">
+      <h1><%=@space.name%></h1>
+      <h3><%=@space.city%>, <%=@space.state.upcase%></h3>
+      <div class="rating-passive" data-rating=<%=@avg_rating%>>
+        <span class="star-rating" data-score=<%=@avg_rating%> ></span>
+        <span class="reviews"><%="Average Rating: "%><%=@avg_rating%></span>
+      </div>
+    </section>
+    <!--end page-title-->
+    <a href="#write-a-review" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-star"></i>Write a review</a>
+
+  </div>
+  <!--end container-->
+  <section>
+    <div class="gallery detail">
+      <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
+        <div class="image">
+          <%= image_tag @space.image.url(:small)%>
+        </div>
+        <%if @space.pictures != nil %>
+        <% @space.pictures.each do |picture| %>
+        <div class="image">
+          <%= image_tag picture.image.url(:medium)%>
+        </div>
+        <%end%>
+        <%else%>
+        <div class="image">
+          <img src="../assets/background-02.jpg" alt="">
+        </div>
+        <%end%>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-sm-7">
+        <div id="gallery-nav"></div>
+        <section>
+          <h2>About this Space</h2>
+          <p>
+            <%= @space.description %>
+          </p>
+        </section>
+
+
+        <section>
+          <h2>Reviews (<%=@reviews.count%>)</h2>
+          <hr>
+          <div class="container" style="height: 200px; width: 100%; overflow: auto;">
+            <% if @reviews.blank? %>
+            <p> No Reviews Yet!</p>
+            <%else%>
+            <% @reviews.each do |review|%>
+            <div class="review">
+              <div class="image">
+                <%= image_tag User.where(id: review.user_id).first.avatar.url(:thumb)%>
+              </div>
+              <div class="description">
+                <figure>
+                  <div class="rating-passive" data-rating="4">
+                    <div class="star-rating" data-score=<%=review.rating%>>
+                      <span class="reviews"><%=review.rating.round(2)%></span>
+                    </div>
+                  </div>
+                  <span class="date"><%=review.created_at.strftime("%b %d, %Y") + " at " + review.created_at.strftime("%H:%M")%></span>
+                </figure>
+                <p><%=review.comment%></p>
+              </div>
+            </div>
+            <hr>
+            <%end%>
+            <%end%>
           </div>
         </section>
-        <!--end page-title-->
-        <a href="#write-a-review" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-star"></i>Write a review</a>
 
-      </div>
-      <!--end container-->
-      <section>
-        <div class="gallery detail">
-          <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
-            <div class="image">
-              <%= image_tag @space.image.url(:small)%>
-            </div>
-            <%if @space.pictures != nil %>
-            <% @space.pictures.each do |picture| %>
-            <div class="image">
-              <%= image_tag picture.image.url(:medium)%>
-            </div>
+        <section>
+          <h2>Features</h2>
+          <ul class="tags">
+            <% if @features != nil %>
+            <% @features.each do |f| %>
+            <li><%=f%></li>
             <%end%>
-            <%else%>
-            <div class="image">
-              <img src="../assets/background-02.jpg" alt="">
-            </div>
             <%end%>
-          </div>
-        </div>
-      </section>
+          </ul>
+        </section>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7 col-sm-7">
-            <div id="gallery-nav"></div>
-            <section>
-              <h2>About this Space</h2>
-              <p>
-                <%= @space.description %>
-              </p>
-              <p>
-                In ut varius magna. Integer ullamcorper tincidunt molestie. Morbi consequat sem non nulla laoreet,
-                non commodo tellus elementum. Sed tincidunt, lorem vitae rhoncus pharetra, diam ex pharetra erat, eu
-                lacinia mi libero vitae lectus.
-              </p>
-            </section>
+        <%= render 'reviews/form'%>
 
+        <!--end col-md-7-->
+        <div class="col-md-5 col-sm-5">
+          <div class="detail-sidebar">
+            <section class="shadow">
+              <div id="show_map">
+                <div class="map" id="map" style='width: 100%; height: 250px;'></div>
+              </div>                  <!--end map-->
+              <div class="content">
+                <div class="vertical-aligned-elements">
+                  <% if current_user.favorites.include? @space  %>
+                  <%= link_to "unfavorite", favorite_space_path(@space, type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
+                  <%elsif current_user%>
+                  <%= link_to "favorite",   favorite_space_path(@space, type: "favorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
+                  <% end %>
 
-            <section>
-              <h2>Reviews (<%=@reviews.count%>)</h2>
-              <hr>
-              <div class="container" style="height: 200px; width: 100%; overflow: auto;">
-                <% if @reviews.blank? %>
-                <p> No Reviews Yet!</p>
-                <%else%>
-                <% @reviews.each do |review|%>
-                <div class="review">
-                  <div class="image">
-                    <%= image_tag User.where(id: review.user_id).first.avatar.url(:thumb)%>
-                  </div>
-                  <div class="description">
-                    <figure>
-                      <div class="rating-passive" data-rating="4">
-                        <div class="star-rating" data-score=<%=review.rating%>>
-                          <span class="reviews"><%=review.rating.round(2)%></span>
-                        </div>
-                      </div>
-                      <span class="date"><%=review.created_at.strftime("%b %d, %Y") + " at " + review.created_at.strftime("%H:%M")%></span>
-                    </figure>
-                    <p><%=review.comment%></p>
-                  </div>
+                  <!-- <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div> -->
+                  <div class="element text-align-right"><%=render 'pictures/new' %></div>
                 </div>
                 <hr>
-                <%end%>
-                <%end%>
+                <address>
+                  <figure><i class="fa fa-map-marker" style="margin-right: 1px;"></i><%=   @space.address1%><br><%=@space.city%>, <%=@space.state%> <%=@space.zipcode%></figure>
+                  <figure><i class="fa fa-phone" style="margin-right: 1px;"></i><%=@space.phone%></figure>
+                  <figure><i class="fa fa-globe" style="margin-right: 1px;"></i><a href="#"><%=@space.website%></a></figure>
+                </address>
               </div>
             </section>
 
-            <section>
-              <h2>Features</h2>
-              <ul class="tags">
-                <% if @features != nil %>
-                <% @features.each do |f| %>
-                <li><%=f%></li>
-                <%end%>
-                <%end%>
-              </ul>
-            </section>
-
-            <%= render 'reviews/form'%>
-
-            <!--end col-md-7-->
-            <div class="col-md-5 col-sm-5">
-              <div class="detail-sidebar">
-                <section class="shadow">
-                  <div id="show_map">
-                      <div class="map" id="map" style='width: 100%; height: 250px;'></div>
-                  </div>                  <!--end map-->
-                  <div class="content">
-                    <div class="vertical-aligned-elements">
-                      <% if current_user.favorites.include? @space  %>
-                      <%= link_to "unfavorite", favorite_space_path(@space, type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
-                      <%elsif current_user%>
-                      <%= link_to "favorite",   favorite_space_path(@space, type: "favorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
-                      <% end %>
-
-                      <!-- <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div> -->
-                      <div class="element text-align-right"><%=render 'pictures/new' %></div>
-                    </div>
-                    <hr>
-                    <address>
-                      <figure><i class="fa fa-map-marker" style="margin-right: 1px;"></i><%=   @space.address1%><br><%=@space.city%>, <%=@space.state%> <%=@space.zipcode%></figure>
-                      <figure><i class="fa fa-phone" style="margin-right: 1px;"></i><%=@space.phone%></figure>
-                      <figure><i class="fa fa-globe" style="margin-right: 1px;"></i><a href="#"><%=@space.website%></a></figure>
-                    </address>
-                  </div>
-                </section>
-
-                <!-- <section>
-                  <h2>Opening Hours</h2>
-                  <dl>
-                    <dt>Monday</dt>
-                    <dd>08:00am - 11:00pm</dd>
-                    <dt>Tuesday</dt>
-                    <dd>08:00am - 11:00pm</dd>
-                    <dt>Wednesday</dt>
-                    <dd>12:00am - 11:00pm</dd>
-                    <dt>Thursday</dt>
-                    <dd>08:00am - 11:00pm</dd>
-                    <dt>Friday</dt>
-                    <dd>03:00pm - 02:00am</dd>
-                    <dt>Saturday</dt>
-                    <dd>03:00pm - 02:00am</dd>
-                    <dt>Sunday</dt>
-                    <dd>Closed</dd>
-                  </dl>
-                </section> -->
-                <section>
-                  <h2>Share This Space</h2>
-                  <div class="social-share jssocials">
-                    <div class="jssocial-shares">
-                      <div class="jssocials-share jssocials-share-twitter">
-                        <a href="http://<%=@space.twitter_url%>" class="jssocials-share-link">
-                        <i class="fa fa-twitter jssocials-share-logo"></i>
-                        <span class="jssocials-share-label">Tweet</span>
-                        </a>
-                      </div>
-                      <div class="jssocials-share jssocials-share-instagram">
-                        <a href="http://<%=@space.instagram_url%>" class="jssocials-share-link">
-                        <i class="fa fa-instagram jssocials-share-logo"></i>
-                        <span class="jssocials-share-label">Like</span>
-                        </a></div>
-                      <div class="jssocials-share jssocials-share-facebook">
-                        <a href="http://<%=@space.facebook_url%>" class="jssocials-share-link">
-                        <i class="fa fa-facebook jssocials-share-logo"></i>
-                        <span class="jssocials-share-label">Like</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+            <!-- <section>
+            <h2>Opening Hours</h2>
+            <dl>
+            <dt>Monday</dt>
+            <dd>08:00am - 11:00pm</dd>
+            <dt>Tuesday</dt>
+            <dd>08:00am - 11:00pm</dd>
+            <dt>Wednesday</dt>
+            <dd>12:00am - 11:00pm</dd>
+            <dt>Thursday</dt>
+            <dd>08:00am - 11:00pm</dd>
+            <dt>Friday</dt>
+            <dd>03:00pm - 02:00am</dd>
+            <dt>Saturday</dt>
+            <dd>03:00pm - 02:00am</dd>
+            <dt>Sunday</dt>
+            <dd>Closed</dd>
+          </dl>
+        </section> -->
+        <section>
+          <h2>Share This Space</h2>
+          <div class="social-share jssocials">
+            <div class="jssocial-shares">
+              <div class="jssocials-share jssocials-share-twitter">
+                <a href="http://<%=@space.twitter_url%>" class="jssocials-share-link">
+                  <i class="fa fa-twitter jssocials-share-logo"></i>
+                  <span class="jssocials-share-label">Tweet</span>
+                </a>
+              </div>
+              <div class="jssocials-share jssocials-share-instagram">
+                <a href="http://<%=@space.instagram_url%>" class="jssocials-share-link">
+                  <i class="fa fa-instagram jssocials-share-logo"></i>
+                  <span class="jssocials-share-label">Like</span>
+                </a></div>
+                <div class="jssocials-share jssocials-share-facebook">
+                  <a href="http://<%=@space.facebook_url%>" class="jssocials-share-link">
+                    <i class="fa fa-facebook jssocials-share-logo"></i>
+                    <span class="jssocials-share-label">Like</span>
+                  </a>
                 </div>
-              </section>
               </div>
-              <!--end detail-sidebar-->
             </div>
-            <!--end col-md-5-->
           </div>
-          <!--end row-->
-        </div>
-        <!--end container-->
-        <%= render 'layouts/footer' %>
-
+        </section>
       </div>
-      <!--end page-content-->
+      <!--end detail-sidebar-->
     </div>
-    <!--end page-wrapper-->
-    <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
-    <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+    <!--end col-md-5-->
+  </div>
+  <!--end row-->
+</div>
+<!--end container-->
 
-    <script>
-    $('.star-rating').raty({
-      path: '/assets',
-      readOnly: true,
-      score: function() {
-        return $(this).attr('data-score');
-      }
-    });
+
+<!--end page-content-->
+
+<a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+<a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+
+<script>
+$('.star-rating').raty({
+  path: '/assets',
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
 </script>
-    <script>
-    rating(".visitor-rating");
-    var _latitude = 40.7344458;
-    var _longitude = -73.86704922;
-    var element = "map-detail";
-    simpleMap(_latitude,_longitude, element);
-    </script>
+<script>
+rating(".visitor-rating");
+var _latitude = 40.7344458;
+var _longitude = -73.86704922;
+var element = "map-detail";
+simpleMap(_latitude,_longitude, element);
+</script>
 
-    <script type="text/javascript">
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%=raw @hash.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-    });
-    </script>
-  </body>
+<script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
