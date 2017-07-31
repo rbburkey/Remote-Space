@@ -35,7 +35,6 @@ you can use the generic selector below, but it's slower:
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
-	/*took out line-height: 1; here */
 	-webkit-font-smoothing: antialiased;
 }
 .arrow_up:before {
