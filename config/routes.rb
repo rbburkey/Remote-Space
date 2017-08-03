@@ -20,7 +20,7 @@ mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'static#home'
 
   match "contact" => "contacts#create", :via => :post, :as => :create_contact
-  get '/notapproved' => "static#not_approved"
+  get '/pending' => "static#pending"
   get '/users/:id' => 'static#user_profile'
   get '/spaces2' => "spaces#index2"
   get '/how_it_works' => "static#how_it_works"

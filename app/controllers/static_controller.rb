@@ -21,7 +21,7 @@ class StaticController < ApplicationController
   end
 
   def user_profile
-  
+
     @spaces = @user.favorites
   end
 
@@ -47,7 +47,7 @@ class StaticController < ApplicationController
     @users = User.all
   end
 
-  def not_approved
+  def pending
   end
 
   private
