@@ -23,7 +23,7 @@ class SpacesController < ApplicationController
   def show
     @space = Space.find(params[:id])
     if @space.approved? == false
-      redirect_to notapproved_path
+      redirect_to pending_path
     end
     @reviews = Review.where(space_id: @space)
     @picture = Picture.where(space_id: @space)
