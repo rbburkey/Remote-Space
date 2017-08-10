@@ -1,0 +1,61 @@
+<div class="col-md-3 col-sm-3">
+  <aside class="sidebar">
+    <section>
+      <h2>Recent Spaces</h2>
+      <div class="item" data-id="1">
+        <a href="<%=space_path(@spaces[-1])%>">
+          <div class="description">
+            <div class="label label-default"><%=@spaces[-1].category.name%></div>
+            <h3><%=@spaces[-1].name%></h3>
+            <h4><%=@spaces[-1].address1%></h4>
+          </div>
+          <!--end description-->
+          <div class="image bg-transfer">
+            <%= image_tag @spaces[-1].image.url(:small)%>
+          </div>
+          <!--end image-->
+        </a>
+      </div>
+      <!--end item-->
+      <div class="item" data-id="2">
+        <a href="<%=space_path(@spaces[-2])%>">
+          <div class="description">
+            <div class="label label-default"><%=@spaces[-2].category.name%></div>
+            <h3><%=@spaces[-2].name%></h3>
+            <h4><%=@spaces[-2].address1%></h4>
+          </div>
+          <!--end description-->
+          <div class="image bg-transfer">
+            <%= image_tag @spaces[-2].image.url(:small)%>
+          </div>
+          <!--end image-->
+        </a>
+      </div>
+      <!--end item-->
+      <div class="item" data-id="15">
+        <a href="<%=space_path(@spaces[-3])%>">
+          <div class="description">
+            <div class="label label-default"><%=@spaces[-3].category.name%></div>
+            <h3><%=@spaces[-3].name%></h3>
+            <h4><%=@spaces[-3].address1%></h4>
+          </div>
+          <!--end description-->
+          <div class="image bg-transfer">
+            <%= image_tag @spaces[-3].image.url(:small)%>
+          </div>
+          <!--end image-->
+        </a>
+        <div class="controls-more">
+          <ul>
+            <li><a href="#">Add to favorites</a></li>
+            <li><a href="#">Add to watchlist</a></li>
+            <li><a href="#" class="quick-detail">Quick detail</a></li>
+          </ul>
+        </div>
+        <!--end controls-more-->
+      </div>
+      <!--end item-->
+    </section>
+  </aside>
+  <!--end sidebar-->
+</div>

@@ -3369,7 +3369,7 @@ section:not(.block) h2 {
 }
 .comments .comment .date {
   font-size: 12px;
-  position: absolute;
+  /*position: absolute;*/
   right: 0;
   top: 5px;
 }

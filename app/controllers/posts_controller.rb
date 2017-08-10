@@ -6,12 +6,14 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all.paginate(:page => params[:page], :per_page => 5)
+    @spaces= Space.all
   end
 
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @spaces= Space.all
   end
 
   # GET /posts/new

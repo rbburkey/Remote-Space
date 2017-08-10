@@ -9,6 +9,8 @@ mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
     put :favorite, on: :member
     resources :reviews, except: [:index]
     resources :pictures
+    resources :comments
+
 
     collection do
       get 'search'
@@ -31,5 +33,6 @@ mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get '/my_spaces' => "spaces#my_spaces"
   get '/my_reviews' => "reviews#my_reviews"
   get '/favorites' => "spaces#favorites"
+
 
 end
