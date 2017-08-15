@@ -35,7 +35,7 @@
                   </div>
                 </div>
                 <div class="info">
-                  <a href="/<%=space_path(space)%>"><h2><%=space.name%></h2></a>
+                  <h2><%= link_to space.name, space_path(space) %></h2>
                   <figure class="location"><%=space.city%>, <%=space.state%></figure>
                   <figure class="label label-info"><%=space.category.name%></figure>
                   <div class="additional-info">
@@ -46,7 +46,7 @@
                 </div>
                 <!--end info-->
               </td>
-              <% if space.reviews.average(:rating) != nil && space.reviews.average(:rating) > 3.8 && space.features["Wifi"] != nil%>
+              <% if space.reviews.average(:rating) != nil && space.reviews.average(:rating) > 3.8 && space.feature["Wifi"] != nil%>
               <td><div class="featured yes"><i class="fa fa-check"></i><aside></aside></div></td>
               <%else%>
               <td></td>
