@@ -25,7 +25,7 @@ class StaticController < ApplicationController
     @spaces = @user.favorites
   end
 
-  def how_it_works
+  def howitworks
   end
 
   def contact
