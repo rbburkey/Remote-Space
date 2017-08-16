@@ -16,6 +16,7 @@ class SpacesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@spaces) do |space, marker|
      marker.lat space.latitude
      marker.lng space.longitude
+     marker.infowindow render_to_string(:partial => "/spaces/infowindow", :locals => { :object => space})
    end
   end
 
