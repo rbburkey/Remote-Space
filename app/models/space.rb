@@ -23,7 +23,7 @@ after_create :send_new_space_mail, :send_new_space_mail_notification
   after_validation :geocode
 
   has_attached_file :image, styles: { small: "400x400#", thumb:"50x50" }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/, :default_url => 'background-01.jpg'
 
 
   def full_address

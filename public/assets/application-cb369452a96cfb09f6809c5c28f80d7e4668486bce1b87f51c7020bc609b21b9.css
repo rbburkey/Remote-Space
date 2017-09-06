@@ -6800,7 +6800,6 @@ you can use the generic selector below, but it's slower:
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
-	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
 .arrow_up:before {
@@ -7920,8 +7919,6 @@ text-shadow: none;
 	.glyph .fs1 {
 		font-size: 2em;
 	}
-
-	
 .spinner1 {
   width: 40px;
   height: 40px;
@@ -15295,7 +15292,7 @@ section:not(.block) h2 {
 }
 .comments .comment .date {
   font-size: 12px;
-  position: absolute;
+  /*position: absolute;*/
   right: 0;
   top: 5px;
 }
