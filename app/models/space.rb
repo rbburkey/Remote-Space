@@ -18,7 +18,7 @@ after_create :send_new_space_mail, :send_new_space_mail_notification
   has_many :favorited_by, through: :favorite_spaces, source: :user
   belongs_to :category
   has_many :pictures
-  validates_presence_of :name, :category, :description, :address1, :city, :state, :zipcode, :phone, :website, feature:[]
+  validates_presence_of :name, :category, :description, :address1, :city, :state, :zipcode, :phone, feature:[]
   geocoded_by :full_address
   after_validation :geocode
 
