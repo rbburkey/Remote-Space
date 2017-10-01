@@ -149,23 +149,30 @@
           <h2>Share This Space</h2>
           <div class="social-share jssocials">
             <div class="jssocial-shares">
+              <% if !(@space.twitter_url.empty?)%>
               <div class="jssocials-share jssocials-share-twitter">
-                <a href="http://<%=@space.twitter_url%>" class="jssocials-share-link">
+                <a href="http://www.twitter.com/<%=@space.twitter_url%>" class="jssocials-share-link">
                   <i class="fa fa-twitter jssocials-share-logo"></i>
                   <span class="jssocials-share-label">Tweet</span>
                 </a>
               </div>
+              <%end%>
+              <% if !(@space.instagram_url.empty?)%>
               <div class="jssocials-share jssocials-share-instagram">
-                <a href="http://<%=@space.instagram_url%>" class="jssocials-share-link">
+                <a href="http://www.instagram.com/<%=@space.instagram_url%>" class="jssocials-share-link">
                   <i class="fa fa-instagram jssocials-share-logo"></i>
                   <span class="jssocials-share-label">Like</span>
-                </a></div>
+                </a>
+              </div>
+              <%end%>
+              <% if !(@space.facebook_url.empty?)%>
                 <div class="jssocials-share jssocials-share-facebook">
-                  <a href="http://<%=@space.facebook_url%>" class="jssocials-share-link">
+                  <a href="http://www.facebook.com/<%=@space.facebook_url%>" class="jssocials-share-link">
                     <i class="fa fa-facebook jssocials-share-logo"></i>
                     <span class="jssocials-share-label">Like</span>
                   </a>
                 </div>
+                <%end%>
               </div>
             </div>
           </div>
