@@ -10,7 +10,7 @@
       <div class="col-md-4 col-sm-4">
         <div class="text-element">
           <h4><a href="<%=post_path(post)%>"><%=post.title%></a></h4>
-          <figure class="date"><%=post.created_at.strftime("%b %d, %Y") + " at " + post.created_at.strftime("%H:%M")%></figure>
+          <figure class="date"><%=post.date%></figure>
           <p><%=post.subtitle%></p>
           <a href="<%=post_path(post)%>"><i class="arrow_right"></i></a>
         </div>

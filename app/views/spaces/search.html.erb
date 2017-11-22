@@ -69,6 +69,7 @@
                   <span class="reviews"><%=space.reviews.average(:rating)%></span>
                   <span class="star-rating" data-score=<%=@spaces[-1].reviews.average(:rating)%> ></span>
                   <%end%>
+                  <% if current_user %>
                   <% if current_user.favorites.include? space %>
                   <div class="fav_button" style="float: right;">
                     <%= link_to "Unfavorite", favorite_space_path(space, type: "unfavorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
@@ -78,6 +79,13 @@
                     <%= link_to "Favorite", favorite_space_path(space, type: "favorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
                   </div>
                   <% end %>
+                  <%else%>
+                  <div class="fav_button" style="float: right;">
+                    <%= link_to "Favorite", favorite_space_path(space, type: "favorite"), class: "btn btn-primary btn-rounded btn-xs", method: :put %>
+                  </div>
+                  <%end%>
+
+
                 </div>
 
                 <!--end controls-more-->

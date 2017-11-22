@@ -119,13 +119,16 @@ class SpacesController < ApplicationController
   def favorite
       type = params[:type]
       @space = Space.find(params[:id])
-      if type == "favorite"
+      if type == "favorite" && current_user
         current_user.favorites << @space
         redirect_to :back, notice: 'Added to your Favorites!'
 
       elsif type == "unfavorite"
         current_user.favorites.delete(@space)
         redirect_to :back, notice: 'Removed from your Favorites!'
+
+      elsif !(current_user)
+        redirect_to :new_user_registration, notice: "Create an account to save your favorite Spaces!"
 
       else
         # Type missing, nothing happens
