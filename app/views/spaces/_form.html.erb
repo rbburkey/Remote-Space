@@ -114,6 +114,10 @@
               <%= f.text_field :website, class: "form-control", placeholder: "Website" %>
             </div>
             <!--end form-group-->
+            <div class="form-group">
+              <%= f.label :country %><br>
+              <%= f.country_select :country, selected: ["US"], class: "form-control" %>
+            </div>
           </div>
           <!--end col-md-6-->
         </div>

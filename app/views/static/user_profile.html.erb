@@ -50,7 +50,7 @@
           </div>
           <!--end subject-detail-->
         </section>
-        <% if @spaces == nil %>
+        <% if @user.favorites == nil %>
         <section>
         <h2><%=@user.first_name%> doesn't have a favorite space yet!</h2>
       </section>
@@ -58,8 +58,9 @@
         <section>
             <h2><%=@user.first_name%>'s Favorite Spaces</h2>
             <section>
-              <% @spaces.each do |space| %>
-                <div class="row">
+              <div class="row">
+              <% @user.favorites.each do |space| %>
+
                   <div class="col-md-4 col-sm-4">
                     <div class="item" data-id="1">
                       <a href="<%=space_path%>"><%= image_tag space.image.url(:small)%>
@@ -74,13 +75,13 @@
                         <!--end image-->
                       </a>
                       <div class="additional-info">
-                        <div class="rating-passive" data-rating=<%=@spaces[-1].reviews.average(:rating)%>>
+                        <div class="rating-passive" data-rating=<%=@user.favorites[-1].reviews.average(:rating)%>>
                           <div id="star"></div>
                           <% if space.reviews.average(:rating) == nil %>
                           <span class="reviews"><%= link_to "Be the first to Review!", space%></span>
                           <%else%>
                           <span class="reviews"><%=space.reviews.average(:rating)%></span>
-                          <span class="star-rating" data-score=<%=@spaces[-1].reviews.average(:rating)%> ></span>
+                          <span class="star-rating" data-score=<%=@user.favorites[-1].reviews.average(:rating)%> ></span>
                           <%end%>
 
                           <% if current_user == nil%>
@@ -104,8 +105,8 @@
                     </div>
                     <!--end item-->
                   </div>
+                  <%end%>
                 </div>
-                <%end%>
             </section>
             <%end%>
       </div>
@@ -116,3 +117,13 @@
   <!--end container-->
 </div>
 <!--end page-content-->
+
+<script type="text/javascript">
+$('.star-rating').raty({
+  path: '/assets',
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>

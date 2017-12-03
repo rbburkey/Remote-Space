@@ -21,6 +21,7 @@ gem 'rails_admin', '~> 1.1.1'
 gem 'will_paginate'
 gem 'kaminari'
 gem 'rails_real_favicon'
+gem 'country_select'
 
 group :development, :test do
   gem 'byebug'
