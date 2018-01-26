@@ -1084,3 +1084,49 @@ body {
   margin: 1em 1em 2em 1em;
   width: 10em;
 }
+
+
+
+
+
+//  Show element after desired time ------------------------------------------------------------------------------------
+
+if( !viewport.is('xs') ){
+    var messagesArray = [];
+    $("[data-toggle=popover]").popover({
+        template: '<div class="popover" role="tooltip"><div class="close"><i class="fa fa-close"></i></div><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+    });
+    $(".popover .close").on('click',function () {
+        $(this).closest(".popover").popover("hide");
+    });
+    $("[data-show-after-time]").each(function() {
+        var _this = $(this);
+        setTimeout(function(){
+            if( _this.attr("data-toggle") == "popover" ){
+                _this.popover("show");
+            }
+            else {
+                for( var i=0; i < messagesArray.length; i++ ){
+                    $(messagesArray[i]).css("bottom", parseInt( $(messagesArray[i]).css("bottom") ) + _this.context.clientHeight + 10 );
+                }
+                messagesArray.push(_this);
+                _this.addClass("show");
+                if( _this.attr("data-close-after-time") ){
+                    setTimeout(function(){
+                        closeThis();
+                    }, _this.attr("data-close-after-time") );
+                }
+            }
+        }, _this.attr("data-show-after-time") );
+        $(this).find(".close").on("click",function () {
+            closeThis();
+        });
+        function closeThis(){
+            _this.removeClass("show");
+            setTimeout(function(){
+                _this.remove();
+            }, 400 );
+        }
+    });
+
+}
