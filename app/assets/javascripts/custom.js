@@ -764,6 +764,10 @@ function fixedNavigation(state){
 }
 
 
+//  Show element after desired time ------------------------------------------------------------------------------------
+
+
+
 //  Show element when scrolled desired amount of pixels ----------------------------------------------------------------
 
 $("[data-show-after-scroll]").each(function() {
