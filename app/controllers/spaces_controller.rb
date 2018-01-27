@@ -1,6 +1,7 @@
 class SpacesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new, :index, :show, :my_spaces, :favorites]
   before_action :set_space, only: [:show, :edit, :update, :destroy]
+  before_action :approved, only: [:index, :show, :my_spaces, :favorites]
 
   # GET /spaces
   # GET /spaces.json
@@ -142,6 +143,12 @@ class SpacesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_space
       @space = Space.find(params[:id])
+    end
+
+    def approved
+      if @space.approved? == false
+        redirect_to pending_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
