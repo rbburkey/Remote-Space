@@ -40,7 +40,7 @@ $(document).ready(function($) {
 // Render hero search form ---------------------------------------------------------------------------------------------
 
     $("select").on("rendered.bs.select", function () {
-        $('head').append( $('<link rel="stylesheet" type="text/css">').attr('href', 'assets/css/bootstrap-select.min.css') );
+        $('g').append( $('<link rel="stylesheet" type="text/css">').attr('href', 'assets/css/bootstrap-select.min.css') );
         if( !viewport.is('xs') ){
             $(".search-form.vertical").css( "top", ($(".hero-section").height()/2) - ($(".search-form .wrapper").height()/2) );
         }
