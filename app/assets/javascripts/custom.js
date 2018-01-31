@@ -40,7 +40,7 @@ $(document).ready(function($) {
 // Render hero search form ---------------------------------------------------------------------------------------------
 
     $("select").on("rendered.bs.select", function () {
-        $('g').append( $('<link rel="stylesheet" type="text/css">').attr('href', 'assets/css/bootstrap-select.min.css') );
+        $('head').append( $('<link rel="stylesheet" type="text/css">').attr('href', 'assets/css/bootstrap-select.min.css') );
         if( !viewport.is('xs') ){
             $(".search-form.vertical").css( "top", ($(".hero-section").height()/2) - ($(".search-form .wrapper").height()/2) );
         }
@@ -58,6 +58,21 @@ $(document).ready(function($) {
         socialShare();
     }
 
+//  Count down  --------------------------------------------------------------------------------------------------------
+
+    if( $(".count-down").length ){
+        /*
+
+        REMOVE THIS COMMENT IN YOUR PROJECT
+
+        var year = parseInt( $(".count-down").attr("data-countdown-year"), 10 );
+        var month = parseInt( $(".count-down").attr("data-countdown-month"), 10 ) - 1;
+        var day = parseInt( $(".count-down").attr("data-countdown-day"), 10 );
+         $(".count-down").countdown( {until: new Date(year, month, day), padZeroes: true, format: 'HMS'} );
+        */
+        var date = new Date();
+        $(".count-down").countdown( {until: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 2 ), padZeroes: true, format: 'HMS'} );
+    }
 
 //  iCheck -------------------------------------------------------------------------------------------------------------
 
@@ -87,6 +102,17 @@ $(document).ready(function($) {
                 window.location.hash = target;
             });
         }
+    });
+
+
+//  Multiple modal hack ------------------------------------------------------------------------------------------------
+
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
     });
 
 //  Map in Row listing -------------------------------------------------------------------------------------------------
@@ -187,6 +213,43 @@ $(document).ready(function($) {
                 $(this).Link('lower').to( $(this).children('.values').children('.value-min'), null, wNumb({ decimals: 0 }));
                 $(this).Link('upper').to( $(this).children('.values').children('.value-max'), null, wNumb({ decimals: 0 }));
             }
+        });
+    }
+
+//  Calendar
+
+    if( $(".calendar").length ){
+        var date = new Date();
+        var month = date.getMonth();
+        for( var i = 1 ; i<=12 ; i++ ){
+            $('.calendar-wrapper').append('<div id="month_'+i+'" class="month"></div>');
+            $("#month_"+i).zabuto_calendar({
+                ajax: {
+                    url: "assets/php/calendar.php",
+                    modal: true
+                },
+                action: function () {
+                    var date = $("#" + this.id).data("date");
+                    $("#modal-date").val(date);
+                    return checkDate(this.id);
+                },
+                language: "en",
+                month: i,
+                show_previous: false,
+                show_next: false,
+                today: true,
+                nav_icon: {
+                    prev: '<i class="arrow_left"></i>',
+                    next: '<i class="arrow_right"></i>'
+                }
+            });
+        }
+        $(".calendar-wrapper").owlCarousel({
+            items: 2,
+            nav: true,
+            autoHeight: true,
+            navText: [],
+            startPosition: month
         });
     }
 
@@ -372,6 +435,11 @@ function socialShare(){
     }
 }
 
+function initializeFitVids(){
+    if ($(".video").length > 0) {
+        $(".video").fitVids();
+    }
+}
 
 function initializeOwl(){
     if( $(".owl-carousel").length ){
@@ -671,6 +739,7 @@ function fixedNavigation(state){
         });
     }
 }
+
 
 //  Show element when scrolled desired amount of pixels ----------------------------------------------------------------
 
