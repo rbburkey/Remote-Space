@@ -237,7 +237,7 @@ $(window).resize(function(){
 function heroSectionHeight(){
 
     if( $(".hero-section").length > 0 ){
-        if( viewport.is('') ){
+        if( viewport.is('xs') ){
             $(".map-wrapper").height( $(window).height() - 25 );
             $(".hero-section").height( $(".hero-section .map-wrapper").height() +  $(".hero-section .search-form").height() + $(".hero-section .results").height() + 40 );
             $(".has-background").css( "min-height", $(window).height() - $("#page-header").height() + "px" );

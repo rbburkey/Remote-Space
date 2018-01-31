@@ -1,7 +1,7 @@
 class SpacesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new, :index, :show, :my_spaces, :favorites]
   before_action :set_space, only: [:show, :edit, :update, :destroy]
-  before_action :approved, only: [:index, :show, :my_spaces, :favorites]
+  
 
   # GET /spaces
   # GET /spaces.json
