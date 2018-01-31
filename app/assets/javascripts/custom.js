@@ -58,21 +58,6 @@ $(document).ready(function($) {
         socialShare();
     }
 
-//  Count down  --------------------------------------------------------------------------------------------------------
-
-    if( $(".count-down").length ){
-        /*
-
-        REMOVE THIS COMMENT IN YOUR PROJECT
-
-        var year = parseInt( $(".count-down").attr("data-countdown-year"), 10 );
-        var month = parseInt( $(".count-down").attr("data-countdown-month"), 10 ) - 1;
-        var day = parseInt( $(".count-down").attr("data-countdown-day"), 10 );
-         $(".count-down").countdown( {until: new Date(year, month, day), padZeroes: true, format: 'HMS'} );
-        */
-        var date = new Date();
-        $(".count-down").countdown( {until: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 2 ), padZeroes: true, format: 'HMS'} );
-    }
 
 //  iCheck -------------------------------------------------------------------------------------------------------------
 
@@ -102,40 +87,6 @@ $(document).ready(function($) {
                 window.location.hash = target;
             });
         }
-    });
-
-//  Modal after click --------------------------------------------------------------------------------------------------
-
-    $("[data-modal-external-file], .quick-detail").on("click", function(e){
-        e.preventDefault();
-        var modalTarget, modalFile;
-        if( $(this).closest(".item").attr("data-id") ){
-            modalTarget = $(this).closest(".item").attr("data-id");
-            modalFile = "modal_item.php";
-        }
-        else {
-            modalTarget = $(this).attr("data-target");
-            modalFile = $(this).attr("data-modal-external-file");
-        }
-        if( $(this).attr("data-close-modal") == "true" ){
-            lastModal.modal("hide");
-            setTimeout(function() {
-                openModal(modalTarget, modalFile);
-            }, 400);
-        }
-        else {
-            openModal(modalTarget, modalFile);
-        }
-    });
-
-//  Multiple modal hack ------------------------------------------------------------------------------------------------
-
-    $(document).on('show.bs.modal', '.modal', function () {
-        var zIndex = 1040 + (10 * $('.modal:visible').length);
-        $(this).css('z-index', zIndex);
-        setTimeout(function() {
-            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        }, 0);
     });
 
 //  Map in Row listing -------------------------------------------------------------------------------------------------
@@ -239,43 +190,6 @@ $(document).ready(function($) {
         });
     }
 
-//  Calendar
-
-    if( $(".calendar").length ){
-        var date = new Date();
-        var month = date.getMonth();
-        for( var i = 1 ; i<=12 ; i++ ){
-            $('.calendar-wrapper').append('<div id="month_'+i+'" class="month"></div>');
-            $("#month_"+i).zabuto_calendar({
-                ajax: {
-                    url: "assets/php/calendar.php",
-                    modal: true
-                },
-                action: function () {
-                    var date = $("#" + this.id).data("date");
-                    $("#modal-date").val(date);
-                    return checkDate(this.id);
-                },
-                language: "en",
-                month: i,
-                show_previous: false,
-                show_next: false,
-                today: true,
-                nav_icon: {
-                    prev: '<i class="arrow_left"></i>',
-                    next: '<i class="arrow_right"></i>'
-                }
-            });
-        }
-        $(".calendar-wrapper").owlCarousel({
-            items: 2,
-            nav: true,
-            autoHeight: true,
-            navText: [],
-            startPosition: month
-        });
-    }
-
 //  Form Validation
 
     $(".form-email .btn[type='submit']").on("click", function(){
@@ -323,7 +237,7 @@ $(window).resize(function(){
 function heroSectionHeight(){
 
     if( $(".hero-section").length > 0 ){
-        if( viewport.is('xs') ){
+        if( viewport.is('') ){
             $(".map-wrapper").height( $(window).height() - 25 );
             $(".hero-section").height( $(".hero-section .map-wrapper").height() +  $(".hero-section .search-form").height() + $(".hero-section .results").height() + 40 );
             $(".has-background").css( "min-height", $(window).height() - $("#page-header").height() + "px" );
@@ -458,11 +372,6 @@ function socialShare(){
     }
 }
 
-function initializeFitVids(){
-    if ($(".video").length > 0) {
-        $(".video").fitVids();
-    }
-}
 
 function initializeOwl(){
     if( $(".owl-carousel").length ){
@@ -762,11 +671,6 @@ function fixedNavigation(state){
         });
     }
 }
-
-
-//  Show element after desired time ------------------------------------------------------------------------------------
-
-
 
 //  Show element when scrolled desired amount of pixels ----------------------------------------------------------------
 
