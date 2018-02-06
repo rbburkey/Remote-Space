@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
    Notifier.sign_up_email(self).deliver
  end
 
- has_attached_file :avatar, styles: { medium: "150x150", thumb: "75x75" }
+ has_attached_file :avatar, styles: { thumb: "170x100#", profile: "250x250#", review: "75x75#" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end

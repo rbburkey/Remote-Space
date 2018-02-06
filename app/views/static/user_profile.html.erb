@@ -2,7 +2,7 @@
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
-      <li class="active">Profile</li>
+      <li class="/users/<%=current_user.id%>">Profile</li>
     </ol>
     <div class="row">
       <div class="col-md-12 col-sm-12">
@@ -14,7 +14,7 @@
           <div class="subject-detail">
             <div class="image">
               <div class="bg-transfer">
-                <%= image_tag @user.avatar.url(:medium) %>
+                <%= image_tag @user.avatar.url(:profile) %>
               </div>
             </div>
             <div class="description">

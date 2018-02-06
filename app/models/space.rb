@@ -18,11 +18,18 @@ after_create :send_new_space_mail, :send_new_space_mail_notification
   has_many :favorited_by, through: :favorite_spaces, source: :user
   belongs_to :category
   has_many :pictures
-  validates_presence_of :name, :category, :description, :address1, :city, :country, :phone, feature:[]
+  validates_presence_of :name, :category, :description, :address1, :city, :country, :image, :phone, feature:[]
   geocoded_by :full_address
   after_validation :geocode
 
-  has_attached_file :image, styles: { small: "400x400#", thumb:"50x50" }, :default_url => 'background-01.jpg'
+  has_attached_file :image, styles: { thumb: ["180x140#", :jpg],
+                            small: ['350x225#', :jpg],
+                            popular: ['265x225#'],
+                            recent: ['365x225#']},
+                  convert_options: { thumb: "-quality 75 -strip",
+                                     small: "-quality 85 -strip" }
+
+
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 

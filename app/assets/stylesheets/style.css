@@ -7536,7 +7536,7 @@ body::before {
   }
 
   .page-wrapper #page-header, .page-wrapper #page-footer {
-    height: auto;
+    /*height: auto;*/
   }
 
   .gallery.detail .image {

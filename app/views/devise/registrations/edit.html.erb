@@ -2,7 +2,7 @@
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
-      <li><a href="/profile">Profile</a></li>
+      <li><a href="/users/<%=current_user.id%>">Profile</a></li>
       <li class="active">Edit</li>
     </ol>
     <!--end breadcrumb-->
@@ -20,7 +20,7 @@
             <div class="user-details box">
               <div class="user-image">
                 <div class="image">
-                  <%= image_tag @user.avatar.url(:medium), style:
+                  <%= image_tag @user.avatar.url(:thumb), style:
                   "-moz-border-radius: 100%;
                   -webkit-border-radius: 100%;
                   border-radius: 100%;

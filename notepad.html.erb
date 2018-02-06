@@ -1130,3 +1130,57 @@ if( !viewport.is('xs') ){
     });
 
 }
+
+
+
+
+
+
+<%= form_tag search_spaces_path, method: :get do |f| %>
+<div class="form search-form horizontal no-background">
+  <div class="container">
+    <form>
+      <div class="row">
+        <div class="col-md-3 col-sm-4">
+          <div class="form-group">
+            <%= text_field_tag :location, nil, placeholder: "Palo Alto" %>
+          </div>
+          <!--end form-group-->
+        </div>
+        <!--end col-md-4-->
+        <div class="col-md-1 col-sm-4">
+          <div class="form-group">
+            <div id="success"></div>
+            <%= submit_tag 'Search', class: "btn btn-primary pull-right" %> <!--<i class="fa fa-search"></i> -->
+          </div>
+          <!--end form-group-->
+        </div>
+        <!--end col-md-4-->
+      </div>
+      <!--end row-->
+    </form>
+
+
+
+    <div class="form search-form horizontal no-background">
+      <div class="container">
+        <form>
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <div class="form-group">
+                <input type="text" placeholder="Type Food or City"></input>
+              </div>
+              <!--end form-group-->
+            </div>
+            <!--end col-md-4-->
+            <div class="col-md-1 col-sm-4">
+              <div class="form-group">
+                <div id="success"></div>
+                <button class="btn btn-primary pull-right">Search</button?
+              </div>
+              <!--end form-group-->
+            </div>
+            <!--end col-md-4-->
+          </div>
+          <!--end row-->
+        </form>

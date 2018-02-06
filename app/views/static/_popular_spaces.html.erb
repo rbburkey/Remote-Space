@@ -16,7 +16,7 @@
       <% popular_spaces = @spaces.sort {|a,b| a.reviews.average(:rating).to_i <=> b.reviews.average(:rating).to_i} %>
       <% popular_spaces.reverse[1..10].each do |space| %>
       <div class="item featured" data-id="1">
-        <a href="<%=space_path(space)%>"><%=image_tag space.image.url(:small) %>
+        <a href="<%=space_path(space)%>"><%=image_tag space.image.url(:popular) %>
           <div class="description">
             <figure></figure>
             <div class="label label-default"><%=space.category.name%></div>

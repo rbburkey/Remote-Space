@@ -12,7 +12,7 @@
     </ol>
     <section class="page-title pull-left">
       <h1><%=@space.name%></h1>
-      <h3><%=@space.city%>, <%=@space.state.upcase%></h3>
+      <h3><%=@space.city%>, <%=@space.state.capitalize%></h3>
       <div class="rating-passive" data-rating=<%=@avg_rating%>>
         <span class="star-rating" data-score=<%=@avg_rating%> ></span>
         <span class="reviews"><%="Average Rating: "%><%=@avg_rating%></span>
@@ -66,7 +66,7 @@
             <% @reviews.each do |review|%>
             <div class="review">
               <div class="image">
-                <%= image_tag User.where(id: review.user_id).first.avatar.url(:thumb)%>
+                <%= image_tag User.where(id: review.user_id).first.avatar.url(:review)%>
               </div>
               <div class="description">
                 <figure>
@@ -75,7 +75,7 @@
                       <span class="reviews"><%=review.rating.round(2)%></span>
                     </div>
                   </div>
-                  <span class="date"><%=review.created_at.strftime("%b %d, %Y") + " at " + review.created_at.strftime("%H:%M")%></span>
+                  <span class="date"><%=review.created_at.strftime("%b %d, %Y")%></span>
                 </figure>
                 <p><%=review.comment%></p>
               </div>
